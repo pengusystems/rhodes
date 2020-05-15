@@ -1,0 +1,8 @@
+prefix=/usr
+exec_prefix=/usr
+includedir=/usr/include
+ 
+Name: XProxyManagementProtocol
+Description: X Proxy Management Protocol headers
+Version: 1.0.3
+Cflags: -I${includedir}

@@ -1,0 +1,9 @@
+prefix=/usr
+exec_prefix=/usr
+libdir=/usr/lib
+includedir=/usr/include
+
+Name: canutils
+Description: ifconfig like tool for can devices
+Version: 4.0.6
+Cflags: -I${includedir}

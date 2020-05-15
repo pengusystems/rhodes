@@ -1,0 +1,1 @@
+Comso Downloader application has been tested to work with a System 7 Windows PC.  The application does not work with Window XP or older operating systems.

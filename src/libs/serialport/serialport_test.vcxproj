@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{C5005ABA-797E-4F80-9922-5ED55A3ADD7F}</ProjectGuid>
+    <RootNamespace>serialport_test</RootNamespace>
+    <ConfigurationType>Application</ConfigurationType>
+  </PropertyGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="..\win_libs.props" />
+  </ImportGroup>
+  <ItemGroup>
+    <ClCompile Include="serialport_test.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="serialport.vcxproj">
+      <Project>{9C82B623-20D3-4A6D-9ABA-FFDADE4AEEDF}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+</Project>

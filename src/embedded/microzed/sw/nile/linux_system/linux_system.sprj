@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="ASCII"?>
+<systemproject:SystemProject xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sdsproject="http://www.xilinx.com/sdsproject" xmlns:systemproject="http://www.xilinx.com/systemproject" name="linux_system" platform="C:/projects/kandooma/src/embedded/microzed/sw/nile/hw_platform/export/hw_platform/hw_platform.xpfm" platformUID="xilinx:::0.0(custom)" sysConfig="hw_platform" runtime="C/C++">
+  <configuration name="Debug">
+    <configBuildOptions xsi:type="systemproject:SystemOptions">
+      <applications name="acacia" domainName="linux_domain" domainPrettyName="linux_domain" appBuildConfig="Debug"/>
+      <applications name="alder" domainName="linux_domain" domainPrettyName="linux_domain" appBuildConfig="Debug"/>
+      <options xsi:type="sdsproject:Option" gensdcard="true" dmclkid="0"/>
+    </configBuildOptions>
+    <lastBuildOptions xsi:type="systemproject:SystemOptions">
+      <applications name="acacia" domainName="linux_domain" domainPrettyName="linux_domain" appBuildConfig="Debug"/>
+      <applications name="alder" domainName="linux_domain" domainPrettyName="linux_domain" appBuildConfig="Debug"/>
+      <options xsi:type="sdsproject:Option" gensdcard="true" dmclkid="0"/>
+    </lastBuildOptions>
+  </configuration>
+  <configuration name="Release">
+    <configBuildOptions xsi:type="systemproject:SystemOptions">
+      <applications name="acacia" domainName="linux_domain" domainPrettyName="linux_domain" appBuildConfig="Release"/>
+      <applications name="alder" domainName="linux_domain" domainPrettyName="linux_domain" appBuildConfig="Release"/>
+      <options xsi:type="sdsproject:Option" gensdcard="true" dmclkid="0"/>
+    </configBuildOptions>
+  </configuration>
+</systemproject:SystemProject>

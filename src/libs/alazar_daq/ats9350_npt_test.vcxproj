@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{4761ADB0-717C-4F52-9566-36A80E4BBB43}</ProjectGuid>
+    <RootNamespace>ats9350_npt_test</RootNamespace>
+    <ConfigurationType>Application</ConfigurationType>
+  </PropertyGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="..\win_libs.props" />
+  </ImportGroup>
+  <ItemGroup>
+    <ClCompile Include="ats9350_npt_test.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="alazar_daq.vcxproj">
+      <Project>{8dbf0639-e4d2-4c13-b53c-fbe8f8f0fcba}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+</Project>

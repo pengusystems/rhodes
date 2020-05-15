@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{29190625-3793-478D-BA65-736ED229ED93}</ProjectGuid>
+    <RootNamespace>iris</RootNamespace>
+    <ConfigurationType>Application</ConfigurationType>
+  </PropertyGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="..\win_apps.props" />
+  </ImportGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <OpenMPSupport>false</OpenMPSupport>
+      <AdditionalIncludeDirectories>../../libs/;../../../ext;../../../ext/boost;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp14</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>../../../ext;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <OpenMPSupport>true</OpenMPSupport>
+      <AdditionalIncludeDirectories>../../libs/;../../../ext;../../../ext/boost;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp14</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>../../../ext;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseNoOpt|x64'">
+    <ClCompile>
+      <OpenMPSupport>true</OpenMPSupport>
+      <AdditionalIncludeDirectories>../../libs/;../../../ext;../../../ext/spdlog/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp14</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>../../../ext;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="iris.cpp" />
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="iris.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\libs\alazar_daq\alazar_daq.vcxproj">
+      <Project>{8dbf0639-e4d2-4c13-b53c-fbe8f8f0fcba}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\libs\core2\core2.vcxproj">
+      <Project>{8da47f19-4387-440c-8f91-2b8014ba9e3e}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\libs\glv\glv.vcxproj">
+      <Project>{00A2307C-0000-0000-0000-000000000000}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Natvis Include="eigen.natvis" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+</Project>

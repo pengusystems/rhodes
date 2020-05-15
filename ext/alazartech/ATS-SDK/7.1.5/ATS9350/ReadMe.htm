@@ -1,0 +1,282 @@
+
+        <head>
+          <meta charset="UTF-8">
+        </head>
+        <style>
+        * {
+          font-family: "Times New Roman";
+        }
+
+        td, th {
+          padding: 3px 7px 2px 7px;
+        }
+
+        th {
+          font-size: 1.1em;
+          text-align: left;
+          padding-top: 5px;
+          padding-bottom: 4px;
+        }
+        </style>
+        <body><h1>ATS9350 C sample programs</h1>
+
+<p>ATS-SDK version 7.1.5</p>
+
+<p>© 2003-2016 Alazar Technologies, Inc.</p>
+
+<h2>Introduction</h2>
+
+<p>This folder contains sample programs that demonstrate how to make the
+various types of acquisitions supported by an AlazarTech
+ATS9350 12-bit 500 MS/s digitizer board
+with an 8-lane PCIe host bus interface. The sample
+programs are part of the AlazarTech SDK, and are documented in the
+“AlazarTech SDK Programmer’s Guide”.</p>
+
+<h2>System requirements</h2>
+
+<p>Under Windows, Microsoft Visual C++ 6 or Microsoft Visual C++ 2008 are required to build these C
+sample programs. The samples include Visual C++ 6 workspace files for 32-bit platforms, and Visual
+C++ 2008 solutions for for 32 and 64-bit platforms.</p>
+
+<p>Under Linux, a compiler compatible with the ISO C++ 2003 standard is required.</p>
+
+<p>The AlazarTech ATS9350 drivers version 5.10.14
+of later are required to run the sample program. They can be
+downloaded from <a href="http://www.alazartech.com/support/downloads.htm">our
+website</a>.</p>
+
+<p>ATS9350 has an 8-lane PCIe bus interface of
+generation 1 capable of sustained data transfers
+up to 1.6 GB/s. When the computer is booted, the motherboard
+and digitizer board negociate the actual number of lanes and the PCIe
+bus generation and, as a result, the maximum PCIe bus bandwidth. The
+number of lanes or the generation may be limited by the motherboard
+model, or by the BIOS version. The
+<a href="../AlazarSysInfo/ReadMe.htm">AlazarSysInfo</a> sample demonstrates how
+to determine the number of PCIe lanes available to the digitizer
+board.</p>
+
+<p>Many sample programs require a trigger input signal. Connect a 500
+mVpp, 1kHz sine wave from a function generator to the CH A connector
+of the digitizer board before running these programs. If a suitable
+trigger signal is not supplied, an acquisition timeout internal will
+expire before the board receives the number of trigger events required
+to make the acquisition and, as a result, the acquisition will fail
+with a timeout error.</p>
+
+<h2>Getting started</h2>
+
+<p>To get the most from an AlazarTech ATS9350 digitizer board, a
+programmer should:</p>
+
+<ol>
+<li><p>Read the "ATS9350 User Guide". It provides an overview of
+the digitizer board's hardware features, as well as it's
+specifications.</p></li>
+<li><p>Read the "AlazarTech SDK Programmer's Guide". It describes how to
+program the digitizier hardware to make an acquisition, and to
+transfer sample data into application buffers.</p></li>
+</ol>
+
+<h2>Single-port acquisitions</h2>
+
+<p>A single-port acquisition allows a board to acquire to on-board memory
+and, after the acquisition is complete, transfer sample data from
+on-board memory to application buffers.</p>
+
+<p>Single-port acquisitions should be used when:</p>
+
+<ul>
+<li><p>The application can tolerate missing trigger events while it
+transfers data from on-board memory, and re-arms a board for
+another acquisition.</p></li>
+<li><p>The average data acquisition data rate that is greater than the
+maximum PCIe bus transfer rate.</p></li>
+</ul>
+
+<p>Single-port acquisitions should not be used for imaging applications
+such as: ultrasonic testing, OCT, RADAR, and LIDAR. These applications
+should use Dual-port AutoDMA acquisitions described below.
+Single-port samples</p>
+
+<h2>Single-port samples</h2>
+
+<p>The samples in the “SinglePort” directory demonstrate how to make
+single-port acquisitions. Most programmers should begin with the
+“SinglePort\AR” sample.</p>
+
+<ul>
+<li><p><a href="../../Samples_C/ATS9350/SinglePort/AR_MasterSlave/ReadMe.htm">ATS9350_AR_MasterSlave.c</a> : This sample acquires records to on-board memory, and calls AlazarRead to transfer entire records from on-board memory to an application buffer. It demonstrates a basic single-port acquisition.</p></li>
+<li><p><a href="../../Samples_C/ATS9350/SinglePort/AR_GetTriggerAddress/ReadMe.htm">ATS9350_AR_GetTriggerAddress.c</a> : This sample acquires records to on-board memory, and calls AlazarRead to transfer entire records from on-board memory to an application buffer. It demonstrates a basic single-port acquisition.</p></li>
+<li><p><a href="../../Samples_C/ATS9350/SinglePort/AR_Volts/ReadMe.htm">ATS9350_AR_Volts.c</a> : Based on the AR code sample, this adds code to convert sample codes to volts.</p></li>
+<li><p><a href="../../Samples_C/ATS9350/SinglePort/AR_Segments/ReadMe.htm">ATS9350_AR_Segments.c</a> : Based on the AR code sample, this adds code to acquire from a master-slave board system.</p></li>
+<li><p><a href="../../Samples_C/ATS9350/SinglePort/AR/ReadMe.htm">ATS9350_AR.c</a> : This sample acquires records to on-board memory, and calls AlazarRead to transfer entire records from on-board memory to an application buffer. It demonstrates a basic single-port acquisition.</p></li>
+</ul>
+
+<h2>Dual-port AutoDMA acquisitions</h2>
+
+<p>A dual-port AutoDMA acquisition allows a board to acquire to on-board
+memory while, at the same time, transferring sample data from on-board
+memory to application buffers.</p>
+
+<p>AutoDMA acquisitions should be used when:</p>
+
+<ul>
+<li><p>The average data acquisition rate is less than the maximum PCIe bus
+transfer rate.</p></li>
+<li><p>An application cannot miss trigger events that occur while it
+transfers data from host to memory, or re-arms a board for another
+acquisition.</p></li>
+<li><p>An application acquires more sample points or records per
+acquisition than can be stored in on-board memory.</p></li>
+</ul>
+
+<p>Scanning applications such as ultrasonic testing, OCT, RADAR and LIDAR
+imaging should use AutoDMA acquisitions.</p>
+
+<p>The unit of digitization in the AutoDMA modes is called a <em>record</em>. An
+acquisition consists of the digitization of one or more record(s).</p>
+
+<p>The unit of data transfer between the acquisition board and the
+computer's host memory is called a <em>DMA buffer</em>.</p>
+
+<p>In the streaming AutoDMA acquisition modes, an acquisition consists of
+the digitization of only one record that can contain an infinite
+number of samples. This record is broken down in chucks to be
+transferred in the form of DMA buffers.</p>
+
+<p>In the non-streaming AutoDMA modes, an acquisition can involve the
+digitization of an infinite number of records. Each DMA buffer used to
+transfer data to host memory can contain one or more record. The
+record length is limited by the maximum size of DMA buffers in this
+mode (usually 64MB).</p>
+
+<p>There are four AutoDMA acquisition modes:</p>
+
+<table>
+<thead>
+<tr>
+  <th>Mode</th>
+  <th>Triggered</th>
+  <th>Pre-trigger samples</th>
+  <th>Record headers</th>
+  <th>Streaming</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Traditional</td>
+  <td>Yes</td>
+  <td>Yes</td>
+  <td>Optional</td>
+  <td>No</td>
+</tr>
+<tr>
+  <td>NPT</td>
+  <td>Yes</td>
+  <td>No</td>
+  <td>No</td>
+  <td>No</td>
+</tr>
+<tr>
+  <td>Continuous Streaming</td>
+  <td>No</td>
+  <td>No</td>
+  <td>No</td>
+  <td>Yes</td>
+</tr>
+<tr>
+  <td>Triggered Streaming</td>
+  <td>Yes</td>
+  <td>No</td>
+  <td>No</td>
+  <td>Yes</td>
+</tr>
+</tbody>
+</table>
+
+<p>In triggered modes, the digitization of a record is started by a
+trigger event. The trigger event can be generated by an external
+signal fed into the board, or by software.</p>
+
+<p>Pre-trigger samples corresponds to the digitization of samples
+preceding the trigger events.</p>
+
+<p>Record headers are data structures added to the transferred data that
+contain meta-data relative to the acquisition. Please refer to the
+AlazarTech SDK Guide for more information.</p>
+
+<h2>Dual-port samples</h2>
+
+<p>The sample programs in the “DualPort” directory demonstrate how to
+make dual-port AutoDMA acquisitions.</p>
+
+<ul>
+<li><p><a href="../../Samples_C/ATS9350/DualPort/NPT_Scan/ReadMe.htm">ATS9350_NPT_Scan.c</a> : This sample shows how to make a scanning acquisition in NPT mode.</p></li>
+<li><p><a href="../../Samples_C/ATS9350/DualPort/NPT_Poll/ReadMe.htm">ATS9350_NPT_Poll.c</a> : This sample shows how to make a polling acquisition in NPT mode.</p></li>
+<li><p><a href="../../Samples_C/ATS9350/DualPort/CS_CreateStreamFile/ReadMe.htm">ATS9350_CS_CreateStreamFile.c</a> : This sample demonstrates how to use the ATS API to stream data directly to a file.</p></li>
+<li><p><a href="../../Samples_C/ATS9350/DualPort/TR_Header/ReadMe.htm">ATS9350_TRHeader.c</a> : This sample demonstrates how to retrieve record headers in Traditional mode.</p></li>
+<li><p><a href="../../Samples_C/ATS9350/DualPort/TR_Timestamp/ReadMe.htm">ATS9350_TRTimestamp.c</a> : This sample demonstrates how to retrieve record headers in Traditional mode and extract the record timestamp.</p></li>
+<li><p><a href="../../Samples_C/ATS9350/DualPort/TS_MasterSlave/ReadMe.htm">ATS9350_TS_MasterSlave.c</a> : Based on the triggered streaming code sample, this adds code to acquire from a master-slave board system.</p></li>
+<li><p><a href="../../Samples_C/ATS9350/DualPort/TS_WaitNextBuffer/ReadMe.htm">ATS9350_TS_WaitNextBuffer.c</a> : This sample demonstrates how to use the WaitNextBuffer ATS API in triggered streaming mode.</p></li>
+<li><p><a href="../../Samples_C/ATS9350/DualPort/NPT_Volts/ReadMe.htm">ATS9350_NPT_Volts.c</a> : This sample demonstrates how to retrieve records in NPT mode and convert the data to volts. Optionaly saves the data to a binary file.</p></li>
+<li><p><a href="../../Samples_C/ATS9350/DualPort/TS/ReadMe.htm">ATS9350_TS.c</a> : This sample calls AlazarPostAsyncBuffer and AlazarWaitAsyncBufferComplete to acquire a single, gapless record per channel spanning several AutoDMA buffers. It demonstrates a basic AutoDMA acquisition.</p></li>
+<li><p><a href="../../Samples_C/ATS9350/DualPort/TR/ReadMe.htm">ATS9350_TR.c</a> : This sample calls AlazarPostAsyncBuffer and AlazarWaitAsyncBufferComplete to acquire a multiple records per channel – one per trigger event – with one or more records per AutoDMA buffer. It demonstrates a basic AutoDMA acquisition.</p></li>
+<li><p><a href="../../Samples_C/ATS9350/DualPort/NPT/ReadMe.htm">ATS9350_NPT.c</a> : This sample calls AlazarPostAsyncBuffer and AlazarWaitAsyncBufferComplete to acquire a multiple records per channel – one per trigger event – with one or more records per AutoDMA buffer. It demonstrates a basic AutoDMA acquisition.</p></li>
+<li><p><a href="../../Samples_C/ATS9350/DualPort/CS_MasterSlave/ReadMe.htm">ATS9350_CS_MasterSlave.c</a> : Based on the continuous streaming code sample, this adds code to acquire from a master-slave board system.</p></li>
+<li><p><a href="../../Samples_C/ATS9350/DualPort/TS_DisableFileCache/ReadMe.htm">ATS9350_TS_DisableFileCache.c</a> : Based on the triggered streaming code sample, this disables caching when writing data to file.</p></li>
+<li><p><a href="../../Samples_C/ATS9350/DualPort/NPT_MasterSlave/ReadMe.htm">ATS9350_NPT_MasterSlave.c</a> : Based on the NPT code sample, this adds code to acquire from a master-slave board system.</p></li>
+<li><p><a href="../../Samples_C/ATS9350/DualPort/NPT_AverageMultithreaded/ReadMe.htm">ATS9350_NPT_AverageMultithreaded.c</a> : This sample demonstrates how to acquire data in NPT mode and average it using multiple threads.</p></li>
+<li><p><a href="../../Samples_C/ATS9350/DualPort/TR_Volts/ReadMe.htm">ATS9350_TR_Volts.c</a> : This sample demonstrates how to retrieve records in Traditional mode and convert the data to volts. Optionaly saves the data to a binary file.</p></li>
+<li><p><a href="../../Samples_C/ATS9350/DualPort/NPT_Average/ReadMe.htm">ATS9350_NPT_Average.c</a> : This sample demonstrates how to acquire data and average it in NPT mode.</p></li>
+<li><p><a href="../../Samples_C/ATS9350/DualPort/TS_Interleaved/ReadMe.htm">ATS9350_TS_Interleaved.c</a> : This sample calls AlazarPostAsyncBuffer and AlazarWaitAsyncBufferComplete to acquire a single, gapless record per channel spanning several AutoDMA buffers. It uses the ADMA_INTERLEAVE_SAMPLES flag to make the acquired samples interleaved.</p></li>
+<li><p><a href="../../Samples_C/ATS9350/DualPort/NPT_DataPacking/ReadMe.htm">ATS9350_NPT_DataPacking.c</a> : This sample demonstrates how to retrieve packed data in NPT mode and convert it to volts.</p></li>
+<li><p><a href="../../Samples_C/ATS9350/DualPort/CS/ReadMe.htm">ATS9350_CS.c</a> : This sample calls AlazarPostAsyncBuffer and AlazarWaitAsyncBufferComplete to acquire a single record per channel spanning several AutoDMA buffers. It demonstrates how to make an AutoDMA acquisition.</p></li>
+<li><p><a href="../../Samples_C/ATS9350/DualPort/NPT_Infinite/ReadMe.htm">ATS9350_NPT_Infinite.c</a> : This sample shows how to make an infinite acquisition in NPT mode.</p></li>
+<li><p><a href="../../Samples_C/ATS9350/DualPort/TR_WaitNextBuffer/ReadMe.htm">ATS9350_TR_WaitNextBuffer.c</a> : This sample demonstrates how to use the WaitNextBuffer ATS API in traditional mode.</p></li>
+<li><p><a href="../../Samples_C/ATS9350/DualPort/CS_WaitNextBuffer/ReadMe.htm">ATS9350_CS_WaitNextBuffer.c</a> : This sample demonstrates how to use the WaitNextBuffer ATS API in CS mode.</p></li>
+<li><p><a href="../../Samples_C/ATS9350/DualPort/CS_Average/ReadMe.htm">ATS9350_CS_Average.c</a> : This sample demonstrates how to acquire data and average it in continuous streaming mode.</p></li>
+<li><p><a href="../../Samples_C/ATS9350/DualPort/TR_MasterSlave/ReadMe.htm">ATS9350_TR_MasterSlave.c</a> : Based on the traditional code sample, this adds code to acquire from a master-slave board system.</p></li>
+<li><p><a href="../../Samples_C/ATS9350/DualPort/NPT_on-FPGA_FFT/ReadMe.htm">ATS9350_NPT_on-FPGA_FFT.c</a> : This sample shows how to make a NPT acquisition using the on-FPGA FFT module.</p></li>
+<li><p><a href="../../Samples_C/ATS9350/DualPort/CS_AverageMultithreaded/ReadMe.htm">ATS9350_CS_AverageMultithreaded.c</a> : This sample demonstrates how to acquire data in NPT mode and average it using multiple threads.</p></li>
+<li><p><a href="../../Samples_C/ATS9350/DualPort/CS_Interleaved/ReadMe.htm">ATS9350_CS_Interleaved.c</a> : This sample demonstrates how to do an interleaved continuous streaming acquisition for maximum throughput.</p></li>
+<li><p><a href="../../Samples_C/ATS9350/DualPort/NPT_on-FPGA_FFT_DispersionCompensation/ReadMe.htm">ATS9350_NPT_on-FPGA_FFT_DispersionCompensation.c</a> : This sample shows how to make a NPT acquisition using the on-FPGA FFT module.</p></li>
+<li><p><a href="../../Samples_C/ATS9350/DualPort/CS_AsyncRead/ReadMe.htm">ATS9350_CS_AsyncRead.c</a> : This sample demonstrates how to acquire data using the AlazarAsyncRead API and Windows' WaitForSingleObject function</p></li>
+<li><p><a href="../../Samples_C/ATS9350/DualPort/NPT_WaitNextBuffer/ReadMe.htm">ATS9350_NPT_WaitNextBuffer.c</a> : This sample demonstrates how to use the WaitNextBuffer ATS API in NPT mode.</p></li>
+</ul>
+
+<h2>Utility samples</h2>
+
+<p>The following sample programs demonstrate how to get informatin about
+a board.</p>
+
+<ul>
+<li><p><a href="../AlazarSysInfo/ReadMe.htm">AlazarSysInfo</a> : This sample calls a
+number of status and information API functions to display detailed
+information about digitizer boards. This information includes:
+sample size in bits, memory size in samples per channel, serial
+number, and latest calibration date. It demonstrates how to obtain
+a board handle, use the status and information API functions, and
+control the LED on a board’s PCIe mounting bracket.</p></li>
+<li><p><a href="../BinToText8/ReadMe.txt">BinToText8</a>: This sample program
+converts a binary data file containing 1-byte samples to text.</p></li>
+<li><p><a href="../BinToText16/ReadMe.txt">BinToText16</a>: This sample program
+converts a binary data file containing 2-bytes samples to text.</p></li>
+</ul>
+
+<h2>Contact us</h2>
+
+<p>If you have any questions or comments, or need assistance, contact us.</p>
+
+<ul>
+<li>Web:    <a href="http://www.alazartech.com">www.alazartech.com</a></li>
+<li>Email:  <a href="mailto:support@alazartech.com">support@alazartech.com</a></li>
+<li>Phone:  514-426-4899</li>
+<li>Fax:    514-426-2723</li>
+<li>Mail:   Alazar Technologies Inc.
+       6600 Trans-Canada Highway, Suite 310
+       Pointe-Claire, QC
+       Canada H9R 4S2</li>
+</ul>
+</body>

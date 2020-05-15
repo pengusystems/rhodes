@@ -1,0 +1,45 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2005
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "glv_test", "glv_test.vcxproj", "{1DBCC10F-138F-4538-B364-8873CA50EE21}"
+	ProjectSection(ProjectDependencies) = postProject
+		{00A2307C-0000-0000-0000-000000000000} = {00A2307C-0000-0000-0000-000000000000}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "glv", "glv.vcxproj", "{00A2307C-0000-0000-0000-000000000000}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "serialport", "..\serialport\serialport.vcxproj", "{9C82B623-20D3-4A6D-9ABA-FFDADE4AEEDF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+		ReleaseNoOpt|x64 = ReleaseNoOpt|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1DBCC10F-138F-4538-B364-8873CA50EE21}.Debug|x64.ActiveCfg = Debug|x64
+		{1DBCC10F-138F-4538-B364-8873CA50EE21}.Debug|x64.Build.0 = Debug|x64
+		{1DBCC10F-138F-4538-B364-8873CA50EE21}.Debug|x64.Deploy.0 = Debug|x64
+		{1DBCC10F-138F-4538-B364-8873CA50EE21}.Release|x64.ActiveCfg = ReleaseNoOpt|x64
+		{1DBCC10F-138F-4538-B364-8873CA50EE21}.ReleaseNoOpt|x64.ActiveCfg = ReleaseNoOpt|x64
+		{1DBCC10F-138F-4538-B364-8873CA50EE21}.ReleaseNoOpt|x64.Build.0 = ReleaseNoOpt|x64
+		{00A2307C-0000-0000-0000-000000000000}.Debug|x64.ActiveCfg = Debug|x64
+		{00A2307C-0000-0000-0000-000000000000}.Debug|x64.Build.0 = Debug|x64
+		{00A2307C-0000-0000-0000-000000000000}.Release|x64.ActiveCfg = ReleaseNoOpt|x64
+		{00A2307C-0000-0000-0000-000000000000}.ReleaseNoOpt|x64.ActiveCfg = ReleaseNoOpt|x64
+		{00A2307C-0000-0000-0000-000000000000}.ReleaseNoOpt|x64.Build.0 = ReleaseNoOpt|x64
+		{9C82B623-20D3-4A6D-9ABA-FFDADE4AEEDF}.Debug|x64.ActiveCfg = Debug|x64
+		{9C82B623-20D3-4A6D-9ABA-FFDADE4AEEDF}.Debug|x64.Build.0 = Debug|x64
+		{9C82B623-20D3-4A6D-9ABA-FFDADE4AEEDF}.Release|x64.ActiveCfg = ReleaseNoOpt|x64
+		{9C82B623-20D3-4A6D-9ABA-FFDADE4AEEDF}.ReleaseNoOpt|x64.ActiveCfg = ReleaseNoOpt|x64
+		{9C82B623-20D3-4A6D-9ABA-FFDADE4AEEDF}.ReleaseNoOpt|x64.Build.0 = ReleaseNoOpt|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0D145AE4-469B-45A2-BF5C-3866E6EED408}
+	EndGlobalSection
+EndGlobal

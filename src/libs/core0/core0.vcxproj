@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{B91A7F7F-32E4-4265-BD7F-B02E96487F39}</ProjectGuid>
+    <RootNamespace>core0</RootNamespace>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+  </PropertyGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="..\win_libs.props" />
+  </ImportGroup>
+  <ItemGroup>
+    <ClInclude Include="api_export.h" />
+    <ClInclude Include="endianness.h" />
+    <ClInclude Include="log.h" />
+    <ClInclude Include="types.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+</Project>

@@ -1,0 +1,11 @@
+.analytics
+IDE.log
+ps7_*
+*.bit
+*.xsa
+webtalk/
+.metadata/
+hw_platform/
+RemoteSystemsTempFiles/
+.sdk/
+.settings/

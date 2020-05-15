@@ -1,0 +1,15 @@
+# NOTE: This is the root ignore set.
+#       Please put conflicting ignores into sub folders or specialize them to avoid conflict.
+#       /ext (3rd party compiled AND binary libraries) has its own ignores.
+*.xpr
+*.hw/
+*.cache/
+*.runs/
+*.ip_user_files/
+*.sim/
+.cxl.ip/
+Packages/
+*srcs/*/bd/usystem/*
+vivado*.jou
+vivado*.log
+*.xsa

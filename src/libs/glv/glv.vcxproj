@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{00A2307C-0000-0000-0000-000000000000}</ProjectGuid>
+    <RootNamespace>glv</RootNamespace>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+  </PropertyGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="..\win_libs.props" />
+  </ImportGroup>
+  <ImportGroup Label="ExtensionSettings">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.props" />
+  </ImportGroup>
+  <ItemDefinitionGroup>
+    <Link>
+      <IgnoreSpecificDefaultLibraries>LibCMT.lib</IgnoreSpecificDefaultLibraries>
+      <AdditionalLibraryDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">../../../ext/CyAPI/lib/x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories Condition="'$(Configuration)|$(Platform)'=='Release|x64'">../../../ext/CyAPI/lib/x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories Condition="'$(Configuration)|$(Platform)'=='ReleaseNoOpt|x64'">../../../ext/CyAPI/lib/x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">legacy_stdio_definitions.lib;Setupapi.lib;CyAPI.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Release|x64'">legacy_stdio_definitions.lib;Setupapi.lib;CyAPI.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='ReleaseNoOpt|x64'">legacy_stdio_definitions.lib;Setupapi.lib;CyAPI.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="glv.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="glv.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\serialport\serialport.vcxproj">
+      <Project>{9c82b623-20d3-4a6d-9aba-ffdade4aeedf}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
