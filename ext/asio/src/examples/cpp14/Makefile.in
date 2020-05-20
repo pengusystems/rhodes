@@ -101,7 +101,11 @@ noinst_PROGRAMS = echo/async_tcp_echo_server$(EXEEXT) \
 	executors/bank_account_2$(EXEEXT) executors/fork_join$(EXEEXT) \
 	executors/pipeline$(EXEEXT) \
 	executors/priority_scheduler$(EXEEXT) \
-	iostreams/http_client$(EXEEXT)
+	iostreams/http_client$(EXEEXT) operations/composed_1$(EXEEXT) \
+	operations/composed_2$(EXEEXT) operations/composed_3$(EXEEXT) \
+	operations/composed_4$(EXEEXT) operations/composed_5$(EXEEXT) \
+	operations/composed_6$(EXEEXT) operations/composed_7$(EXEEXT) \
+	operations/composed_8$(EXEEXT)
 subdir = src/examples/cpp14
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/configure.ac
@@ -218,6 +222,46 @@ iostreams_http_client_OBJECTS = $(am_iostreams_http_client_OBJECTS)
 iostreams_http_client_LDADD = $(LDADD)
 @SEPARATE_COMPILATION_TRUE@iostreams_http_client_DEPENDENCIES =  \
 @SEPARATE_COMPILATION_TRUE@	libasio.a
+am_operations_composed_1_OBJECTS = operations/composed_1.$(OBJEXT)
+operations_composed_1_OBJECTS = $(am_operations_composed_1_OBJECTS)
+operations_composed_1_LDADD = $(LDADD)
+@SEPARATE_COMPILATION_TRUE@operations_composed_1_DEPENDENCIES =  \
+@SEPARATE_COMPILATION_TRUE@	libasio.a
+am_operations_composed_2_OBJECTS = operations/composed_2.$(OBJEXT)
+operations_composed_2_OBJECTS = $(am_operations_composed_2_OBJECTS)
+operations_composed_2_LDADD = $(LDADD)
+@SEPARATE_COMPILATION_TRUE@operations_composed_2_DEPENDENCIES =  \
+@SEPARATE_COMPILATION_TRUE@	libasio.a
+am_operations_composed_3_OBJECTS = operations/composed_3.$(OBJEXT)
+operations_composed_3_OBJECTS = $(am_operations_composed_3_OBJECTS)
+operations_composed_3_LDADD = $(LDADD)
+@SEPARATE_COMPILATION_TRUE@operations_composed_3_DEPENDENCIES =  \
+@SEPARATE_COMPILATION_TRUE@	libasio.a
+am_operations_composed_4_OBJECTS = operations/composed_4.$(OBJEXT)
+operations_composed_4_OBJECTS = $(am_operations_composed_4_OBJECTS)
+operations_composed_4_LDADD = $(LDADD)
+@SEPARATE_COMPILATION_TRUE@operations_composed_4_DEPENDENCIES =  \
+@SEPARATE_COMPILATION_TRUE@	libasio.a
+am_operations_composed_5_OBJECTS = operations/composed_5.$(OBJEXT)
+operations_composed_5_OBJECTS = $(am_operations_composed_5_OBJECTS)
+operations_composed_5_LDADD = $(LDADD)
+@SEPARATE_COMPILATION_TRUE@operations_composed_5_DEPENDENCIES =  \
+@SEPARATE_COMPILATION_TRUE@	libasio.a
+am_operations_composed_6_OBJECTS = operations/composed_6.$(OBJEXT)
+operations_composed_6_OBJECTS = $(am_operations_composed_6_OBJECTS)
+operations_composed_6_LDADD = $(LDADD)
+@SEPARATE_COMPILATION_TRUE@operations_composed_6_DEPENDENCIES =  \
+@SEPARATE_COMPILATION_TRUE@	libasio.a
+am_operations_composed_7_OBJECTS = operations/composed_7.$(OBJEXT)
+operations_composed_7_OBJECTS = $(am_operations_composed_7_OBJECTS)
+operations_composed_7_LDADD = $(LDADD)
+@SEPARATE_COMPILATION_TRUE@operations_composed_7_DEPENDENCIES =  \
+@SEPARATE_COMPILATION_TRUE@	libasio.a
+am_operations_composed_8_OBJECTS = operations/composed_8.$(OBJEXT)
+operations_composed_8_OBJECTS = $(am_operations_composed_8_OBJECTS)
+operations_composed_8_LDADD = $(LDADD)
+@SEPARATE_COMPILATION_TRUE@operations_composed_8_DEPENDENCIES =  \
+@SEPARATE_COMPILATION_TRUE@	libasio.a
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
 am__v_P_0 = false
@@ -248,7 +292,15 @@ am__depfiles_remade = ../../$(DEPDIR)/asio.Po \
 	executors/$(DEPDIR)/fork_join.Po \
 	executors/$(DEPDIR)/pipeline.Po \
 	executors/$(DEPDIR)/priority_scheduler.Po \
-	iostreams/$(DEPDIR)/http_client.Po
+	iostreams/$(DEPDIR)/http_client.Po \
+	operations/$(DEPDIR)/composed_1.Po \
+	operations/$(DEPDIR)/composed_2.Po \
+	operations/$(DEPDIR)/composed_3.Po \
+	operations/$(DEPDIR)/composed_4.Po \
+	operations/$(DEPDIR)/composed_5.Po \
+	operations/$(DEPDIR)/composed_6.Po \
+	operations/$(DEPDIR)/composed_7.Po \
+	operations/$(DEPDIR)/composed_8.Po
 am__mv = mv -f
 CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
 	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
@@ -275,7 +327,15 @@ SOURCES = $(libasio_a_SOURCES) $(echo_async_tcp_echo_server_SOURCES) \
 	$(executors_bank_account_2_SOURCES) \
 	$(executors_fork_join_SOURCES) $(executors_pipeline_SOURCES) \
 	$(executors_priority_scheduler_SOURCES) \
-	$(iostreams_http_client_SOURCES)
+	$(iostreams_http_client_SOURCES) \
+	$(operations_composed_1_SOURCES) \
+	$(operations_composed_2_SOURCES) \
+	$(operations_composed_3_SOURCES) \
+	$(operations_composed_4_SOURCES) \
+	$(operations_composed_5_SOURCES) \
+	$(operations_composed_6_SOURCES) \
+	$(operations_composed_7_SOURCES) \
+	$(operations_composed_8_SOURCES)
 DIST_SOURCES = $(am__libasio_a_SOURCES_DIST) \
 	$(echo_async_tcp_echo_server_SOURCES) \
 	$(echo_async_udp_echo_server_SOURCES) \
@@ -289,7 +349,15 @@ DIST_SOURCES = $(am__libasio_a_SOURCES_DIST) \
 	$(executors_bank_account_2_SOURCES) \
 	$(executors_fork_join_SOURCES) $(executors_pipeline_SOURCES) \
 	$(executors_priority_scheduler_SOURCES) \
-	$(iostreams_http_client_SOURCES)
+	$(iostreams_http_client_SOURCES) \
+	$(operations_composed_1_SOURCES) \
+	$(operations_composed_2_SOURCES) \
+	$(operations_composed_3_SOURCES) \
+	$(operations_composed_4_SOURCES) \
+	$(operations_composed_5_SOURCES) \
+	$(operations_composed_6_SOURCES) \
+	$(operations_composed_7_SOURCES) \
+	$(operations_composed_8_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -438,6 +506,14 @@ executors_fork_join_SOURCES = executors/fork_join.cpp
 executors_pipeline_SOURCES = executors/pipeline.cpp
 executors_priority_scheduler_SOURCES = executors/priority_scheduler.cpp
 iostreams_http_client_SOURCES = iostreams/http_client.cpp
+operations_composed_1_SOURCES = operations/composed_1.cpp
+operations_composed_2_SOURCES = operations/composed_2.cpp
+operations_composed_3_SOURCES = operations/composed_3.cpp
+operations_composed_4_SOURCES = operations/composed_4.cpp
+operations_composed_5_SOURCES = operations/composed_5.cpp
+operations_composed_6_SOURCES = operations/composed_6.cpp
+operations_composed_7_SOURCES = operations/composed_7.cpp
+operations_composed_8_SOURCES = operations/composed_8.cpp
 MAINTAINERCLEANFILES = \
 	$(srcdir)/Makefile.in
 
@@ -603,6 +679,60 @@ iostreams/http_client.$(OBJEXT): iostreams/$(am__dirstamp) \
 iostreams/http_client$(EXEEXT): $(iostreams_http_client_OBJECTS) $(iostreams_http_client_DEPENDENCIES) $(EXTRA_iostreams_http_client_DEPENDENCIES) iostreams/$(am__dirstamp)
 	@rm -f iostreams/http_client$(EXEEXT)
 	$(AM_V_CXXLD)$(CXXLINK) $(iostreams_http_client_OBJECTS) $(iostreams_http_client_LDADD) $(LIBS)
+operations/$(am__dirstamp):
+	@$(MKDIR_P) operations
+	@: > operations/$(am__dirstamp)
+operations/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) operations/$(DEPDIR)
+	@: > operations/$(DEPDIR)/$(am__dirstamp)
+operations/composed_1.$(OBJEXT): operations/$(am__dirstamp) \
+	operations/$(DEPDIR)/$(am__dirstamp)
+
+operations/composed_1$(EXEEXT): $(operations_composed_1_OBJECTS) $(operations_composed_1_DEPENDENCIES) $(EXTRA_operations_composed_1_DEPENDENCIES) operations/$(am__dirstamp)
+	@rm -f operations/composed_1$(EXEEXT)
+	$(AM_V_CXXLD)$(CXXLINK) $(operations_composed_1_OBJECTS) $(operations_composed_1_LDADD) $(LIBS)
+operations/composed_2.$(OBJEXT): operations/$(am__dirstamp) \
+	operations/$(DEPDIR)/$(am__dirstamp)
+
+operations/composed_2$(EXEEXT): $(operations_composed_2_OBJECTS) $(operations_composed_2_DEPENDENCIES) $(EXTRA_operations_composed_2_DEPENDENCIES) operations/$(am__dirstamp)
+	@rm -f operations/composed_2$(EXEEXT)
+	$(AM_V_CXXLD)$(CXXLINK) $(operations_composed_2_OBJECTS) $(operations_composed_2_LDADD) $(LIBS)
+operations/composed_3.$(OBJEXT): operations/$(am__dirstamp) \
+	operations/$(DEPDIR)/$(am__dirstamp)
+
+operations/composed_3$(EXEEXT): $(operations_composed_3_OBJECTS) $(operations_composed_3_DEPENDENCIES) $(EXTRA_operations_composed_3_DEPENDENCIES) operations/$(am__dirstamp)
+	@rm -f operations/composed_3$(EXEEXT)
+	$(AM_V_CXXLD)$(CXXLINK) $(operations_composed_3_OBJECTS) $(operations_composed_3_LDADD) $(LIBS)
+operations/composed_4.$(OBJEXT): operations/$(am__dirstamp) \
+	operations/$(DEPDIR)/$(am__dirstamp)
+
+operations/composed_4$(EXEEXT): $(operations_composed_4_OBJECTS) $(operations_composed_4_DEPENDENCIES) $(EXTRA_operations_composed_4_DEPENDENCIES) operations/$(am__dirstamp)
+	@rm -f operations/composed_4$(EXEEXT)
+	$(AM_V_CXXLD)$(CXXLINK) $(operations_composed_4_OBJECTS) $(operations_composed_4_LDADD) $(LIBS)
+operations/composed_5.$(OBJEXT): operations/$(am__dirstamp) \
+	operations/$(DEPDIR)/$(am__dirstamp)
+
+operations/composed_5$(EXEEXT): $(operations_composed_5_OBJECTS) $(operations_composed_5_DEPENDENCIES) $(EXTRA_operations_composed_5_DEPENDENCIES) operations/$(am__dirstamp)
+	@rm -f operations/composed_5$(EXEEXT)
+	$(AM_V_CXXLD)$(CXXLINK) $(operations_composed_5_OBJECTS) $(operations_composed_5_LDADD) $(LIBS)
+operations/composed_6.$(OBJEXT): operations/$(am__dirstamp) \
+	operations/$(DEPDIR)/$(am__dirstamp)
+
+operations/composed_6$(EXEEXT): $(operations_composed_6_OBJECTS) $(operations_composed_6_DEPENDENCIES) $(EXTRA_operations_composed_6_DEPENDENCIES) operations/$(am__dirstamp)
+	@rm -f operations/composed_6$(EXEEXT)
+	$(AM_V_CXXLD)$(CXXLINK) $(operations_composed_6_OBJECTS) $(operations_composed_6_LDADD) $(LIBS)
+operations/composed_7.$(OBJEXT): operations/$(am__dirstamp) \
+	operations/$(DEPDIR)/$(am__dirstamp)
+
+operations/composed_7$(EXEEXT): $(operations_composed_7_OBJECTS) $(operations_composed_7_DEPENDENCIES) $(EXTRA_operations_composed_7_DEPENDENCIES) operations/$(am__dirstamp)
+	@rm -f operations/composed_7$(EXEEXT)
+	$(AM_V_CXXLD)$(CXXLINK) $(operations_composed_7_OBJECTS) $(operations_composed_7_LDADD) $(LIBS)
+operations/composed_8.$(OBJEXT): operations/$(am__dirstamp) \
+	operations/$(DEPDIR)/$(am__dirstamp)
+
+operations/composed_8$(EXEEXT): $(operations_composed_8_OBJECTS) $(operations_composed_8_DEPENDENCIES) $(EXTRA_operations_composed_8_DEPENDENCIES) operations/$(am__dirstamp)
+	@rm -f operations/composed_8$(EXEEXT)
+	$(AM_V_CXXLD)$(CXXLINK) $(operations_composed_8_OBJECTS) $(operations_composed_8_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -610,6 +740,7 @@ mostlyclean-compile:
 	-rm -f echo/*.$(OBJEXT)
 	-rm -f executors/*.$(OBJEXT)
 	-rm -f iostreams/*.$(OBJEXT)
+	-rm -f operations/*.$(OBJEXT)
 
 distclean-compile:
 	-rm -f *.tab.c
@@ -631,6 +762,14 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@executors/$(DEPDIR)/pipeline.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@executors/$(DEPDIR)/priority_scheduler.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@iostreams/$(DEPDIR)/http_client.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@operations/$(DEPDIR)/composed_1.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@operations/$(DEPDIR)/composed_2.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@operations/$(DEPDIR)/composed_3.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@operations/$(DEPDIR)/composed_4.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@operations/$(DEPDIR)/composed_5.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@operations/$(DEPDIR)/composed_6.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@operations/$(DEPDIR)/composed_7.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@operations/$(DEPDIR)/composed_8.Po@am__quote@ # am--include-marker
 
 $(am__depfiles_remade):
 	@$(MKDIR_P) $(@D)
@@ -777,6 +916,8 @@ distclean-generic:
 	-rm -f executors/$(am__dirstamp)
 	-rm -f iostreams/$(DEPDIR)/$(am__dirstamp)
 	-rm -f iostreams/$(am__dirstamp)
+	-rm -f operations/$(DEPDIR)/$(am__dirstamp)
+	-rm -f operations/$(am__dirstamp)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
@@ -805,6 +946,14 @@ distclean: distclean-am
 	-rm -f executors/$(DEPDIR)/pipeline.Po
 	-rm -f executors/$(DEPDIR)/priority_scheduler.Po
 	-rm -f iostreams/$(DEPDIR)/http_client.Po
+	-rm -f operations/$(DEPDIR)/composed_1.Po
+	-rm -f operations/$(DEPDIR)/composed_2.Po
+	-rm -f operations/$(DEPDIR)/composed_3.Po
+	-rm -f operations/$(DEPDIR)/composed_4.Po
+	-rm -f operations/$(DEPDIR)/composed_5.Po
+	-rm -f operations/$(DEPDIR)/composed_6.Po
+	-rm -f operations/$(DEPDIR)/composed_7.Po
+	-rm -f operations/$(DEPDIR)/composed_8.Po
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
@@ -867,6 +1016,14 @@ maintainer-clean: maintainer-clean-am
 	-rm -f executors/$(DEPDIR)/pipeline.Po
 	-rm -f executors/$(DEPDIR)/priority_scheduler.Po
 	-rm -f iostreams/$(DEPDIR)/http_client.Po
+	-rm -f operations/$(DEPDIR)/composed_1.Po
+	-rm -f operations/$(DEPDIR)/composed_2.Po
+	-rm -f operations/$(DEPDIR)/composed_3.Po
+	-rm -f operations/$(DEPDIR)/composed_4.Po
+	-rm -f operations/$(DEPDIR)/composed_5.Po
+	-rm -f operations/$(DEPDIR)/composed_6.Po
+	-rm -f operations/$(DEPDIR)/composed_7.Po
+	-rm -f operations/$(DEPDIR)/composed_8.Po
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

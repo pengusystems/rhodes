@@ -110,8 +110,9 @@ noinst_PROGRAMS = allocation/server$(EXEEXT) \
 	multicast/sender$(EXEEXT) nonblocking/third_party_lib$(EXEEXT) \
 	operations/composed_1$(EXEEXT) operations/composed_2$(EXEEXT) \
 	operations/composed_3$(EXEEXT) operations/composed_4$(EXEEXT) \
-	operations/composed_5$(EXEEXT) socks4/sync_client$(EXEEXT) \
-	timeouts/async_tcp_client$(EXEEXT) \
+	operations/composed_5$(EXEEXT) operations/composed_6$(EXEEXT) \
+	operations/composed_7$(EXEEXT) operations/composed_8$(EXEEXT) \
+	socks4/sync_client$(EXEEXT) timeouts/async_tcp_client$(EXEEXT) \
 	timeouts/blocking_tcp_client$(EXEEXT) \
 	timeouts/blocking_token_tcp_client$(EXEEXT) \
 	timeouts/blocking_udp_client$(EXEEXT) timeouts/server$(EXEEXT) \
@@ -378,6 +379,21 @@ operations_composed_5_OBJECTS = $(am_operations_composed_5_OBJECTS)
 operations_composed_5_LDADD = $(LDADD)
 @SEPARATE_COMPILATION_TRUE@operations_composed_5_DEPENDENCIES =  \
 @SEPARATE_COMPILATION_TRUE@	libasio.a
+am_operations_composed_6_OBJECTS = operations/composed_6.$(OBJEXT)
+operations_composed_6_OBJECTS = $(am_operations_composed_6_OBJECTS)
+operations_composed_6_LDADD = $(LDADD)
+@SEPARATE_COMPILATION_TRUE@operations_composed_6_DEPENDENCIES =  \
+@SEPARATE_COMPILATION_TRUE@	libasio.a
+am_operations_composed_7_OBJECTS = operations/composed_7.$(OBJEXT)
+operations_composed_7_OBJECTS = $(am_operations_composed_7_OBJECTS)
+operations_composed_7_LDADD = $(LDADD)
+@SEPARATE_COMPILATION_TRUE@operations_composed_7_DEPENDENCIES =  \
+@SEPARATE_COMPILATION_TRUE@	libasio.a
+am_operations_composed_8_OBJECTS = operations/composed_8.$(OBJEXT)
+operations_composed_8_OBJECTS = $(am_operations_composed_8_OBJECTS)
+operations_composed_8_LDADD = $(LDADD)
+@SEPARATE_COMPILATION_TRUE@operations_composed_8_DEPENDENCIES =  \
+@SEPARATE_COMPILATION_TRUE@	libasio.a
 am_socks4_sync_client_OBJECTS = socks4/sync_client.$(OBJEXT)
 socks4_sync_client_OBJECTS = $(am_socks4_sync_client_OBJECTS)
 socks4_sync_client_LDADD = $(LDADD)
@@ -496,6 +512,9 @@ am__depfiles_remade = ../../$(DEPDIR)/asio.Po \
 	operations/$(DEPDIR)/composed_3.Po \
 	operations/$(DEPDIR)/composed_4.Po \
 	operations/$(DEPDIR)/composed_5.Po \
+	operations/$(DEPDIR)/composed_6.Po \
+	operations/$(DEPDIR)/composed_7.Po \
+	operations/$(DEPDIR)/composed_8.Po \
 	socks4/$(DEPDIR)/sync_client.Po spawn/$(DEPDIR)/echo_server.Po \
 	spawn/$(DEPDIR)/parallel_grep.Po ssl/$(DEPDIR)/client.Po \
 	ssl/$(DEPDIR)/server.Po timeouts/$(DEPDIR)/async_tcp_client.Po \
@@ -543,7 +562,10 @@ SOURCES = $(libasio_a_SOURCES) $(allocation_server_SOURCES) \
 	$(operations_composed_2_SOURCES) \
 	$(operations_composed_3_SOURCES) \
 	$(operations_composed_4_SOURCES) \
-	$(operations_composed_5_SOURCES) $(socks4_sync_client_SOURCES) \
+	$(operations_composed_5_SOURCES) \
+	$(operations_composed_6_SOURCES) \
+	$(operations_composed_7_SOURCES) \
+	$(operations_composed_8_SOURCES) $(socks4_sync_client_SOURCES) \
 	$(spawn_echo_server_SOURCES) $(spawn_parallel_grep_SOURCES) \
 	$(ssl_client_SOURCES) $(ssl_server_SOURCES) \
 	$(timeouts_async_tcp_client_SOURCES) \
@@ -581,7 +603,10 @@ DIST_SOURCES = $(am__libasio_a_SOURCES_DIST) \
 	$(operations_composed_2_SOURCES) \
 	$(operations_composed_3_SOURCES) \
 	$(operations_composed_4_SOURCES) \
-	$(operations_composed_5_SOURCES) $(socks4_sync_client_SOURCES) \
+	$(operations_composed_5_SOURCES) \
+	$(operations_composed_6_SOURCES) \
+	$(operations_composed_7_SOURCES) \
+	$(operations_composed_8_SOURCES) $(socks4_sync_client_SOURCES) \
 	$(am__spawn_echo_server_SOURCES_DIST) \
 	$(am__spawn_parallel_grep_SOURCES_DIST) \
 	$(am__ssl_client_SOURCES_DIST) $(am__ssl_server_SOURCES_DIST) \
@@ -765,6 +790,9 @@ operations_composed_2_SOURCES = operations/composed_2.cpp
 operations_composed_3_SOURCES = operations/composed_3.cpp
 operations_composed_4_SOURCES = operations/composed_4.cpp
 operations_composed_5_SOURCES = operations/composed_5.cpp
+operations_composed_6_SOURCES = operations/composed_6.cpp
+operations_composed_7_SOURCES = operations/composed_7.cpp
+operations_composed_8_SOURCES = operations/composed_8.cpp
 socks4_sync_client_SOURCES = socks4/sync_client.cpp
 timeouts_async_tcp_client_SOURCES = timeouts/async_tcp_client.cpp
 timeouts_blocking_tcp_client_SOURCES = timeouts/blocking_tcp_client.cpp
@@ -1155,6 +1183,24 @@ operations/composed_5.$(OBJEXT): operations/$(am__dirstamp) \
 operations/composed_5$(EXEEXT): $(operations_composed_5_OBJECTS) $(operations_composed_5_DEPENDENCIES) $(EXTRA_operations_composed_5_DEPENDENCIES) operations/$(am__dirstamp)
 	@rm -f operations/composed_5$(EXEEXT)
 	$(AM_V_CXXLD)$(CXXLINK) $(operations_composed_5_OBJECTS) $(operations_composed_5_LDADD) $(LIBS)
+operations/composed_6.$(OBJEXT): operations/$(am__dirstamp) \
+	operations/$(DEPDIR)/$(am__dirstamp)
+
+operations/composed_6$(EXEEXT): $(operations_composed_6_OBJECTS) $(operations_composed_6_DEPENDENCIES) $(EXTRA_operations_composed_6_DEPENDENCIES) operations/$(am__dirstamp)
+	@rm -f operations/composed_6$(EXEEXT)
+	$(AM_V_CXXLD)$(CXXLINK) $(operations_composed_6_OBJECTS) $(operations_composed_6_LDADD) $(LIBS)
+operations/composed_7.$(OBJEXT): operations/$(am__dirstamp) \
+	operations/$(DEPDIR)/$(am__dirstamp)
+
+operations/composed_7$(EXEEXT): $(operations_composed_7_OBJECTS) $(operations_composed_7_DEPENDENCIES) $(EXTRA_operations_composed_7_DEPENDENCIES) operations/$(am__dirstamp)
+	@rm -f operations/composed_7$(EXEEXT)
+	$(AM_V_CXXLD)$(CXXLINK) $(operations_composed_7_OBJECTS) $(operations_composed_7_LDADD) $(LIBS)
+operations/composed_8.$(OBJEXT): operations/$(am__dirstamp) \
+	operations/$(DEPDIR)/$(am__dirstamp)
+
+operations/composed_8$(EXEEXT): $(operations_composed_8_OBJECTS) $(operations_composed_8_DEPENDENCIES) $(EXTRA_operations_composed_8_DEPENDENCIES) operations/$(am__dirstamp)
+	@rm -f operations/composed_8$(EXEEXT)
+	$(AM_V_CXXLD)$(CXXLINK) $(operations_composed_8_OBJECTS) $(operations_composed_8_LDADD) $(LIBS)
 socks4/$(am__dirstamp):
 	@$(MKDIR_P) socks4
 	@: > socks4/$(am__dirstamp)
@@ -1321,6 +1367,9 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@operations/$(DEPDIR)/composed_3.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@operations/$(DEPDIR)/composed_4.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@operations/$(DEPDIR)/composed_5.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@operations/$(DEPDIR)/composed_6.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@operations/$(DEPDIR)/composed_7.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@operations/$(DEPDIR)/composed_8.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@socks4/$(DEPDIR)/sync_client.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@spawn/$(DEPDIR)/echo_server.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@spawn/$(DEPDIR)/parallel_grep.Po@am__quote@ # am--include-marker
@@ -1564,6 +1613,9 @@ distclean: distclean-am
 	-rm -f operations/$(DEPDIR)/composed_3.Po
 	-rm -f operations/$(DEPDIR)/composed_4.Po
 	-rm -f operations/$(DEPDIR)/composed_5.Po
+	-rm -f operations/$(DEPDIR)/composed_6.Po
+	-rm -f operations/$(DEPDIR)/composed_7.Po
+	-rm -f operations/$(DEPDIR)/composed_8.Po
 	-rm -f socks4/$(DEPDIR)/sync_client.Po
 	-rm -f spawn/$(DEPDIR)/echo_server.Po
 	-rm -f spawn/$(DEPDIR)/parallel_grep.Po
@@ -1663,6 +1715,9 @@ maintainer-clean: maintainer-clean-am
 	-rm -f operations/$(DEPDIR)/composed_3.Po
 	-rm -f operations/$(DEPDIR)/composed_4.Po
 	-rm -f operations/$(DEPDIR)/composed_5.Po
+	-rm -f operations/$(DEPDIR)/composed_6.Po
+	-rm -f operations/$(DEPDIR)/composed_7.Po
+	-rm -f operations/$(DEPDIR)/composed_8.Po
 	-rm -f socks4/$(DEPDIR)/sync_client.Po
 	-rm -f spawn/$(DEPDIR)/echo_server.Po
 	-rm -f spawn/$(DEPDIR)/parallel_grep.Po

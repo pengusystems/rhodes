@@ -93,33 +93,33 @@ host_triplet = @host@
 @HAVE_OPENSSL_TRUE@@SEPARATE_COMPILATION_TRUE@am__append_1 = ../asio_ssl.cpp
 check_PROGRAMS = unit/associated_allocator$(EXEEXT) \
 	unit/associated_executor$(EXEEXT) unit/async_result$(EXEEXT) \
-	unit/basic_datagram_socket$(EXEEXT) \
+	unit/awaitable$(EXEEXT) unit/basic_datagram_socket$(EXEEXT) \
 	unit/basic_deadline_timer$(EXEEXT) \
 	unit/basic_raw_socket$(EXEEXT) \
 	unit/basic_seq_packet_socket$(EXEEXT) \
 	unit/basic_serial_port$(EXEEXT) unit/basic_signal_set$(EXEEXT) \
-	unit/basic_socket_acceptor$(EXEEXT) \
+	unit/basic_socket$(EXEEXT) unit/basic_socket_acceptor$(EXEEXT) \
 	unit/basic_stream_socket$(EXEEXT) \
 	unit/basic_streambuf$(EXEEXT) \
 	unit/basic_waitable_timer$(EXEEXT) unit/bind_executor$(EXEEXT) \
 	unit/buffered_read_stream$(EXEEXT) \
 	unit/buffered_stream$(EXEEXT) \
 	unit/buffered_write_stream$(EXEEXT) unit/buffer$(EXEEXT) \
-	unit/buffers_iterator$(EXEEXT) \
-	unit/completion_condition$(EXEEXT) unit/connect$(EXEEXT) \
-	unit/coroutine$(EXEEXT) unit/datagram_socket_service$(EXEEXT) \
-	unit/deadline_timer_service$(EXEEXT) \
+	unit/buffers_iterator$(EXEEXT) unit/co_spawn$(EXEEXT) \
+	unit/completion_condition$(EXEEXT) unit/compose$(EXEEXT) \
+	unit/connect$(EXEEXT) unit/coroutine$(EXEEXT) \
 	unit/deadline_timer$(EXEEXT) unit/defer$(EXEEXT) \
-	unit/dispatch$(EXEEXT) unit/error$(EXEEXT) \
-	unit/execution_context$(EXEEXT) unit/executor$(EXEEXT) \
-	unit/executor_work_guard$(EXEEXT) \
+	unit/detached$(EXEEXT) unit/dispatch$(EXEEXT) \
+	unit/error$(EXEEXT) unit/execution_context$(EXEEXT) \
+	unit/executor$(EXEEXT) unit/executor_work_guard$(EXEEXT) \
 	unit/generic/basic_endpoint$(EXEEXT) \
 	unit/generic/datagram_protocol$(EXEEXT) \
 	unit/generic/raw_protocol$(EXEEXT) \
 	unit/generic/seq_packet_protocol$(EXEEXT) \
 	unit/generic/stream_protocol$(EXEEXT) \
 	unit/high_resolution_timer$(EXEEXT) unit/io_context$(EXEEXT) \
-	unit/ip/address$(EXEEXT) unit/ip/address_v4$(EXEEXT) \
+	unit/io_context_strand$(EXEEXT) unit/ip/address$(EXEEXT) \
+	unit/ip/address_v4$(EXEEXT) \
 	unit/ip/address_v4_iterator$(EXEEXT) \
 	unit/ip/address_v4_range$(EXEEXT) unit/ip/address_v6$(EXEEXT) \
 	unit/ip/address_v6_iterator$(EXEEXT) \
@@ -132,8 +132,7 @@ check_PROGRAMS = unit/associated_allocator$(EXEEXT) \
 	unit/ip/host_name$(EXEEXT) unit/ip/icmp$(EXEEXT) \
 	unit/ip/multicast$(EXEEXT) unit/ip/network_v4$(EXEEXT) \
 	unit/ip/network_v6$(EXEEXT) \
-	unit/ip/resolver_query_base$(EXEEXT) \
-	unit/ip/resolver_service$(EXEEXT) unit/ip/tcp$(EXEEXT) \
+	unit/ip/resolver_query_base$(EXEEXT) unit/ip/tcp$(EXEEXT) \
 	unit/ip/udp$(EXEEXT) unit/ip/unicast$(EXEEXT) \
 	unit/ip/v6_only$(EXEEXT) unit/is_read_buffered$(EXEEXT) \
 	unit/is_write_buffered$(EXEEXT) \
@@ -146,40 +145,32 @@ check_PROGRAMS = unit/associated_allocator$(EXEEXT) \
 	unit/posix/basic_stream_descriptor$(EXEEXT) \
 	unit/posix/descriptor$(EXEEXT) \
 	unit/posix/descriptor_base$(EXEEXT) \
-	unit/posix/stream_descriptor$(EXEEXT) \
-	unit/posix/stream_descriptor_service$(EXEEXT) \
-	unit/post$(EXEEXT) unit/raw_socket_service$(EXEEXT) \
+	unit/posix/stream_descriptor$(EXEEXT) unit/post$(EXEEXT) \
 	unit/read$(EXEEXT) unit/read_at$(EXEEXT) \
-	unit/read_until$(EXEEXT) \
-	unit/seq_packet_socket_service$(EXEEXT) \
+	unit/read_until$(EXEEXT) unit/redirect_error$(EXEEXT) \
 	unit/serial_port$(EXEEXT) unit/serial_port_base$(EXEEXT) \
-	unit/serial_port_service$(EXEEXT) unit/signal_set$(EXEEXT) \
-	unit/signal_set_service$(EXEEXT) \
-	unit/socket_acceptor_service$(EXEEXT) \
-	unit/socket_base$(EXEEXT) unit/steady_timer$(EXEEXT) \
-	unit/strand$(EXEEXT) unit/stream_socket_service$(EXEEXT) \
+	unit/signal_set$(EXEEXT) unit/socket_base$(EXEEXT) \
+	unit/steady_timer$(EXEEXT) unit/strand$(EXEEXT) \
 	unit/streambuf$(EXEEXT) unit/system_context$(EXEEXT) \
 	unit/system_executor$(EXEEXT) unit/system_timer$(EXEEXT) \
-	unit/thread$(EXEEXT) unit/time_traits$(EXEEXT) \
-	unit/ts/buffer$(EXEEXT) unit/ts/executor$(EXEEXT) \
-	unit/ts/internet$(EXEEXT) unit/ts/io_context$(EXEEXT) \
-	unit/ts/net$(EXEEXT) unit/ts/netfwd$(EXEEXT) \
-	unit/ts/socket$(EXEEXT) unit/ts/timer$(EXEEXT) \
+	unit/this_coro$(EXEEXT) unit/thread$(EXEEXT) \
+	unit/time_traits$(EXEEXT) unit/ts/buffer$(EXEEXT) \
+	unit/ts/executor$(EXEEXT) unit/ts/internet$(EXEEXT) \
+	unit/ts/io_context$(EXEEXT) unit/ts/net$(EXEEXT) \
+	unit/ts/netfwd$(EXEEXT) unit/ts/socket$(EXEEXT) \
+	unit/ts/timer$(EXEEXT) unit/use_awaitable$(EXEEXT) \
 	unit/use_future$(EXEEXT) unit/uses_executor$(EXEEXT) \
-	unit/wait_traits$(EXEEXT) unit/waitable_timer_service$(EXEEXT) \
-	unit/windows/basic_handle$(EXEEXT) \
+	unit/wait_traits$(EXEEXT) \
 	unit/windows/basic_object_handle$(EXEEXT) \
+	unit/windows/basic_overlapped_handle$(EXEEXT) \
 	unit/windows/basic_random_access_handle$(EXEEXT) \
 	unit/windows/basic_stream_handle$(EXEEXT) \
 	unit/windows/object_handle$(EXEEXT) \
-	unit/windows/object_handle_service$(EXEEXT) \
 	unit/windows/overlapped_handle$(EXEEXT) \
 	unit/windows/overlapped_ptr$(EXEEXT) \
 	unit/windows/random_access_handle$(EXEEXT) \
-	unit/windows/random_access_handle_service$(EXEEXT) \
-	unit/windows/stream_handle$(EXEEXT) \
-	unit/windows/stream_handle_service$(EXEEXT) \
-	unit/write$(EXEEXT) unit/write_at$(EXEEXT) $(am__EXEEXT_1)
+	unit/windows/stream_handle$(EXEEXT) unit/write$(EXEEXT) \
+	unit/write_at$(EXEEXT) $(am__EXEEXT_1)
 @STANDALONE_FALSE@noinst_PROGRAMS = latency/tcp_client$(EXEEXT) \
 @STANDALONE_FALSE@	latency/tcp_server$(EXEEXT) \
 @STANDALONE_FALSE@	latency/udp_client$(EXEEXT) \
@@ -190,34 +181,35 @@ check_PROGRAMS = unit/associated_allocator$(EXEEXT) \
 @HAVE_OPENSSL_TRUE@	unit/ssl/context_base \
 @HAVE_OPENSSL_TRUE@	unit/ssl/context \
 @HAVE_OPENSSL_TRUE@	unit/ssl/error \
+@HAVE_OPENSSL_TRUE@	unit/ssl/host_name_verification \
 @HAVE_OPENSSL_TRUE@	unit/ssl/rfc2818_verification \
 @HAVE_OPENSSL_TRUE@	unit/ssl/stream_base \
 @HAVE_OPENSSL_TRUE@	unit/ssl/stream
 
 TESTS = unit/associated_allocator$(EXEEXT) \
 	unit/associated_executor$(EXEEXT) unit/async_result$(EXEEXT) \
-	unit/basic_datagram_socket$(EXEEXT) \
+	unit/awaitable$(EXEEXT) unit/basic_datagram_socket$(EXEEXT) \
 	unit/basic_deadline_timer$(EXEEXT) \
 	unit/basic_raw_socket$(EXEEXT) \
 	unit/basic_seq_packet_socket$(EXEEXT) \
 	unit/basic_serial_port$(EXEEXT) unit/basic_signal_set$(EXEEXT) \
-	unit/basic_socket_acceptor$(EXEEXT) \
+	unit/basic_socket$(EXEEXT) unit/basic_socket_acceptor$(EXEEXT) \
 	unit/basic_stream_socket$(EXEEXT) \
 	unit/basic_streambuf$(EXEEXT) \
 	unit/basic_waitable_timer$(EXEEXT) unit/bind_executor$(EXEEXT) \
 	unit/buffered_read_stream$(EXEEXT) \
 	unit/buffered_stream$(EXEEXT) \
 	unit/buffered_write_stream$(EXEEXT) unit/buffer$(EXEEXT) \
-	unit/buffers_iterator$(EXEEXT) \
-	unit/completion_condition$(EXEEXT) unit/connect$(EXEEXT) \
-	unit/datagram_socket_service$(EXEEXT) \
-	unit/deadline_timer_service$(EXEEXT) \
-	unit/deadline_timer$(EXEEXT) unit/defer$(EXEEXT) \
+	unit/buffers_iterator$(EXEEXT) unit/co_spawn$(EXEEXT) \
+	unit/completion_condition$(EXEEXT) unit/compose$(EXEEXT) \
+	unit/connect$(EXEEXT) unit/deadline_timer$(EXEEXT) \
+	unit/defer$(EXEEXT) unit/detached$(EXEEXT) \
 	unit/dispatch$(EXEEXT) unit/error$(EXEEXT) \
 	unit/execution_context$(EXEEXT) unit/executor$(EXEEXT) \
 	unit/executor_work_guard$(EXEEXT) \
 	unit/high_resolution_timer$(EXEEXT) unit/io_context$(EXEEXT) \
-	unit/ip/address$(EXEEXT) unit/ip/address_v4$(EXEEXT) \
+	unit/io_context_strand$(EXEEXT) unit/ip/address$(EXEEXT) \
+	unit/ip/address_v4$(EXEEXT) \
 	unit/ip/address_v4_iterator$(EXEEXT) \
 	unit/ip/address_v4_range$(EXEEXT) unit/ip/address_v6$(EXEEXT) \
 	unit/ip/address_v6_iterator$(EXEEXT) \
@@ -230,8 +222,7 @@ TESTS = unit/associated_allocator$(EXEEXT) \
 	unit/ip/host_name$(EXEEXT) unit/ip/icmp$(EXEEXT) \
 	unit/ip/multicast$(EXEEXT) unit/ip/network_v4$(EXEEXT) \
 	unit/ip/network_v6$(EXEEXT) \
-	unit/ip/resolver_query_base$(EXEEXT) \
-	unit/ip/resolver_service$(EXEEXT) unit/ip/tcp$(EXEEXT) \
+	unit/ip/resolver_query_base$(EXEEXT) unit/ip/tcp$(EXEEXT) \
 	unit/ip/udp$(EXEEXT) unit/ip/unicast$(EXEEXT) \
 	unit/ip/v6_only$(EXEEXT) unit/is_read_buffered$(EXEEXT) \
 	unit/is_write_buffered$(EXEEXT) \
@@ -244,44 +235,37 @@ TESTS = unit/associated_allocator$(EXEEXT) \
 	unit/posix/basic_stream_descriptor$(EXEEXT) \
 	unit/posix/descriptor$(EXEEXT) \
 	unit/posix/descriptor_base$(EXEEXT) \
-	unit/posix/stream_descriptor$(EXEEXT) \
-	unit/posix/stream_descriptor_service$(EXEEXT) \
-	unit/post$(EXEEXT) unit/raw_socket_service$(EXEEXT) \
+	unit/posix/stream_descriptor$(EXEEXT) unit/post$(EXEEXT) \
 	unit/read$(EXEEXT) unit/read_at$(EXEEXT) \
-	unit/read_until$(EXEEXT) \
-	unit/seq_packet_socket_service$(EXEEXT) \
+	unit/read_until$(EXEEXT) unit/redirect_error$(EXEEXT) \
 	unit/serial_port$(EXEEXT) unit/serial_port_base$(EXEEXT) \
-	unit/serial_port_service$(EXEEXT) unit/signal_set$(EXEEXT) \
-	unit/signal_set_service$(EXEEXT) \
-	unit/socket_acceptor_service$(EXEEXT) \
-	unit/socket_base$(EXEEXT) unit/steady_timer$(EXEEXT) \
-	unit/strand$(EXEEXT) unit/stream_socket_service$(EXEEXT) \
+	unit/signal_set$(EXEEXT) unit/socket_base$(EXEEXT) \
+	unit/steady_timer$(EXEEXT) unit/strand$(EXEEXT) \
 	unit/streambuf$(EXEEXT) unit/system_context$(EXEEXT) \
 	unit/system_executor$(EXEEXT) unit/system_timer$(EXEEXT) \
-	unit/thread$(EXEEXT) unit/time_traits$(EXEEXT) \
-	unit/ts/buffer$(EXEEXT) unit/ts/executor$(EXEEXT) \
-	unit/ts/internet$(EXEEXT) unit/ts/io_context$(EXEEXT) \
-	unit/ts/net$(EXEEXT) unit/ts/netfwd$(EXEEXT) \
-	unit/ts/socket$(EXEEXT) unit/ts/timer$(EXEEXT) \
+	unit/this_coro$(EXEEXT) unit/thread$(EXEEXT) \
+	unit/time_traits$(EXEEXT) unit/ts/buffer$(EXEEXT) \
+	unit/ts/executor$(EXEEXT) unit/ts/internet$(EXEEXT) \
+	unit/ts/io_context$(EXEEXT) unit/ts/net$(EXEEXT) \
+	unit/ts/netfwd$(EXEEXT) unit/ts/socket$(EXEEXT) \
+	unit/ts/timer$(EXEEXT) unit/use_awaitable$(EXEEXT) \
 	unit/use_future$(EXEEXT) unit/uses_executor$(EXEEXT) \
-	unit/wait_traits$(EXEEXT) unit/waitable_timer_service$(EXEEXT) \
-	unit/windows/basic_handle$(EXEEXT) \
+	unit/wait_traits$(EXEEXT) \
 	unit/windows/basic_object_handle$(EXEEXT) \
+	unit/windows/basic_overlapped_handle$(EXEEXT) \
 	unit/windows/basic_random_access_handle$(EXEEXT) \
 	unit/windows/basic_stream_handle$(EXEEXT) \
 	unit/windows/object_handle$(EXEEXT) \
-	unit/windows/object_handle_service$(EXEEXT) \
 	unit/windows/overlapped_handle$(EXEEXT) \
 	unit/windows/overlapped_ptr$(EXEEXT) \
 	unit/windows/random_access_handle$(EXEEXT) \
-	unit/windows/random_access_handle_service$(EXEEXT) \
-	unit/windows/stream_handle$(EXEEXT) \
-	unit/windows/stream_handle_service$(EXEEXT) \
-	unit/write$(EXEEXT) unit/write_at$(EXEEXT) $(am__EXEEXT_1)
+	unit/windows/stream_handle$(EXEEXT) unit/write$(EXEEXT) \
+	unit/write_at$(EXEEXT) $(am__EXEEXT_1)
 @HAVE_OPENSSL_TRUE@am__append_3 = \
 @HAVE_OPENSSL_TRUE@	unit/ssl/context_base \
 @HAVE_OPENSSL_TRUE@	unit/ssl/context \
 @HAVE_OPENSSL_TRUE@	unit/ssl/error \
+@HAVE_OPENSSL_TRUE@	unit/ssl/host_name_verification \
 @HAVE_OPENSSL_TRUE@	unit/ssl/rfc2818_verification \
 @HAVE_OPENSSL_TRUE@	unit/ssl/stream_base \
 @HAVE_OPENSSL_TRUE@	unit/ssl/stream
@@ -299,6 +283,7 @@ CONFIG_CLEAN_VPATH_FILES =
 @HAVE_OPENSSL_TRUE@am__EXEEXT_1 = unit/ssl/context_base$(EXEEXT) \
 @HAVE_OPENSSL_TRUE@	unit/ssl/context$(EXEEXT) \
 @HAVE_OPENSSL_TRUE@	unit/ssl/error$(EXEEXT) \
+@HAVE_OPENSSL_TRUE@	unit/ssl/host_name_verification$(EXEEXT) \
 @HAVE_OPENSSL_TRUE@	unit/ssl/rfc2818_verification$(EXEEXT) \
 @HAVE_OPENSSL_TRUE@	unit/ssl/stream_base$(EXEEXT) \
 @HAVE_OPENSSL_TRUE@	unit/ssl/stream$(EXEEXT)
@@ -378,6 +363,10 @@ am_unit_async_result_OBJECTS = unit/async_result.$(OBJEXT)
 unit_async_result_OBJECTS = $(am_unit_async_result_OBJECTS)
 unit_async_result_LDADD = $(LDADD)
 @SEPARATE_COMPILATION_TRUE@unit_async_result_DEPENDENCIES = libasio.a
+am_unit_awaitable_OBJECTS = unit/awaitable.$(OBJEXT)
+unit_awaitable_OBJECTS = $(am_unit_awaitable_OBJECTS)
+unit_awaitable_LDADD = $(LDADD)
+@SEPARATE_COMPILATION_TRUE@unit_awaitable_DEPENDENCIES = libasio.a
 am_unit_basic_datagram_socket_OBJECTS =  \
 	unit/basic_datagram_socket.$(OBJEXT)
 unit_basic_datagram_socket_OBJECTS =  \
@@ -414,6 +403,10 @@ unit_basic_signal_set_OBJECTS = $(am_unit_basic_signal_set_OBJECTS)
 unit_basic_signal_set_LDADD = $(LDADD)
 @SEPARATE_COMPILATION_TRUE@unit_basic_signal_set_DEPENDENCIES =  \
 @SEPARATE_COMPILATION_TRUE@	libasio.a
+am_unit_basic_socket_OBJECTS = unit/basic_socket.$(OBJEXT)
+unit_basic_socket_OBJECTS = $(am_unit_basic_socket_OBJECTS)
+unit_basic_socket_LDADD = $(LDADD)
+@SEPARATE_COMPILATION_TRUE@unit_basic_socket_DEPENDENCIES = libasio.a
 am_unit_basic_socket_acceptor_OBJECTS =  \
 	unit/basic_socket_acceptor.$(OBJEXT)
 unit_basic_socket_acceptor_OBJECTS =  \
@@ -473,6 +466,10 @@ unit_buffers_iterator_OBJECTS = $(am_unit_buffers_iterator_OBJECTS)
 unit_buffers_iterator_LDADD = $(LDADD)
 @SEPARATE_COMPILATION_TRUE@unit_buffers_iterator_DEPENDENCIES =  \
 @SEPARATE_COMPILATION_TRUE@	libasio.a
+am_unit_co_spawn_OBJECTS = unit/co_spawn.$(OBJEXT)
+unit_co_spawn_OBJECTS = $(am_unit_co_spawn_OBJECTS)
+unit_co_spawn_LDADD = $(LDADD)
+@SEPARATE_COMPILATION_TRUE@unit_co_spawn_DEPENDENCIES = libasio.a
 am_unit_completion_condition_OBJECTS =  \
 	unit/completion_condition.$(OBJEXT)
 unit_completion_condition_OBJECTS =  \
@@ -480,6 +477,10 @@ unit_completion_condition_OBJECTS =  \
 unit_completion_condition_LDADD = $(LDADD)
 @SEPARATE_COMPILATION_TRUE@unit_completion_condition_DEPENDENCIES =  \
 @SEPARATE_COMPILATION_TRUE@	libasio.a
+am_unit_compose_OBJECTS = unit/compose.$(OBJEXT)
+unit_compose_OBJECTS = $(am_unit_compose_OBJECTS)
+unit_compose_LDADD = $(LDADD)
+@SEPARATE_COMPILATION_TRUE@unit_compose_DEPENDENCIES = libasio.a
 am_unit_connect_OBJECTS = unit/connect.$(OBJEXT)
 unit_connect_OBJECTS = $(am_unit_connect_OBJECTS)
 unit_connect_LDADD = $(LDADD)
@@ -488,29 +489,19 @@ am_unit_coroutine_OBJECTS = unit/coroutine.$(OBJEXT)
 unit_coroutine_OBJECTS = $(am_unit_coroutine_OBJECTS)
 unit_coroutine_LDADD = $(LDADD)
 @SEPARATE_COMPILATION_TRUE@unit_coroutine_DEPENDENCIES = libasio.a
-am_unit_datagram_socket_service_OBJECTS =  \
-	unit/datagram_socket_service.$(OBJEXT)
-unit_datagram_socket_service_OBJECTS =  \
-	$(am_unit_datagram_socket_service_OBJECTS)
-unit_datagram_socket_service_LDADD = $(LDADD)
-@SEPARATE_COMPILATION_TRUE@unit_datagram_socket_service_DEPENDENCIES =  \
-@SEPARATE_COMPILATION_TRUE@	libasio.a
 am_unit_deadline_timer_OBJECTS = unit/deadline_timer.$(OBJEXT)
 unit_deadline_timer_OBJECTS = $(am_unit_deadline_timer_OBJECTS)
 unit_deadline_timer_LDADD = $(LDADD)
 @SEPARATE_COMPILATION_TRUE@unit_deadline_timer_DEPENDENCIES =  \
 @SEPARATE_COMPILATION_TRUE@	libasio.a
-am_unit_deadline_timer_service_OBJECTS =  \
-	unit/deadline_timer_service.$(OBJEXT)
-unit_deadline_timer_service_OBJECTS =  \
-	$(am_unit_deadline_timer_service_OBJECTS)
-unit_deadline_timer_service_LDADD = $(LDADD)
-@SEPARATE_COMPILATION_TRUE@unit_deadline_timer_service_DEPENDENCIES =  \
-@SEPARATE_COMPILATION_TRUE@	libasio.a
 am_unit_defer_OBJECTS = unit/defer.$(OBJEXT)
 unit_defer_OBJECTS = $(am_unit_defer_OBJECTS)
 unit_defer_LDADD = $(LDADD)
 @SEPARATE_COMPILATION_TRUE@unit_defer_DEPENDENCIES = libasio.a
+am_unit_detached_OBJECTS = unit/detached.$(OBJEXT)
+unit_detached_OBJECTS = $(am_unit_detached_OBJECTS)
+unit_detached_LDADD = $(LDADD)
+@SEPARATE_COMPILATION_TRUE@unit_detached_DEPENDENCIES = libasio.a
 am_unit_dispatch_OBJECTS = unit/dispatch.$(OBJEXT)
 unit_dispatch_OBJECTS = $(am_unit_dispatch_OBJECTS)
 unit_dispatch_LDADD = $(LDADD)
@@ -581,6 +572,11 @@ am_unit_io_context_OBJECTS = unit/io_context.$(OBJEXT)
 unit_io_context_OBJECTS = $(am_unit_io_context_OBJECTS)
 unit_io_context_LDADD = $(LDADD)
 @SEPARATE_COMPILATION_TRUE@unit_io_context_DEPENDENCIES = libasio.a
+am_unit_io_context_strand_OBJECTS = unit/io_context_strand.$(OBJEXT)
+unit_io_context_strand_OBJECTS = $(am_unit_io_context_strand_OBJECTS)
+unit_io_context_strand_LDADD = $(LDADD)
+@SEPARATE_COMPILATION_TRUE@unit_io_context_strand_DEPENDENCIES =  \
+@SEPARATE_COMPILATION_TRUE@	libasio.a
 am_unit_ip_address_OBJECTS = unit/ip/address.$(OBJEXT)
 unit_ip_address_OBJECTS = $(am_unit_ip_address_OBJECTS)
 unit_ip_address_LDADD = $(LDADD)
@@ -683,13 +679,6 @@ unit_ip_resolver_query_base_OBJECTS =  \
 unit_ip_resolver_query_base_LDADD = $(LDADD)
 @SEPARATE_COMPILATION_TRUE@unit_ip_resolver_query_base_DEPENDENCIES =  \
 @SEPARATE_COMPILATION_TRUE@	libasio.a
-am_unit_ip_resolver_service_OBJECTS =  \
-	unit/ip/resolver_service.$(OBJEXT)
-unit_ip_resolver_service_OBJECTS =  \
-	$(am_unit_ip_resolver_service_OBJECTS)
-unit_ip_resolver_service_LDADD = $(LDADD)
-@SEPARATE_COMPILATION_TRUE@unit_ip_resolver_service_DEPENDENCIES =  \
-@SEPARATE_COMPILATION_TRUE@	libasio.a
 am_unit_ip_tcp_OBJECTS = unit/ip/tcp.$(OBJEXT)
 unit_ip_tcp_OBJECTS = $(am_unit_ip_tcp_OBJECTS)
 unit_ip_tcp_LDADD = $(LDADD)
@@ -786,24 +775,10 @@ unit_posix_stream_descriptor_OBJECTS =  \
 unit_posix_stream_descriptor_LDADD = $(LDADD)
 @SEPARATE_COMPILATION_TRUE@unit_posix_stream_descriptor_DEPENDENCIES =  \
 @SEPARATE_COMPILATION_TRUE@	libasio.a
-am_unit_posix_stream_descriptor_service_OBJECTS =  \
-	unit/posix/stream_descriptor_service.$(OBJEXT)
-unit_posix_stream_descriptor_service_OBJECTS =  \
-	$(am_unit_posix_stream_descriptor_service_OBJECTS)
-unit_posix_stream_descriptor_service_LDADD = $(LDADD)
-@SEPARATE_COMPILATION_TRUE@unit_posix_stream_descriptor_service_DEPENDENCIES =  \
-@SEPARATE_COMPILATION_TRUE@	libasio.a
 am_unit_post_OBJECTS = unit/post.$(OBJEXT)
 unit_post_OBJECTS = $(am_unit_post_OBJECTS)
 unit_post_LDADD = $(LDADD)
 @SEPARATE_COMPILATION_TRUE@unit_post_DEPENDENCIES = libasio.a
-am_unit_raw_socket_service_OBJECTS =  \
-	unit/raw_socket_service.$(OBJEXT)
-unit_raw_socket_service_OBJECTS =  \
-	$(am_unit_raw_socket_service_OBJECTS)
-unit_raw_socket_service_LDADD = $(LDADD)
-@SEPARATE_COMPILATION_TRUE@unit_raw_socket_service_DEPENDENCIES =  \
-@SEPARATE_COMPILATION_TRUE@	libasio.a
 am_unit_read_OBJECTS = unit/read.$(OBJEXT)
 unit_read_OBJECTS = $(am_unit_read_OBJECTS)
 unit_read_LDADD = $(LDADD)
@@ -816,12 +791,10 @@ am_unit_read_until_OBJECTS = unit/read_until.$(OBJEXT)
 unit_read_until_OBJECTS = $(am_unit_read_until_OBJECTS)
 unit_read_until_LDADD = $(LDADD)
 @SEPARATE_COMPILATION_TRUE@unit_read_until_DEPENDENCIES = libasio.a
-am_unit_seq_packet_socket_service_OBJECTS =  \
-	unit/seq_packet_socket_service.$(OBJEXT)
-unit_seq_packet_socket_service_OBJECTS =  \
-	$(am_unit_seq_packet_socket_service_OBJECTS)
-unit_seq_packet_socket_service_LDADD = $(LDADD)
-@SEPARATE_COMPILATION_TRUE@unit_seq_packet_socket_service_DEPENDENCIES =  \
+am_unit_redirect_error_OBJECTS = unit/redirect_error.$(OBJEXT)
+unit_redirect_error_OBJECTS = $(am_unit_redirect_error_OBJECTS)
+unit_redirect_error_LDADD = $(LDADD)
+@SEPARATE_COMPILATION_TRUE@unit_redirect_error_DEPENDENCIES =  \
 @SEPARATE_COMPILATION_TRUE@	libasio.a
 am_unit_serial_port_OBJECTS = unit/serial_port.$(OBJEXT)
 unit_serial_port_OBJECTS = $(am_unit_serial_port_OBJECTS)
@@ -832,31 +805,10 @@ unit_serial_port_base_OBJECTS = $(am_unit_serial_port_base_OBJECTS)
 unit_serial_port_base_LDADD = $(LDADD)
 @SEPARATE_COMPILATION_TRUE@unit_serial_port_base_DEPENDENCIES =  \
 @SEPARATE_COMPILATION_TRUE@	libasio.a
-am_unit_serial_port_service_OBJECTS =  \
-	unit/serial_port_service.$(OBJEXT)
-unit_serial_port_service_OBJECTS =  \
-	$(am_unit_serial_port_service_OBJECTS)
-unit_serial_port_service_LDADD = $(LDADD)
-@SEPARATE_COMPILATION_TRUE@unit_serial_port_service_DEPENDENCIES =  \
-@SEPARATE_COMPILATION_TRUE@	libasio.a
 am_unit_signal_set_OBJECTS = unit/signal_set.$(OBJEXT)
 unit_signal_set_OBJECTS = $(am_unit_signal_set_OBJECTS)
 unit_signal_set_LDADD = $(LDADD)
 @SEPARATE_COMPILATION_TRUE@unit_signal_set_DEPENDENCIES = libasio.a
-am_unit_signal_set_service_OBJECTS =  \
-	unit/signal_set_service.$(OBJEXT)
-unit_signal_set_service_OBJECTS =  \
-	$(am_unit_signal_set_service_OBJECTS)
-unit_signal_set_service_LDADD = $(LDADD)
-@SEPARATE_COMPILATION_TRUE@unit_signal_set_service_DEPENDENCIES =  \
-@SEPARATE_COMPILATION_TRUE@	libasio.a
-am_unit_socket_acceptor_service_OBJECTS =  \
-	unit/socket_acceptor_service.$(OBJEXT)
-unit_socket_acceptor_service_OBJECTS =  \
-	$(am_unit_socket_acceptor_service_OBJECTS)
-unit_socket_acceptor_service_LDADD = $(LDADD)
-@SEPARATE_COMPILATION_TRUE@unit_socket_acceptor_service_DEPENDENCIES =  \
-@SEPARATE_COMPILATION_TRUE@	libasio.a
 am_unit_socket_base_OBJECTS = unit/socket_base.$(OBJEXT)
 unit_socket_base_OBJECTS = $(am_unit_socket_base_OBJECTS)
 unit_socket_base_LDADD = $(LDADD)
@@ -880,6 +832,15 @@ am__unit_ssl_error_SOURCES_DIST = unit/ssl/error.cpp
 unit_ssl_error_OBJECTS = $(am_unit_ssl_error_OBJECTS)
 unit_ssl_error_LDADD = $(LDADD)
 @SEPARATE_COMPILATION_TRUE@unit_ssl_error_DEPENDENCIES = libasio.a
+am__unit_ssl_host_name_verification_SOURCES_DIST =  \
+	unit/ssl/host_name_verification.cpp
+@HAVE_OPENSSL_TRUE@am_unit_ssl_host_name_verification_OBJECTS =  \
+@HAVE_OPENSSL_TRUE@	unit/ssl/host_name_verification.$(OBJEXT)
+unit_ssl_host_name_verification_OBJECTS =  \
+	$(am_unit_ssl_host_name_verification_OBJECTS)
+unit_ssl_host_name_verification_LDADD = $(LDADD)
+@SEPARATE_COMPILATION_TRUE@unit_ssl_host_name_verification_DEPENDENCIES =  \
+@SEPARATE_COMPILATION_TRUE@	libasio.a
 am__unit_ssl_rfc2818_verification_SOURCES_DIST =  \
 	unit/ssl/rfc2818_verification.cpp
 @HAVE_OPENSSL_TRUE@am_unit_ssl_rfc2818_verification_OBJECTS =  \
@@ -910,13 +871,6 @@ am_unit_strand_OBJECTS = unit/strand.$(OBJEXT)
 unit_strand_OBJECTS = $(am_unit_strand_OBJECTS)
 unit_strand_LDADD = $(LDADD)
 @SEPARATE_COMPILATION_TRUE@unit_strand_DEPENDENCIES = libasio.a
-am_unit_stream_socket_service_OBJECTS =  \
-	unit/stream_socket_service.$(OBJEXT)
-unit_stream_socket_service_OBJECTS =  \
-	$(am_unit_stream_socket_service_OBJECTS)
-unit_stream_socket_service_LDADD = $(LDADD)
-@SEPARATE_COMPILATION_TRUE@unit_stream_socket_service_DEPENDENCIES =  \
-@SEPARATE_COMPILATION_TRUE@	libasio.a
 am_unit_streambuf_OBJECTS = unit/streambuf.$(OBJEXT)
 unit_streambuf_OBJECTS = $(am_unit_streambuf_OBJECTS)
 unit_streambuf_LDADD = $(LDADD)
@@ -935,6 +889,10 @@ am_unit_system_timer_OBJECTS = unit/system_timer.$(OBJEXT)
 unit_system_timer_OBJECTS = $(am_unit_system_timer_OBJECTS)
 unit_system_timer_LDADD = $(LDADD)
 @SEPARATE_COMPILATION_TRUE@unit_system_timer_DEPENDENCIES = libasio.a
+am_unit_this_coro_OBJECTS = unit/this_coro.$(OBJEXT)
+unit_this_coro_OBJECTS = $(am_unit_this_coro_OBJECTS)
+unit_this_coro_LDADD = $(LDADD)
+@SEPARATE_COMPILATION_TRUE@unit_this_coro_DEPENDENCIES = libasio.a
 am_unit_thread_OBJECTS = unit/thread.$(OBJEXT)
 unit_thread_OBJECTS = $(am_unit_thread_OBJECTS)
 unit_thread_LDADD = $(LDADD)
@@ -976,6 +934,11 @@ am_unit_ts_timer_OBJECTS = unit/ts/timer.$(OBJEXT)
 unit_ts_timer_OBJECTS = $(am_unit_ts_timer_OBJECTS)
 unit_ts_timer_LDADD = $(LDADD)
 @SEPARATE_COMPILATION_TRUE@unit_ts_timer_DEPENDENCIES = libasio.a
+am_unit_use_awaitable_OBJECTS = unit/use_awaitable.$(OBJEXT)
+unit_use_awaitable_OBJECTS = $(am_unit_use_awaitable_OBJECTS)
+unit_use_awaitable_LDADD = $(LDADD)
+@SEPARATE_COMPILATION_TRUE@unit_use_awaitable_DEPENDENCIES =  \
+@SEPARATE_COMPILATION_TRUE@	libasio.a
 am_unit_use_future_OBJECTS = unit/use_future.$(OBJEXT)
 unit_use_future_OBJECTS = $(am_unit_use_future_OBJECTS)
 unit_use_future_LDADD = $(LDADD)
@@ -989,26 +952,19 @@ am_unit_wait_traits_OBJECTS = unit/wait_traits.$(OBJEXT)
 unit_wait_traits_OBJECTS = $(am_unit_wait_traits_OBJECTS)
 unit_wait_traits_LDADD = $(LDADD)
 @SEPARATE_COMPILATION_TRUE@unit_wait_traits_DEPENDENCIES = libasio.a
-am_unit_waitable_timer_service_OBJECTS =  \
-	unit/waitable_timer_service.$(OBJEXT)
-unit_waitable_timer_service_OBJECTS =  \
-	$(am_unit_waitable_timer_service_OBJECTS)
-unit_waitable_timer_service_LDADD = $(LDADD)
-@SEPARATE_COMPILATION_TRUE@unit_waitable_timer_service_DEPENDENCIES =  \
-@SEPARATE_COMPILATION_TRUE@	libasio.a
-am_unit_windows_basic_handle_OBJECTS =  \
-	unit/windows/basic_handle.$(OBJEXT)
-unit_windows_basic_handle_OBJECTS =  \
-	$(am_unit_windows_basic_handle_OBJECTS)
-unit_windows_basic_handle_LDADD = $(LDADD)
-@SEPARATE_COMPILATION_TRUE@unit_windows_basic_handle_DEPENDENCIES =  \
-@SEPARATE_COMPILATION_TRUE@	libasio.a
 am_unit_windows_basic_object_handle_OBJECTS =  \
 	unit/windows/basic_object_handle.$(OBJEXT)
 unit_windows_basic_object_handle_OBJECTS =  \
 	$(am_unit_windows_basic_object_handle_OBJECTS)
 unit_windows_basic_object_handle_LDADD = $(LDADD)
 @SEPARATE_COMPILATION_TRUE@unit_windows_basic_object_handle_DEPENDENCIES =  \
+@SEPARATE_COMPILATION_TRUE@	libasio.a
+am_unit_windows_basic_overlapped_handle_OBJECTS =  \
+	unit/windows/basic_overlapped_handle.$(OBJEXT)
+unit_windows_basic_overlapped_handle_OBJECTS =  \
+	$(am_unit_windows_basic_overlapped_handle_OBJECTS)
+unit_windows_basic_overlapped_handle_LDADD = $(LDADD)
+@SEPARATE_COMPILATION_TRUE@unit_windows_basic_overlapped_handle_DEPENDENCIES =  \
 @SEPARATE_COMPILATION_TRUE@	libasio.a
 am_unit_windows_basic_random_access_handle_OBJECTS =  \
 	unit/windows/basic_random_access_handle.$(OBJEXT)
@@ -1031,13 +987,6 @@ unit_windows_object_handle_OBJECTS =  \
 unit_windows_object_handle_LDADD = $(LDADD)
 @SEPARATE_COMPILATION_TRUE@unit_windows_object_handle_DEPENDENCIES =  \
 @SEPARATE_COMPILATION_TRUE@	libasio.a
-am_unit_windows_object_handle_service_OBJECTS =  \
-	unit/windows/object_handle_service.$(OBJEXT)
-unit_windows_object_handle_service_OBJECTS =  \
-	$(am_unit_windows_object_handle_service_OBJECTS)
-unit_windows_object_handle_service_LDADD = $(LDADD)
-@SEPARATE_COMPILATION_TRUE@unit_windows_object_handle_service_DEPENDENCIES =  \
-@SEPARATE_COMPILATION_TRUE@	libasio.a
 am_unit_windows_overlapped_handle_OBJECTS =  \
 	unit/windows/overlapped_handle.$(OBJEXT)
 unit_windows_overlapped_handle_OBJECTS =  \
@@ -1059,26 +1008,12 @@ unit_windows_random_access_handle_OBJECTS =  \
 unit_windows_random_access_handle_LDADD = $(LDADD)
 @SEPARATE_COMPILATION_TRUE@unit_windows_random_access_handle_DEPENDENCIES =  \
 @SEPARATE_COMPILATION_TRUE@	libasio.a
-am_unit_windows_random_access_handle_service_OBJECTS =  \
-	unit/windows/random_access_handle_service.$(OBJEXT)
-unit_windows_random_access_handle_service_OBJECTS =  \
-	$(am_unit_windows_random_access_handle_service_OBJECTS)
-unit_windows_random_access_handle_service_LDADD = $(LDADD)
-@SEPARATE_COMPILATION_TRUE@unit_windows_random_access_handle_service_DEPENDENCIES =  \
-@SEPARATE_COMPILATION_TRUE@	libasio.a
 am_unit_windows_stream_handle_OBJECTS =  \
 	unit/windows/stream_handle.$(OBJEXT)
 unit_windows_stream_handle_OBJECTS =  \
 	$(am_unit_windows_stream_handle_OBJECTS)
 unit_windows_stream_handle_LDADD = $(LDADD)
 @SEPARATE_COMPILATION_TRUE@unit_windows_stream_handle_DEPENDENCIES =  \
-@SEPARATE_COMPILATION_TRUE@	libasio.a
-am_unit_windows_stream_handle_service_OBJECTS =  \
-	unit/windows/stream_handle_service.$(OBJEXT)
-unit_windows_stream_handle_service_OBJECTS =  \
-	$(am_unit_windows_stream_handle_service_OBJECTS)
-unit_windows_stream_handle_service_LDADD = $(LDADD)
-@SEPARATE_COMPILATION_TRUE@unit_windows_stream_handle_service_DEPENDENCIES =  \
 @SEPARATE_COMPILATION_TRUE@	libasio.a
 am_unit_write_OBJECTS = unit/write.$(OBJEXT)
 unit_write_OBJECTS = $(am_unit_write_OBJECTS)
@@ -1112,13 +1047,14 @@ am__depfiles_remade = ../$(DEPDIR)/asio.Po ../$(DEPDIR)/asio_ssl.Po \
 	performance/$(DEPDIR)/server.Po \
 	unit/$(DEPDIR)/associated_allocator.Po \
 	unit/$(DEPDIR)/associated_executor.Po \
-	unit/$(DEPDIR)/async_result.Po \
+	unit/$(DEPDIR)/async_result.Po unit/$(DEPDIR)/awaitable.Po \
 	unit/$(DEPDIR)/basic_datagram_socket.Po \
 	unit/$(DEPDIR)/basic_deadline_timer.Po \
 	unit/$(DEPDIR)/basic_raw_socket.Po \
 	unit/$(DEPDIR)/basic_seq_packet_socket.Po \
 	unit/$(DEPDIR)/basic_serial_port.Po \
 	unit/$(DEPDIR)/basic_signal_set.Po \
+	unit/$(DEPDIR)/basic_socket.Po \
 	unit/$(DEPDIR)/basic_socket_acceptor.Po \
 	unit/$(DEPDIR)/basic_stream_socket.Po \
 	unit/$(DEPDIR)/basic_streambuf.Po \
@@ -1127,40 +1063,32 @@ am__depfiles_remade = ../$(DEPDIR)/asio.Po ../$(DEPDIR)/asio_ssl.Po \
 	unit/$(DEPDIR)/buffered_read_stream.Po \
 	unit/$(DEPDIR)/buffered_stream.Po \
 	unit/$(DEPDIR)/buffered_write_stream.Po \
-	unit/$(DEPDIR)/buffers_iterator.Po \
+	unit/$(DEPDIR)/buffers_iterator.Po unit/$(DEPDIR)/co_spawn.Po \
 	unit/$(DEPDIR)/completion_condition.Po \
-	unit/$(DEPDIR)/connect.Po unit/$(DEPDIR)/coroutine.Po \
-	unit/$(DEPDIR)/datagram_socket_service.Po \
-	unit/$(DEPDIR)/deadline_timer.Po \
-	unit/$(DEPDIR)/deadline_timer_service.Po \
-	unit/$(DEPDIR)/defer.Po unit/$(DEPDIR)/dispatch.Po \
-	unit/$(DEPDIR)/error.Po unit/$(DEPDIR)/execution_context.Po \
-	unit/$(DEPDIR)/executor.Po \
+	unit/$(DEPDIR)/compose.Po unit/$(DEPDIR)/connect.Po \
+	unit/$(DEPDIR)/coroutine.Po unit/$(DEPDIR)/deadline_timer.Po \
+	unit/$(DEPDIR)/defer.Po unit/$(DEPDIR)/detached.Po \
+	unit/$(DEPDIR)/dispatch.Po unit/$(DEPDIR)/error.Po \
+	unit/$(DEPDIR)/execution_context.Po unit/$(DEPDIR)/executor.Po \
 	unit/$(DEPDIR)/executor_work_guard.Po \
 	unit/$(DEPDIR)/high_resolution_timer.Po \
 	unit/$(DEPDIR)/io_context.Po \
+	unit/$(DEPDIR)/io_context_strand.Po \
 	unit/$(DEPDIR)/is_read_buffered.Po \
 	unit/$(DEPDIR)/is_write_buffered.Po \
 	unit/$(DEPDIR)/packaged_task.Po unit/$(DEPDIR)/placeholders.Po \
-	unit/$(DEPDIR)/post.Po unit/$(DEPDIR)/raw_socket_service.Po \
-	unit/$(DEPDIR)/read.Po unit/$(DEPDIR)/read_at.Po \
-	unit/$(DEPDIR)/read_until.Po \
-	unit/$(DEPDIR)/seq_packet_socket_service.Po \
-	unit/$(DEPDIR)/serial_port.Po \
+	unit/$(DEPDIR)/post.Po unit/$(DEPDIR)/read.Po \
+	unit/$(DEPDIR)/read_at.Po unit/$(DEPDIR)/read_until.Po \
+	unit/$(DEPDIR)/redirect_error.Po unit/$(DEPDIR)/serial_port.Po \
 	unit/$(DEPDIR)/serial_port_base.Po \
-	unit/$(DEPDIR)/serial_port_service.Po \
-	unit/$(DEPDIR)/signal_set.Po \
-	unit/$(DEPDIR)/signal_set_service.Po \
-	unit/$(DEPDIR)/socket_acceptor_service.Po \
-	unit/$(DEPDIR)/socket_base.Po unit/$(DEPDIR)/steady_timer.Po \
-	unit/$(DEPDIR)/strand.Po \
-	unit/$(DEPDIR)/stream_socket_service.Po \
+	unit/$(DEPDIR)/signal_set.Po unit/$(DEPDIR)/socket_base.Po \
+	unit/$(DEPDIR)/steady_timer.Po unit/$(DEPDIR)/strand.Po \
 	unit/$(DEPDIR)/streambuf.Po unit/$(DEPDIR)/system_context.Po \
 	unit/$(DEPDIR)/system_executor.Po \
-	unit/$(DEPDIR)/system_timer.Po unit/$(DEPDIR)/thread.Po \
-	unit/$(DEPDIR)/time_traits.Po unit/$(DEPDIR)/use_future.Po \
+	unit/$(DEPDIR)/system_timer.Po unit/$(DEPDIR)/this_coro.Po \
+	unit/$(DEPDIR)/thread.Po unit/$(DEPDIR)/time_traits.Po \
+	unit/$(DEPDIR)/use_awaitable.Po unit/$(DEPDIR)/use_future.Po \
 	unit/$(DEPDIR)/uses_executor.Po unit/$(DEPDIR)/wait_traits.Po \
-	unit/$(DEPDIR)/waitable_timer_service.Po \
 	unit/$(DEPDIR)/write.Po unit/$(DEPDIR)/write_at.Po \
 	unit/generic/$(DEPDIR)/basic_endpoint.Po \
 	unit/generic/$(DEPDIR)/datagram_protocol.Po \
@@ -1182,9 +1110,8 @@ am__depfiles_remade = ../$(DEPDIR)/asio.Po ../$(DEPDIR)/asio_ssl.Po \
 	unit/ip/$(DEPDIR)/multicast.Po unit/ip/$(DEPDIR)/network_v4.Po \
 	unit/ip/$(DEPDIR)/network_v6.Po \
 	unit/ip/$(DEPDIR)/resolver_query_base.Po \
-	unit/ip/$(DEPDIR)/resolver_service.Po unit/ip/$(DEPDIR)/tcp.Po \
-	unit/ip/$(DEPDIR)/udp.Po unit/ip/$(DEPDIR)/unicast.Po \
-	unit/ip/$(DEPDIR)/v6_only.Po \
+	unit/ip/$(DEPDIR)/tcp.Po unit/ip/$(DEPDIR)/udp.Po \
+	unit/ip/$(DEPDIR)/unicast.Po unit/ip/$(DEPDIR)/v6_only.Po \
 	unit/local/$(DEPDIR)/basic_endpoint.Po \
 	unit/local/$(DEPDIR)/connect_pair.Po \
 	unit/local/$(DEPDIR)/datagram_protocol.Po \
@@ -1194,27 +1121,24 @@ am__depfiles_remade = ../$(DEPDIR)/asio.Po ../$(DEPDIR)/asio_ssl.Po \
 	unit/posix/$(DEPDIR)/descriptor.Po \
 	unit/posix/$(DEPDIR)/descriptor_base.Po \
 	unit/posix/$(DEPDIR)/stream_descriptor.Po \
-	unit/posix/$(DEPDIR)/stream_descriptor_service.Po \
 	unit/ssl/$(DEPDIR)/context.Po \
 	unit/ssl/$(DEPDIR)/context_base.Po unit/ssl/$(DEPDIR)/error.Po \
+	unit/ssl/$(DEPDIR)/host_name_verification.Po \
 	unit/ssl/$(DEPDIR)/rfc2818_verification.Po \
 	unit/ssl/$(DEPDIR)/stream.Po unit/ssl/$(DEPDIR)/stream_base.Po \
 	unit/ts/$(DEPDIR)/buffer.Po unit/ts/$(DEPDIR)/executor.Po \
 	unit/ts/$(DEPDIR)/internet.Po unit/ts/$(DEPDIR)/io_context.Po \
 	unit/ts/$(DEPDIR)/net.Po unit/ts/$(DEPDIR)/netfwd.Po \
 	unit/ts/$(DEPDIR)/socket.Po unit/ts/$(DEPDIR)/timer.Po \
-	unit/windows/$(DEPDIR)/basic_handle.Po \
 	unit/windows/$(DEPDIR)/basic_object_handle.Po \
+	unit/windows/$(DEPDIR)/basic_overlapped_handle.Po \
 	unit/windows/$(DEPDIR)/basic_random_access_handle.Po \
 	unit/windows/$(DEPDIR)/basic_stream_handle.Po \
 	unit/windows/$(DEPDIR)/object_handle.Po \
-	unit/windows/$(DEPDIR)/object_handle_service.Po \
 	unit/windows/$(DEPDIR)/overlapped_handle.Po \
 	unit/windows/$(DEPDIR)/overlapped_ptr.Po \
 	unit/windows/$(DEPDIR)/random_access_handle.Po \
-	unit/windows/$(DEPDIR)/random_access_handle_service.Po \
-	unit/windows/$(DEPDIR)/stream_handle.Po \
-	unit/windows/$(DEPDIR)/stream_handle_service.Po
+	unit/windows/$(DEPDIR)/stream_handle.Po
 am__mv = mv -f
 CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
 	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
@@ -1235,13 +1159,13 @@ SOURCES = $(libasio_a_SOURCES) $(latency_tcp_client_SOURCES) \
 	$(performance_server_SOURCES) \
 	$(unit_associated_allocator_SOURCES) \
 	$(unit_associated_executor_SOURCES) \
-	$(unit_async_result_SOURCES) \
+	$(unit_async_result_SOURCES) $(unit_awaitable_SOURCES) \
 	$(unit_basic_datagram_socket_SOURCES) \
 	$(unit_basic_deadline_timer_SOURCES) \
 	$(unit_basic_raw_socket_SOURCES) \
 	$(unit_basic_seq_packet_socket_SOURCES) \
 	$(unit_basic_serial_port_SOURCES) \
-	$(unit_basic_signal_set_SOURCES) \
+	$(unit_basic_signal_set_SOURCES) $(unit_basic_socket_SOURCES) \
 	$(unit_basic_socket_acceptor_SOURCES) \
 	$(unit_basic_stream_socket_SOURCES) \
 	$(unit_basic_streambuf_SOURCES) \
@@ -1250,23 +1174,21 @@ SOURCES = $(libasio_a_SOURCES) $(latency_tcp_client_SOURCES) \
 	$(unit_buffered_read_stream_SOURCES) \
 	$(unit_buffered_stream_SOURCES) \
 	$(unit_buffered_write_stream_SOURCES) \
-	$(unit_buffers_iterator_SOURCES) \
-	$(unit_completion_condition_SOURCES) $(unit_connect_SOURCES) \
-	$(unit_coroutine_SOURCES) \
-	$(unit_datagram_socket_service_SOURCES) \
-	$(unit_deadline_timer_SOURCES) \
-	$(unit_deadline_timer_service_SOURCES) $(unit_defer_SOURCES) \
-	$(unit_dispatch_SOURCES) $(unit_error_SOURCES) \
-	$(unit_execution_context_SOURCES) $(unit_executor_SOURCES) \
-	$(unit_executor_work_guard_SOURCES) \
+	$(unit_buffers_iterator_SOURCES) $(unit_co_spawn_SOURCES) \
+	$(unit_completion_condition_SOURCES) $(unit_compose_SOURCES) \
+	$(unit_connect_SOURCES) $(unit_coroutine_SOURCES) \
+	$(unit_deadline_timer_SOURCES) $(unit_defer_SOURCES) \
+	$(unit_detached_SOURCES) $(unit_dispatch_SOURCES) \
+	$(unit_error_SOURCES) $(unit_execution_context_SOURCES) \
+	$(unit_executor_SOURCES) $(unit_executor_work_guard_SOURCES) \
 	$(unit_generic_basic_endpoint_SOURCES) \
 	$(unit_generic_datagram_protocol_SOURCES) \
 	$(unit_generic_raw_protocol_SOURCES) \
 	$(unit_generic_seq_packet_protocol_SOURCES) \
 	$(unit_generic_stream_protocol_SOURCES) \
 	$(unit_high_resolution_timer_SOURCES) \
-	$(unit_io_context_SOURCES) $(unit_ip_address_SOURCES) \
-	$(unit_ip_address_v4_SOURCES) \
+	$(unit_io_context_SOURCES) $(unit_io_context_strand_SOURCES) \
+	$(unit_ip_address_SOURCES) $(unit_ip_address_v4_SOURCES) \
 	$(unit_ip_address_v4_iterator_SOURCES) \
 	$(unit_ip_address_v4_range_SOURCES) \
 	$(unit_ip_address_v6_SOURCES) \
@@ -1280,8 +1202,7 @@ SOURCES = $(libasio_a_SOURCES) $(latency_tcp_client_SOURCES) \
 	$(unit_ip_host_name_SOURCES) $(unit_ip_icmp_SOURCES) \
 	$(unit_ip_multicast_SOURCES) $(unit_ip_network_v4_SOURCES) \
 	$(unit_ip_network_v6_SOURCES) \
-	$(unit_ip_resolver_query_base_SOURCES) \
-	$(unit_ip_resolver_service_SOURCES) $(unit_ip_tcp_SOURCES) \
+	$(unit_ip_resolver_query_base_SOURCES) $(unit_ip_tcp_SOURCES) \
 	$(unit_ip_udp_SOURCES) $(unit_ip_unicast_SOURCES) \
 	$(unit_ip_v6_only_SOURCES) $(unit_is_read_buffered_SOURCES) \
 	$(unit_is_write_buffered_SOURCES) \
@@ -1294,45 +1215,37 @@ SOURCES = $(libasio_a_SOURCES) $(latency_tcp_client_SOURCES) \
 	$(unit_posix_basic_stream_descriptor_SOURCES) \
 	$(unit_posix_descriptor_SOURCES) \
 	$(unit_posix_descriptor_base_SOURCES) \
-	$(unit_posix_stream_descriptor_SOURCES) \
-	$(unit_posix_stream_descriptor_service_SOURCES) \
-	$(unit_post_SOURCES) $(unit_raw_socket_service_SOURCES) \
+	$(unit_posix_stream_descriptor_SOURCES) $(unit_post_SOURCES) \
 	$(unit_read_SOURCES) $(unit_read_at_SOURCES) \
-	$(unit_read_until_SOURCES) \
-	$(unit_seq_packet_socket_service_SOURCES) \
+	$(unit_read_until_SOURCES) $(unit_redirect_error_SOURCES) \
 	$(unit_serial_port_SOURCES) $(unit_serial_port_base_SOURCES) \
-	$(unit_serial_port_service_SOURCES) $(unit_signal_set_SOURCES) \
-	$(unit_signal_set_service_SOURCES) \
-	$(unit_socket_acceptor_service_SOURCES) \
-	$(unit_socket_base_SOURCES) $(unit_ssl_context_SOURCES) \
-	$(unit_ssl_context_base_SOURCES) $(unit_ssl_error_SOURCES) \
+	$(unit_signal_set_SOURCES) $(unit_socket_base_SOURCES) \
+	$(unit_ssl_context_SOURCES) $(unit_ssl_context_base_SOURCES) \
+	$(unit_ssl_error_SOURCES) \
+	$(unit_ssl_host_name_verification_SOURCES) \
 	$(unit_ssl_rfc2818_verification_SOURCES) \
 	$(unit_ssl_stream_SOURCES) $(unit_ssl_stream_base_SOURCES) \
 	$(unit_steady_timer_SOURCES) $(unit_strand_SOURCES) \
-	$(unit_stream_socket_service_SOURCES) \
 	$(unit_streambuf_SOURCES) $(unit_system_context_SOURCES) \
 	$(unit_system_executor_SOURCES) $(unit_system_timer_SOURCES) \
-	$(unit_thread_SOURCES) $(unit_time_traits_SOURCES) \
-	$(unit_ts_buffer_SOURCES) $(unit_ts_executor_SOURCES) \
-	$(unit_ts_internet_SOURCES) $(unit_ts_io_context_SOURCES) \
-	$(unit_ts_net_SOURCES) $(unit_ts_netfwd_SOURCES) \
-	$(unit_ts_socket_SOURCES) $(unit_ts_timer_SOURCES) \
+	$(unit_this_coro_SOURCES) $(unit_thread_SOURCES) \
+	$(unit_time_traits_SOURCES) $(unit_ts_buffer_SOURCES) \
+	$(unit_ts_executor_SOURCES) $(unit_ts_internet_SOURCES) \
+	$(unit_ts_io_context_SOURCES) $(unit_ts_net_SOURCES) \
+	$(unit_ts_netfwd_SOURCES) $(unit_ts_socket_SOURCES) \
+	$(unit_ts_timer_SOURCES) $(unit_use_awaitable_SOURCES) \
 	$(unit_use_future_SOURCES) $(unit_uses_executor_SOURCES) \
 	$(unit_wait_traits_SOURCES) \
-	$(unit_waitable_timer_service_SOURCES) \
-	$(unit_windows_basic_handle_SOURCES) \
 	$(unit_windows_basic_object_handle_SOURCES) \
+	$(unit_windows_basic_overlapped_handle_SOURCES) \
 	$(unit_windows_basic_random_access_handle_SOURCES) \
 	$(unit_windows_basic_stream_handle_SOURCES) \
 	$(unit_windows_object_handle_SOURCES) \
-	$(unit_windows_object_handle_service_SOURCES) \
 	$(unit_windows_overlapped_handle_SOURCES) \
 	$(unit_windows_overlapped_ptr_SOURCES) \
 	$(unit_windows_random_access_handle_SOURCES) \
-	$(unit_windows_random_access_handle_service_SOURCES) \
-	$(unit_windows_stream_handle_SOURCES) \
-	$(unit_windows_stream_handle_service_SOURCES) \
-	$(unit_write_SOURCES) $(unit_write_at_SOURCES)
+	$(unit_windows_stream_handle_SOURCES) $(unit_write_SOURCES) \
+	$(unit_write_at_SOURCES)
 DIST_SOURCES = $(am__libasio_a_SOURCES_DIST) \
 	$(am__latency_tcp_client_SOURCES_DIST) \
 	$(am__latency_tcp_server_SOURCES_DIST) \
@@ -1342,13 +1255,13 @@ DIST_SOURCES = $(am__libasio_a_SOURCES_DIST) \
 	$(am__performance_server_SOURCES_DIST) \
 	$(unit_associated_allocator_SOURCES) \
 	$(unit_associated_executor_SOURCES) \
-	$(unit_async_result_SOURCES) \
+	$(unit_async_result_SOURCES) $(unit_awaitable_SOURCES) \
 	$(unit_basic_datagram_socket_SOURCES) \
 	$(unit_basic_deadline_timer_SOURCES) \
 	$(unit_basic_raw_socket_SOURCES) \
 	$(unit_basic_seq_packet_socket_SOURCES) \
 	$(unit_basic_serial_port_SOURCES) \
-	$(unit_basic_signal_set_SOURCES) \
+	$(unit_basic_signal_set_SOURCES) $(unit_basic_socket_SOURCES) \
 	$(unit_basic_socket_acceptor_SOURCES) \
 	$(unit_basic_stream_socket_SOURCES) \
 	$(unit_basic_streambuf_SOURCES) \
@@ -1357,23 +1270,21 @@ DIST_SOURCES = $(am__libasio_a_SOURCES_DIST) \
 	$(unit_buffered_read_stream_SOURCES) \
 	$(unit_buffered_stream_SOURCES) \
 	$(unit_buffered_write_stream_SOURCES) \
-	$(unit_buffers_iterator_SOURCES) \
-	$(unit_completion_condition_SOURCES) $(unit_connect_SOURCES) \
-	$(unit_coroutine_SOURCES) \
-	$(unit_datagram_socket_service_SOURCES) \
-	$(unit_deadline_timer_SOURCES) \
-	$(unit_deadline_timer_service_SOURCES) $(unit_defer_SOURCES) \
-	$(unit_dispatch_SOURCES) $(unit_error_SOURCES) \
-	$(unit_execution_context_SOURCES) $(unit_executor_SOURCES) \
-	$(unit_executor_work_guard_SOURCES) \
+	$(unit_buffers_iterator_SOURCES) $(unit_co_spawn_SOURCES) \
+	$(unit_completion_condition_SOURCES) $(unit_compose_SOURCES) \
+	$(unit_connect_SOURCES) $(unit_coroutine_SOURCES) \
+	$(unit_deadline_timer_SOURCES) $(unit_defer_SOURCES) \
+	$(unit_detached_SOURCES) $(unit_dispatch_SOURCES) \
+	$(unit_error_SOURCES) $(unit_execution_context_SOURCES) \
+	$(unit_executor_SOURCES) $(unit_executor_work_guard_SOURCES) \
 	$(unit_generic_basic_endpoint_SOURCES) \
 	$(unit_generic_datagram_protocol_SOURCES) \
 	$(unit_generic_raw_protocol_SOURCES) \
 	$(unit_generic_seq_packet_protocol_SOURCES) \
 	$(unit_generic_stream_protocol_SOURCES) \
 	$(unit_high_resolution_timer_SOURCES) \
-	$(unit_io_context_SOURCES) $(unit_ip_address_SOURCES) \
-	$(unit_ip_address_v4_SOURCES) \
+	$(unit_io_context_SOURCES) $(unit_io_context_strand_SOURCES) \
+	$(unit_ip_address_SOURCES) $(unit_ip_address_v4_SOURCES) \
 	$(unit_ip_address_v4_iterator_SOURCES) \
 	$(unit_ip_address_v4_range_SOURCES) \
 	$(unit_ip_address_v6_SOURCES) \
@@ -1387,8 +1298,7 @@ DIST_SOURCES = $(am__libasio_a_SOURCES_DIST) \
 	$(unit_ip_host_name_SOURCES) $(unit_ip_icmp_SOURCES) \
 	$(unit_ip_multicast_SOURCES) $(unit_ip_network_v4_SOURCES) \
 	$(unit_ip_network_v6_SOURCES) \
-	$(unit_ip_resolver_query_base_SOURCES) \
-	$(unit_ip_resolver_service_SOURCES) $(unit_ip_tcp_SOURCES) \
+	$(unit_ip_resolver_query_base_SOURCES) $(unit_ip_tcp_SOURCES) \
 	$(unit_ip_udp_SOURCES) $(unit_ip_unicast_SOURCES) \
 	$(unit_ip_v6_only_SOURCES) $(unit_is_read_buffered_SOURCES) \
 	$(unit_is_write_buffered_SOURCES) \
@@ -1401,48 +1311,39 @@ DIST_SOURCES = $(am__libasio_a_SOURCES_DIST) \
 	$(unit_posix_basic_stream_descriptor_SOURCES) \
 	$(unit_posix_descriptor_SOURCES) \
 	$(unit_posix_descriptor_base_SOURCES) \
-	$(unit_posix_stream_descriptor_SOURCES) \
-	$(unit_posix_stream_descriptor_service_SOURCES) \
-	$(unit_post_SOURCES) $(unit_raw_socket_service_SOURCES) \
+	$(unit_posix_stream_descriptor_SOURCES) $(unit_post_SOURCES) \
 	$(unit_read_SOURCES) $(unit_read_at_SOURCES) \
-	$(unit_read_until_SOURCES) \
-	$(unit_seq_packet_socket_service_SOURCES) \
+	$(unit_read_until_SOURCES) $(unit_redirect_error_SOURCES) \
 	$(unit_serial_port_SOURCES) $(unit_serial_port_base_SOURCES) \
-	$(unit_serial_port_service_SOURCES) $(unit_signal_set_SOURCES) \
-	$(unit_signal_set_service_SOURCES) \
-	$(unit_socket_acceptor_service_SOURCES) \
-	$(unit_socket_base_SOURCES) \
+	$(unit_signal_set_SOURCES) $(unit_socket_base_SOURCES) \
 	$(am__unit_ssl_context_SOURCES_DIST) \
 	$(am__unit_ssl_context_base_SOURCES_DIST) \
 	$(am__unit_ssl_error_SOURCES_DIST) \
+	$(am__unit_ssl_host_name_verification_SOURCES_DIST) \
 	$(am__unit_ssl_rfc2818_verification_SOURCES_DIST) \
 	$(am__unit_ssl_stream_SOURCES_DIST) \
 	$(am__unit_ssl_stream_base_SOURCES_DIST) \
 	$(unit_steady_timer_SOURCES) $(unit_strand_SOURCES) \
-	$(unit_stream_socket_service_SOURCES) \
 	$(unit_streambuf_SOURCES) $(unit_system_context_SOURCES) \
 	$(unit_system_executor_SOURCES) $(unit_system_timer_SOURCES) \
-	$(unit_thread_SOURCES) $(unit_time_traits_SOURCES) \
-	$(unit_ts_buffer_SOURCES) $(unit_ts_executor_SOURCES) \
-	$(unit_ts_internet_SOURCES) $(unit_ts_io_context_SOURCES) \
-	$(unit_ts_net_SOURCES) $(unit_ts_netfwd_SOURCES) \
-	$(unit_ts_socket_SOURCES) $(unit_ts_timer_SOURCES) \
+	$(unit_this_coro_SOURCES) $(unit_thread_SOURCES) \
+	$(unit_time_traits_SOURCES) $(unit_ts_buffer_SOURCES) \
+	$(unit_ts_executor_SOURCES) $(unit_ts_internet_SOURCES) \
+	$(unit_ts_io_context_SOURCES) $(unit_ts_net_SOURCES) \
+	$(unit_ts_netfwd_SOURCES) $(unit_ts_socket_SOURCES) \
+	$(unit_ts_timer_SOURCES) $(unit_use_awaitable_SOURCES) \
 	$(unit_use_future_SOURCES) $(unit_uses_executor_SOURCES) \
 	$(unit_wait_traits_SOURCES) \
-	$(unit_waitable_timer_service_SOURCES) \
-	$(unit_windows_basic_handle_SOURCES) \
 	$(unit_windows_basic_object_handle_SOURCES) \
+	$(unit_windows_basic_overlapped_handle_SOURCES) \
 	$(unit_windows_basic_random_access_handle_SOURCES) \
 	$(unit_windows_basic_stream_handle_SOURCES) \
 	$(unit_windows_object_handle_SOURCES) \
-	$(unit_windows_object_handle_service_SOURCES) \
 	$(unit_windows_overlapped_handle_SOURCES) \
 	$(unit_windows_overlapped_ptr_SOURCES) \
 	$(unit_windows_random_access_handle_SOURCES) \
-	$(unit_windows_random_access_handle_service_SOURCES) \
-	$(unit_windows_stream_handle_SOURCES) \
-	$(unit_windows_stream_handle_service_SOURCES) \
-	$(unit_write_SOURCES) $(unit_write_at_SOURCES)
+	$(unit_windows_stream_handle_SOURCES) $(unit_write_SOURCES) \
+	$(unit_write_at_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -1795,12 +1696,14 @@ AM_CXXFLAGS = -I$(srcdir)/../../include
 unit_associated_allocator_SOURCES = unit/associated_allocator.cpp
 unit_associated_executor_SOURCES = unit/associated_executor.cpp
 unit_async_result_SOURCES = unit/async_result.cpp
+unit_awaitable_SOURCES = unit/awaitable.cpp
 unit_basic_datagram_socket_SOURCES = unit/basic_datagram_socket.cpp
 unit_basic_deadline_timer_SOURCES = unit/basic_deadline_timer.cpp
 unit_basic_raw_socket_SOURCES = unit/basic_raw_socket.cpp
 unit_basic_seq_packet_socket_SOURCES = unit/basic_seq_packet_socket.cpp
 unit_basic_serial_port_SOURCES = unit/basic_serial_port.cpp
 unit_basic_signal_set_SOURCES = unit/basic_signal_set.cpp
+unit_basic_socket_SOURCES = unit/basic_socket.cpp
 unit_basic_socket_acceptor_SOURCES = unit/basic_socket_acceptor.cpp
 unit_basic_stream_socket_SOURCES = unit/basic_stream_socket.cpp
 unit_basic_streambuf_SOURCES = unit/basic_streambuf.cpp
@@ -1811,13 +1714,14 @@ unit_buffers_iterator_SOURCES = unit/buffers_iterator.cpp
 unit_buffered_read_stream_SOURCES = unit/buffered_read_stream.cpp
 unit_buffered_stream_SOURCES = unit/buffered_stream.cpp
 unit_buffered_write_stream_SOURCES = unit/buffered_write_stream.cpp
+unit_co_spawn_SOURCES = unit/co_spawn.cpp
 unit_completion_condition_SOURCES = unit/completion_condition.cpp
+unit_compose_SOURCES = unit/compose.cpp
 unit_connect_SOURCES = unit/connect.cpp
 unit_coroutine_SOURCES = unit/coroutine.cpp
-unit_datagram_socket_service_SOURCES = unit/datagram_socket_service.cpp
-unit_deadline_timer_service_SOURCES = unit/deadline_timer_service.cpp
 unit_deadline_timer_SOURCES = unit/deadline_timer.cpp
 unit_defer_SOURCES = unit/defer.cpp
+unit_detached_SOURCES = unit/detached.cpp
 unit_dispatch_SOURCES = unit/dispatch.cpp
 unit_error_SOURCES = unit/error.cpp
 unit_execution_context_SOURCES = unit/execution_context.cpp
@@ -1830,6 +1734,7 @@ unit_generic_seq_packet_protocol_SOURCES = unit/generic/seq_packet_protocol.cpp
 unit_generic_stream_protocol_SOURCES = unit/generic/stream_protocol.cpp
 unit_high_resolution_timer_SOURCES = unit/high_resolution_timer.cpp
 unit_io_context_SOURCES = unit/io_context.cpp
+unit_io_context_strand_SOURCES = unit/io_context_strand.cpp
 unit_ip_address_SOURCES = unit/ip/address.cpp
 unit_ip_address_v4_SOURCES = unit/ip/address_v4.cpp
 unit_ip_address_v4_iterator_SOURCES = unit/ip/address_v4_iterator.cpp
@@ -1848,7 +1753,6 @@ unit_ip_multicast_SOURCES = unit/ip/multicast.cpp
 unit_ip_network_v4_SOURCES = unit/ip/network_v4.cpp
 unit_ip_network_v6_SOURCES = unit/ip/network_v6.cpp
 unit_ip_resolver_query_base_SOURCES = unit/ip/resolver_query_base.cpp
-unit_ip_resolver_service_SOURCES = unit/ip/resolver_service.cpp
 unit_ip_tcp_SOURCES = unit/ip/tcp.cpp
 unit_ip_udp_SOURCES = unit/ip/udp.cpp
 unit_ip_unicast_SOURCES = unit/ip/unicast.cpp
@@ -1866,27 +1770,22 @@ unit_posix_basic_stream_descriptor_SOURCES = unit/posix/basic_stream_descriptor.
 unit_posix_descriptor_SOURCES = unit/posix/descriptor.cpp
 unit_posix_descriptor_base_SOURCES = unit/posix/descriptor_base.cpp
 unit_posix_stream_descriptor_SOURCES = unit/posix/stream_descriptor.cpp
-unit_posix_stream_descriptor_service_SOURCES = unit/posix/stream_descriptor_service.cpp
 unit_post_SOURCES = unit/post.cpp
-unit_raw_socket_service_SOURCES = unit/raw_socket_service.cpp
 unit_read_SOURCES = unit/read.cpp
 unit_read_at_SOURCES = unit/read_at.cpp
 unit_read_until_SOURCES = unit/read_until.cpp
-unit_seq_packet_socket_service_SOURCES = unit/seq_packet_socket_service.cpp
+unit_redirect_error_SOURCES = unit/redirect_error.cpp
 unit_serial_port_SOURCES = unit/serial_port.cpp
 unit_serial_port_base_SOURCES = unit/serial_port_base.cpp
-unit_serial_port_service_SOURCES = unit/serial_port_service.cpp
 unit_signal_set_SOURCES = unit/signal_set.cpp
-unit_signal_set_service_SOURCES = unit/signal_set_service.cpp
-unit_socket_acceptor_service_SOURCES = unit/socket_acceptor_service.cpp
 unit_socket_base_SOURCES = unit/socket_base.cpp
 unit_steady_timer_SOURCES = unit/steady_timer.cpp
 unit_strand_SOURCES = unit/strand.cpp
-unit_stream_socket_service_SOURCES = unit/stream_socket_service.cpp
 unit_streambuf_SOURCES = unit/streambuf.cpp
 unit_system_context_SOURCES = unit/system_context.cpp
 unit_system_executor_SOURCES = unit/system_executor.cpp
 unit_system_timer_SOURCES = unit/system_timer.cpp
+unit_this_coro_SOURCES = unit/this_coro.cpp
 unit_thread_SOURCES = unit/thread.cpp
 unit_time_traits_SOURCES = unit/time_traits.cpp
 unit_ts_buffer_SOURCES = unit/ts/buffer.cpp
@@ -1897,28 +1796,26 @@ unit_ts_net_SOURCES = unit/ts/net.cpp
 unit_ts_netfwd_SOURCES = unit/ts/netfwd.cpp
 unit_ts_socket_SOURCES = unit/ts/socket.cpp
 unit_ts_timer_SOURCES = unit/ts/timer.cpp
+unit_use_awaitable_SOURCES = unit/use_awaitable.cpp
 unit_use_future_SOURCES = unit/use_future.cpp
 unit_uses_executor_SOURCES = unit/uses_executor.cpp
 unit_wait_traits_SOURCES = unit/wait_traits.cpp
-unit_waitable_timer_service_SOURCES = unit/waitable_timer_service.cpp
-unit_windows_basic_handle_SOURCES = unit/windows/basic_handle.cpp
 unit_windows_basic_object_handle_SOURCES = unit/windows/basic_object_handle.cpp
+unit_windows_basic_overlapped_handle_SOURCES = unit/windows/basic_overlapped_handle.cpp
 unit_windows_basic_random_access_handle_SOURCES = unit/windows/basic_random_access_handle.cpp
 unit_windows_basic_stream_handle_SOURCES = unit/windows/basic_stream_handle.cpp
 unit_windows_object_handle_SOURCES = unit/windows/object_handle.cpp
-unit_windows_object_handle_service_SOURCES = unit/windows/object_handle_service.cpp
 unit_windows_overlapped_handle_SOURCES = unit/windows/overlapped_handle.cpp
 unit_windows_overlapped_ptr_SOURCES = unit/windows/overlapped_ptr.cpp
 unit_windows_random_access_handle_SOURCES = unit/windows/random_access_handle.cpp
-unit_windows_random_access_handle_service_SOURCES = unit/windows/random_access_handle_service.cpp
 unit_windows_stream_handle_SOURCES = unit/windows/stream_handle.cpp
-unit_windows_stream_handle_service_SOURCES = unit/windows/stream_handle_service.cpp
 unit_write_SOURCES = unit/write.cpp
 unit_write_at_SOURCES = unit/write_at.cpp
 @HAVE_OPENSSL_TRUE@unit_ssl_context_base_SOURCES = unit/ssl/context_base.cpp
 @HAVE_OPENSSL_TRUE@unit_ssl_context_SOURCES = unit/ssl/context.cpp
 @HAVE_OPENSSL_TRUE@unit_ssl_error_SOURCES = unit/ssl/error.cpp
 @HAVE_OPENSSL_TRUE@unit_ssl_stream_base_SOURCES = unit/ssl/stream_base.cpp
+@HAVE_OPENSSL_TRUE@unit_ssl_host_name_verification_SOURCES = unit/ssl/host_name_verification.cpp
 @HAVE_OPENSSL_TRUE@unit_ssl_rfc2818_verification_SOURCES = unit/ssl/rfc2818_verification.cpp
 @HAVE_OPENSSL_TRUE@unit_ssl_stream_SOURCES = unit/ssl/stream.cpp
 EXTRA_DIST = \
@@ -1926,8 +1823,6 @@ EXTRA_DIST = \
 	performance/handler_allocator.hpp \
 	unit/archetypes/async_ops.hpp \
 	unit/archetypes/async_result.hpp \
-	unit/archetypes/deprecated_async_result.hpp \
-	unit/archetypes/deprecated_async_ops.hpp \
 	unit/archetypes/gettable_socket_option.hpp \
 	unit/archetypes/io_control_command.hpp \
 	unit/archetypes/settable_socket_option.hpp
@@ -2062,6 +1957,12 @@ unit/async_result.$(OBJEXT): unit/$(am__dirstamp) \
 unit/async_result$(EXEEXT): $(unit_async_result_OBJECTS) $(unit_async_result_DEPENDENCIES) $(EXTRA_unit_async_result_DEPENDENCIES) unit/$(am__dirstamp)
 	@rm -f unit/async_result$(EXEEXT)
 	$(AM_V_CXXLD)$(CXXLINK) $(unit_async_result_OBJECTS) $(unit_async_result_LDADD) $(LIBS)
+unit/awaitable.$(OBJEXT): unit/$(am__dirstamp) \
+	unit/$(DEPDIR)/$(am__dirstamp)
+
+unit/awaitable$(EXEEXT): $(unit_awaitable_OBJECTS) $(unit_awaitable_DEPENDENCIES) $(EXTRA_unit_awaitable_DEPENDENCIES) unit/$(am__dirstamp)
+	@rm -f unit/awaitable$(EXEEXT)
+	$(AM_V_CXXLD)$(CXXLINK) $(unit_awaitable_OBJECTS) $(unit_awaitable_LDADD) $(LIBS)
 unit/basic_datagram_socket.$(OBJEXT): unit/$(am__dirstamp) \
 	unit/$(DEPDIR)/$(am__dirstamp)
 
@@ -2098,6 +1999,12 @@ unit/basic_signal_set.$(OBJEXT): unit/$(am__dirstamp) \
 unit/basic_signal_set$(EXEEXT): $(unit_basic_signal_set_OBJECTS) $(unit_basic_signal_set_DEPENDENCIES) $(EXTRA_unit_basic_signal_set_DEPENDENCIES) unit/$(am__dirstamp)
 	@rm -f unit/basic_signal_set$(EXEEXT)
 	$(AM_V_CXXLD)$(CXXLINK) $(unit_basic_signal_set_OBJECTS) $(unit_basic_signal_set_LDADD) $(LIBS)
+unit/basic_socket.$(OBJEXT): unit/$(am__dirstamp) \
+	unit/$(DEPDIR)/$(am__dirstamp)
+
+unit/basic_socket$(EXEEXT): $(unit_basic_socket_OBJECTS) $(unit_basic_socket_DEPENDENCIES) $(EXTRA_unit_basic_socket_DEPENDENCIES) unit/$(am__dirstamp)
+	@rm -f unit/basic_socket$(EXEEXT)
+	$(AM_V_CXXLD)$(CXXLINK) $(unit_basic_socket_OBJECTS) $(unit_basic_socket_LDADD) $(LIBS)
 unit/basic_socket_acceptor.$(OBJEXT): unit/$(am__dirstamp) \
 	unit/$(DEPDIR)/$(am__dirstamp)
 
@@ -2158,12 +2065,24 @@ unit/buffers_iterator.$(OBJEXT): unit/$(am__dirstamp) \
 unit/buffers_iterator$(EXEEXT): $(unit_buffers_iterator_OBJECTS) $(unit_buffers_iterator_DEPENDENCIES) $(EXTRA_unit_buffers_iterator_DEPENDENCIES) unit/$(am__dirstamp)
 	@rm -f unit/buffers_iterator$(EXEEXT)
 	$(AM_V_CXXLD)$(CXXLINK) $(unit_buffers_iterator_OBJECTS) $(unit_buffers_iterator_LDADD) $(LIBS)
+unit/co_spawn.$(OBJEXT): unit/$(am__dirstamp) \
+	unit/$(DEPDIR)/$(am__dirstamp)
+
+unit/co_spawn$(EXEEXT): $(unit_co_spawn_OBJECTS) $(unit_co_spawn_DEPENDENCIES) $(EXTRA_unit_co_spawn_DEPENDENCIES) unit/$(am__dirstamp)
+	@rm -f unit/co_spawn$(EXEEXT)
+	$(AM_V_CXXLD)$(CXXLINK) $(unit_co_spawn_OBJECTS) $(unit_co_spawn_LDADD) $(LIBS)
 unit/completion_condition.$(OBJEXT): unit/$(am__dirstamp) \
 	unit/$(DEPDIR)/$(am__dirstamp)
 
 unit/completion_condition$(EXEEXT): $(unit_completion_condition_OBJECTS) $(unit_completion_condition_DEPENDENCIES) $(EXTRA_unit_completion_condition_DEPENDENCIES) unit/$(am__dirstamp)
 	@rm -f unit/completion_condition$(EXEEXT)
 	$(AM_V_CXXLD)$(CXXLINK) $(unit_completion_condition_OBJECTS) $(unit_completion_condition_LDADD) $(LIBS)
+unit/compose.$(OBJEXT): unit/$(am__dirstamp) \
+	unit/$(DEPDIR)/$(am__dirstamp)
+
+unit/compose$(EXEEXT): $(unit_compose_OBJECTS) $(unit_compose_DEPENDENCIES) $(EXTRA_unit_compose_DEPENDENCIES) unit/$(am__dirstamp)
+	@rm -f unit/compose$(EXEEXT)
+	$(AM_V_CXXLD)$(CXXLINK) $(unit_compose_OBJECTS) $(unit_compose_LDADD) $(LIBS)
 unit/connect.$(OBJEXT): unit/$(am__dirstamp) \
 	unit/$(DEPDIR)/$(am__dirstamp)
 
@@ -2176,30 +2095,24 @@ unit/coroutine.$(OBJEXT): unit/$(am__dirstamp) \
 unit/coroutine$(EXEEXT): $(unit_coroutine_OBJECTS) $(unit_coroutine_DEPENDENCIES) $(EXTRA_unit_coroutine_DEPENDENCIES) unit/$(am__dirstamp)
 	@rm -f unit/coroutine$(EXEEXT)
 	$(AM_V_CXXLD)$(CXXLINK) $(unit_coroutine_OBJECTS) $(unit_coroutine_LDADD) $(LIBS)
-unit/datagram_socket_service.$(OBJEXT): unit/$(am__dirstamp) \
-	unit/$(DEPDIR)/$(am__dirstamp)
-
-unit/datagram_socket_service$(EXEEXT): $(unit_datagram_socket_service_OBJECTS) $(unit_datagram_socket_service_DEPENDENCIES) $(EXTRA_unit_datagram_socket_service_DEPENDENCIES) unit/$(am__dirstamp)
-	@rm -f unit/datagram_socket_service$(EXEEXT)
-	$(AM_V_CXXLD)$(CXXLINK) $(unit_datagram_socket_service_OBJECTS) $(unit_datagram_socket_service_LDADD) $(LIBS)
 unit/deadline_timer.$(OBJEXT): unit/$(am__dirstamp) \
 	unit/$(DEPDIR)/$(am__dirstamp)
 
 unit/deadline_timer$(EXEEXT): $(unit_deadline_timer_OBJECTS) $(unit_deadline_timer_DEPENDENCIES) $(EXTRA_unit_deadline_timer_DEPENDENCIES) unit/$(am__dirstamp)
 	@rm -f unit/deadline_timer$(EXEEXT)
 	$(AM_V_CXXLD)$(CXXLINK) $(unit_deadline_timer_OBJECTS) $(unit_deadline_timer_LDADD) $(LIBS)
-unit/deadline_timer_service.$(OBJEXT): unit/$(am__dirstamp) \
-	unit/$(DEPDIR)/$(am__dirstamp)
-
-unit/deadline_timer_service$(EXEEXT): $(unit_deadline_timer_service_OBJECTS) $(unit_deadline_timer_service_DEPENDENCIES) $(EXTRA_unit_deadline_timer_service_DEPENDENCIES) unit/$(am__dirstamp)
-	@rm -f unit/deadline_timer_service$(EXEEXT)
-	$(AM_V_CXXLD)$(CXXLINK) $(unit_deadline_timer_service_OBJECTS) $(unit_deadline_timer_service_LDADD) $(LIBS)
 unit/defer.$(OBJEXT): unit/$(am__dirstamp) \
 	unit/$(DEPDIR)/$(am__dirstamp)
 
 unit/defer$(EXEEXT): $(unit_defer_OBJECTS) $(unit_defer_DEPENDENCIES) $(EXTRA_unit_defer_DEPENDENCIES) unit/$(am__dirstamp)
 	@rm -f unit/defer$(EXEEXT)
 	$(AM_V_CXXLD)$(CXXLINK) $(unit_defer_OBJECTS) $(unit_defer_LDADD) $(LIBS)
+unit/detached.$(OBJEXT): unit/$(am__dirstamp) \
+	unit/$(DEPDIR)/$(am__dirstamp)
+
+unit/detached$(EXEEXT): $(unit_detached_OBJECTS) $(unit_detached_DEPENDENCIES) $(EXTRA_unit_detached_DEPENDENCIES) unit/$(am__dirstamp)
+	@rm -f unit/detached$(EXEEXT)
+	$(AM_V_CXXLD)$(CXXLINK) $(unit_detached_OBJECTS) $(unit_detached_LDADD) $(LIBS)
 unit/dispatch.$(OBJEXT): unit/$(am__dirstamp) \
 	unit/$(DEPDIR)/$(am__dirstamp)
 
@@ -2280,6 +2193,12 @@ unit/io_context.$(OBJEXT): unit/$(am__dirstamp) \
 unit/io_context$(EXEEXT): $(unit_io_context_OBJECTS) $(unit_io_context_DEPENDENCIES) $(EXTRA_unit_io_context_DEPENDENCIES) unit/$(am__dirstamp)
 	@rm -f unit/io_context$(EXEEXT)
 	$(AM_V_CXXLD)$(CXXLINK) $(unit_io_context_OBJECTS) $(unit_io_context_LDADD) $(LIBS)
+unit/io_context_strand.$(OBJEXT): unit/$(am__dirstamp) \
+	unit/$(DEPDIR)/$(am__dirstamp)
+
+unit/io_context_strand$(EXEEXT): $(unit_io_context_strand_OBJECTS) $(unit_io_context_strand_DEPENDENCIES) $(EXTRA_unit_io_context_strand_DEPENDENCIES) unit/$(am__dirstamp)
+	@rm -f unit/io_context_strand$(EXEEXT)
+	$(AM_V_CXXLD)$(CXXLINK) $(unit_io_context_strand_OBJECTS) $(unit_io_context_strand_LDADD) $(LIBS)
 unit/ip/$(am__dirstamp):
 	@$(MKDIR_P) unit/ip
 	@: > unit/ip/$(am__dirstamp)
@@ -2394,12 +2313,6 @@ unit/ip/resolver_query_base.$(OBJEXT): unit/ip/$(am__dirstamp) \
 unit/ip/resolver_query_base$(EXEEXT): $(unit_ip_resolver_query_base_OBJECTS) $(unit_ip_resolver_query_base_DEPENDENCIES) $(EXTRA_unit_ip_resolver_query_base_DEPENDENCIES) unit/ip/$(am__dirstamp)
 	@rm -f unit/ip/resolver_query_base$(EXEEXT)
 	$(AM_V_CXXLD)$(CXXLINK) $(unit_ip_resolver_query_base_OBJECTS) $(unit_ip_resolver_query_base_LDADD) $(LIBS)
-unit/ip/resolver_service.$(OBJEXT): unit/ip/$(am__dirstamp) \
-	unit/ip/$(DEPDIR)/$(am__dirstamp)
-
-unit/ip/resolver_service$(EXEEXT): $(unit_ip_resolver_service_OBJECTS) $(unit_ip_resolver_service_DEPENDENCIES) $(EXTRA_unit_ip_resolver_service_DEPENDENCIES) unit/ip/$(am__dirstamp)
-	@rm -f unit/ip/resolver_service$(EXEEXT)
-	$(AM_V_CXXLD)$(CXXLINK) $(unit_ip_resolver_service_OBJECTS) $(unit_ip_resolver_service_LDADD) $(LIBS)
 unit/ip/tcp.$(OBJEXT): unit/ip/$(am__dirstamp) \
 	unit/ip/$(DEPDIR)/$(am__dirstamp)
 
@@ -2515,25 +2428,12 @@ unit/posix/stream_descriptor.$(OBJEXT): unit/posix/$(am__dirstamp) \
 unit/posix/stream_descriptor$(EXEEXT): $(unit_posix_stream_descriptor_OBJECTS) $(unit_posix_stream_descriptor_DEPENDENCIES) $(EXTRA_unit_posix_stream_descriptor_DEPENDENCIES) unit/posix/$(am__dirstamp)
 	@rm -f unit/posix/stream_descriptor$(EXEEXT)
 	$(AM_V_CXXLD)$(CXXLINK) $(unit_posix_stream_descriptor_OBJECTS) $(unit_posix_stream_descriptor_LDADD) $(LIBS)
-unit/posix/stream_descriptor_service.$(OBJEXT):  \
-	unit/posix/$(am__dirstamp) \
-	unit/posix/$(DEPDIR)/$(am__dirstamp)
-
-unit/posix/stream_descriptor_service$(EXEEXT): $(unit_posix_stream_descriptor_service_OBJECTS) $(unit_posix_stream_descriptor_service_DEPENDENCIES) $(EXTRA_unit_posix_stream_descriptor_service_DEPENDENCIES) unit/posix/$(am__dirstamp)
-	@rm -f unit/posix/stream_descriptor_service$(EXEEXT)
-	$(AM_V_CXXLD)$(CXXLINK) $(unit_posix_stream_descriptor_service_OBJECTS) $(unit_posix_stream_descriptor_service_LDADD) $(LIBS)
 unit/post.$(OBJEXT): unit/$(am__dirstamp) \
 	unit/$(DEPDIR)/$(am__dirstamp)
 
 unit/post$(EXEEXT): $(unit_post_OBJECTS) $(unit_post_DEPENDENCIES) $(EXTRA_unit_post_DEPENDENCIES) unit/$(am__dirstamp)
 	@rm -f unit/post$(EXEEXT)
 	$(AM_V_CXXLD)$(CXXLINK) $(unit_post_OBJECTS) $(unit_post_LDADD) $(LIBS)
-unit/raw_socket_service.$(OBJEXT): unit/$(am__dirstamp) \
-	unit/$(DEPDIR)/$(am__dirstamp)
-
-unit/raw_socket_service$(EXEEXT): $(unit_raw_socket_service_OBJECTS) $(unit_raw_socket_service_DEPENDENCIES) $(EXTRA_unit_raw_socket_service_DEPENDENCIES) unit/$(am__dirstamp)
-	@rm -f unit/raw_socket_service$(EXEEXT)
-	$(AM_V_CXXLD)$(CXXLINK) $(unit_raw_socket_service_OBJECTS) $(unit_raw_socket_service_LDADD) $(LIBS)
 unit/read.$(OBJEXT): unit/$(am__dirstamp) \
 	unit/$(DEPDIR)/$(am__dirstamp)
 
@@ -2552,12 +2452,12 @@ unit/read_until.$(OBJEXT): unit/$(am__dirstamp) \
 unit/read_until$(EXEEXT): $(unit_read_until_OBJECTS) $(unit_read_until_DEPENDENCIES) $(EXTRA_unit_read_until_DEPENDENCIES) unit/$(am__dirstamp)
 	@rm -f unit/read_until$(EXEEXT)
 	$(AM_V_CXXLD)$(CXXLINK) $(unit_read_until_OBJECTS) $(unit_read_until_LDADD) $(LIBS)
-unit/seq_packet_socket_service.$(OBJEXT): unit/$(am__dirstamp) \
+unit/redirect_error.$(OBJEXT): unit/$(am__dirstamp) \
 	unit/$(DEPDIR)/$(am__dirstamp)
 
-unit/seq_packet_socket_service$(EXEEXT): $(unit_seq_packet_socket_service_OBJECTS) $(unit_seq_packet_socket_service_DEPENDENCIES) $(EXTRA_unit_seq_packet_socket_service_DEPENDENCIES) unit/$(am__dirstamp)
-	@rm -f unit/seq_packet_socket_service$(EXEEXT)
-	$(AM_V_CXXLD)$(CXXLINK) $(unit_seq_packet_socket_service_OBJECTS) $(unit_seq_packet_socket_service_LDADD) $(LIBS)
+unit/redirect_error$(EXEEXT): $(unit_redirect_error_OBJECTS) $(unit_redirect_error_DEPENDENCIES) $(EXTRA_unit_redirect_error_DEPENDENCIES) unit/$(am__dirstamp)
+	@rm -f unit/redirect_error$(EXEEXT)
+	$(AM_V_CXXLD)$(CXXLINK) $(unit_redirect_error_OBJECTS) $(unit_redirect_error_LDADD) $(LIBS)
 unit/serial_port.$(OBJEXT): unit/$(am__dirstamp) \
 	unit/$(DEPDIR)/$(am__dirstamp)
 
@@ -2570,30 +2470,12 @@ unit/serial_port_base.$(OBJEXT): unit/$(am__dirstamp) \
 unit/serial_port_base$(EXEEXT): $(unit_serial_port_base_OBJECTS) $(unit_serial_port_base_DEPENDENCIES) $(EXTRA_unit_serial_port_base_DEPENDENCIES) unit/$(am__dirstamp)
 	@rm -f unit/serial_port_base$(EXEEXT)
 	$(AM_V_CXXLD)$(CXXLINK) $(unit_serial_port_base_OBJECTS) $(unit_serial_port_base_LDADD) $(LIBS)
-unit/serial_port_service.$(OBJEXT): unit/$(am__dirstamp) \
-	unit/$(DEPDIR)/$(am__dirstamp)
-
-unit/serial_port_service$(EXEEXT): $(unit_serial_port_service_OBJECTS) $(unit_serial_port_service_DEPENDENCIES) $(EXTRA_unit_serial_port_service_DEPENDENCIES) unit/$(am__dirstamp)
-	@rm -f unit/serial_port_service$(EXEEXT)
-	$(AM_V_CXXLD)$(CXXLINK) $(unit_serial_port_service_OBJECTS) $(unit_serial_port_service_LDADD) $(LIBS)
 unit/signal_set.$(OBJEXT): unit/$(am__dirstamp) \
 	unit/$(DEPDIR)/$(am__dirstamp)
 
 unit/signal_set$(EXEEXT): $(unit_signal_set_OBJECTS) $(unit_signal_set_DEPENDENCIES) $(EXTRA_unit_signal_set_DEPENDENCIES) unit/$(am__dirstamp)
 	@rm -f unit/signal_set$(EXEEXT)
 	$(AM_V_CXXLD)$(CXXLINK) $(unit_signal_set_OBJECTS) $(unit_signal_set_LDADD) $(LIBS)
-unit/signal_set_service.$(OBJEXT): unit/$(am__dirstamp) \
-	unit/$(DEPDIR)/$(am__dirstamp)
-
-unit/signal_set_service$(EXEEXT): $(unit_signal_set_service_OBJECTS) $(unit_signal_set_service_DEPENDENCIES) $(EXTRA_unit_signal_set_service_DEPENDENCIES) unit/$(am__dirstamp)
-	@rm -f unit/signal_set_service$(EXEEXT)
-	$(AM_V_CXXLD)$(CXXLINK) $(unit_signal_set_service_OBJECTS) $(unit_signal_set_service_LDADD) $(LIBS)
-unit/socket_acceptor_service.$(OBJEXT): unit/$(am__dirstamp) \
-	unit/$(DEPDIR)/$(am__dirstamp)
-
-unit/socket_acceptor_service$(EXEEXT): $(unit_socket_acceptor_service_OBJECTS) $(unit_socket_acceptor_service_DEPENDENCIES) $(EXTRA_unit_socket_acceptor_service_DEPENDENCIES) unit/$(am__dirstamp)
-	@rm -f unit/socket_acceptor_service$(EXEEXT)
-	$(AM_V_CXXLD)$(CXXLINK) $(unit_socket_acceptor_service_OBJECTS) $(unit_socket_acceptor_service_LDADD) $(LIBS)
 unit/socket_base.$(OBJEXT): unit/$(am__dirstamp) \
 	unit/$(DEPDIR)/$(am__dirstamp)
 
@@ -2624,6 +2506,12 @@ unit/ssl/error.$(OBJEXT): unit/ssl/$(am__dirstamp) \
 unit/ssl/error$(EXEEXT): $(unit_ssl_error_OBJECTS) $(unit_ssl_error_DEPENDENCIES) $(EXTRA_unit_ssl_error_DEPENDENCIES) unit/ssl/$(am__dirstamp)
 	@rm -f unit/ssl/error$(EXEEXT)
 	$(AM_V_CXXLD)$(CXXLINK) $(unit_ssl_error_OBJECTS) $(unit_ssl_error_LDADD) $(LIBS)
+unit/ssl/host_name_verification.$(OBJEXT): unit/ssl/$(am__dirstamp) \
+	unit/ssl/$(DEPDIR)/$(am__dirstamp)
+
+unit/ssl/host_name_verification$(EXEEXT): $(unit_ssl_host_name_verification_OBJECTS) $(unit_ssl_host_name_verification_DEPENDENCIES) $(EXTRA_unit_ssl_host_name_verification_DEPENDENCIES) unit/ssl/$(am__dirstamp)
+	@rm -f unit/ssl/host_name_verification$(EXEEXT)
+	$(AM_V_CXXLD)$(CXXLINK) $(unit_ssl_host_name_verification_OBJECTS) $(unit_ssl_host_name_verification_LDADD) $(LIBS)
 unit/ssl/rfc2818_verification.$(OBJEXT): unit/ssl/$(am__dirstamp) \
 	unit/ssl/$(DEPDIR)/$(am__dirstamp)
 
@@ -2654,12 +2542,6 @@ unit/strand.$(OBJEXT): unit/$(am__dirstamp) \
 unit/strand$(EXEEXT): $(unit_strand_OBJECTS) $(unit_strand_DEPENDENCIES) $(EXTRA_unit_strand_DEPENDENCIES) unit/$(am__dirstamp)
 	@rm -f unit/strand$(EXEEXT)
 	$(AM_V_CXXLD)$(CXXLINK) $(unit_strand_OBJECTS) $(unit_strand_LDADD) $(LIBS)
-unit/stream_socket_service.$(OBJEXT): unit/$(am__dirstamp) \
-	unit/$(DEPDIR)/$(am__dirstamp)
-
-unit/stream_socket_service$(EXEEXT): $(unit_stream_socket_service_OBJECTS) $(unit_stream_socket_service_DEPENDENCIES) $(EXTRA_unit_stream_socket_service_DEPENDENCIES) unit/$(am__dirstamp)
-	@rm -f unit/stream_socket_service$(EXEEXT)
-	$(AM_V_CXXLD)$(CXXLINK) $(unit_stream_socket_service_OBJECTS) $(unit_stream_socket_service_LDADD) $(LIBS)
 unit/streambuf.$(OBJEXT): unit/$(am__dirstamp) \
 	unit/$(DEPDIR)/$(am__dirstamp)
 
@@ -2684,6 +2566,12 @@ unit/system_timer.$(OBJEXT): unit/$(am__dirstamp) \
 unit/system_timer$(EXEEXT): $(unit_system_timer_OBJECTS) $(unit_system_timer_DEPENDENCIES) $(EXTRA_unit_system_timer_DEPENDENCIES) unit/$(am__dirstamp)
 	@rm -f unit/system_timer$(EXEEXT)
 	$(AM_V_CXXLD)$(CXXLINK) $(unit_system_timer_OBJECTS) $(unit_system_timer_LDADD) $(LIBS)
+unit/this_coro.$(OBJEXT): unit/$(am__dirstamp) \
+	unit/$(DEPDIR)/$(am__dirstamp)
+
+unit/this_coro$(EXEEXT): $(unit_this_coro_OBJECTS) $(unit_this_coro_DEPENDENCIES) $(EXTRA_unit_this_coro_DEPENDENCIES) unit/$(am__dirstamp)
+	@rm -f unit/this_coro$(EXEEXT)
+	$(AM_V_CXXLD)$(CXXLINK) $(unit_this_coro_OBJECTS) $(unit_this_coro_LDADD) $(LIBS)
 unit/thread.$(OBJEXT): unit/$(am__dirstamp) \
 	unit/$(DEPDIR)/$(am__dirstamp)
 
@@ -2750,6 +2638,12 @@ unit/ts/timer.$(OBJEXT): unit/ts/$(am__dirstamp) \
 unit/ts/timer$(EXEEXT): $(unit_ts_timer_OBJECTS) $(unit_ts_timer_DEPENDENCIES) $(EXTRA_unit_ts_timer_DEPENDENCIES) unit/ts/$(am__dirstamp)
 	@rm -f unit/ts/timer$(EXEEXT)
 	$(AM_V_CXXLD)$(CXXLINK) $(unit_ts_timer_OBJECTS) $(unit_ts_timer_LDADD) $(LIBS)
+unit/use_awaitable.$(OBJEXT): unit/$(am__dirstamp) \
+	unit/$(DEPDIR)/$(am__dirstamp)
+
+unit/use_awaitable$(EXEEXT): $(unit_use_awaitable_OBJECTS) $(unit_use_awaitable_DEPENDENCIES) $(EXTRA_unit_use_awaitable_DEPENDENCIES) unit/$(am__dirstamp)
+	@rm -f unit/use_awaitable$(EXEEXT)
+	$(AM_V_CXXLD)$(CXXLINK) $(unit_use_awaitable_OBJECTS) $(unit_use_awaitable_LDADD) $(LIBS)
 unit/use_future.$(OBJEXT): unit/$(am__dirstamp) \
 	unit/$(DEPDIR)/$(am__dirstamp)
 
@@ -2768,24 +2662,12 @@ unit/wait_traits.$(OBJEXT): unit/$(am__dirstamp) \
 unit/wait_traits$(EXEEXT): $(unit_wait_traits_OBJECTS) $(unit_wait_traits_DEPENDENCIES) $(EXTRA_unit_wait_traits_DEPENDENCIES) unit/$(am__dirstamp)
 	@rm -f unit/wait_traits$(EXEEXT)
 	$(AM_V_CXXLD)$(CXXLINK) $(unit_wait_traits_OBJECTS) $(unit_wait_traits_LDADD) $(LIBS)
-unit/waitable_timer_service.$(OBJEXT): unit/$(am__dirstamp) \
-	unit/$(DEPDIR)/$(am__dirstamp)
-
-unit/waitable_timer_service$(EXEEXT): $(unit_waitable_timer_service_OBJECTS) $(unit_waitable_timer_service_DEPENDENCIES) $(EXTRA_unit_waitable_timer_service_DEPENDENCIES) unit/$(am__dirstamp)
-	@rm -f unit/waitable_timer_service$(EXEEXT)
-	$(AM_V_CXXLD)$(CXXLINK) $(unit_waitable_timer_service_OBJECTS) $(unit_waitable_timer_service_LDADD) $(LIBS)
 unit/windows/$(am__dirstamp):
 	@$(MKDIR_P) unit/windows
 	@: > unit/windows/$(am__dirstamp)
 unit/windows/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) unit/windows/$(DEPDIR)
 	@: > unit/windows/$(DEPDIR)/$(am__dirstamp)
-unit/windows/basic_handle.$(OBJEXT): unit/windows/$(am__dirstamp) \
-	unit/windows/$(DEPDIR)/$(am__dirstamp)
-
-unit/windows/basic_handle$(EXEEXT): $(unit_windows_basic_handle_OBJECTS) $(unit_windows_basic_handle_DEPENDENCIES) $(EXTRA_unit_windows_basic_handle_DEPENDENCIES) unit/windows/$(am__dirstamp)
-	@rm -f unit/windows/basic_handle$(EXEEXT)
-	$(AM_V_CXXLD)$(CXXLINK) $(unit_windows_basic_handle_OBJECTS) $(unit_windows_basic_handle_LDADD) $(LIBS)
 unit/windows/basic_object_handle.$(OBJEXT):  \
 	unit/windows/$(am__dirstamp) \
 	unit/windows/$(DEPDIR)/$(am__dirstamp)
@@ -2793,6 +2675,13 @@ unit/windows/basic_object_handle.$(OBJEXT):  \
 unit/windows/basic_object_handle$(EXEEXT): $(unit_windows_basic_object_handle_OBJECTS) $(unit_windows_basic_object_handle_DEPENDENCIES) $(EXTRA_unit_windows_basic_object_handle_DEPENDENCIES) unit/windows/$(am__dirstamp)
 	@rm -f unit/windows/basic_object_handle$(EXEEXT)
 	$(AM_V_CXXLD)$(CXXLINK) $(unit_windows_basic_object_handle_OBJECTS) $(unit_windows_basic_object_handle_LDADD) $(LIBS)
+unit/windows/basic_overlapped_handle.$(OBJEXT):  \
+	unit/windows/$(am__dirstamp) \
+	unit/windows/$(DEPDIR)/$(am__dirstamp)
+
+unit/windows/basic_overlapped_handle$(EXEEXT): $(unit_windows_basic_overlapped_handle_OBJECTS) $(unit_windows_basic_overlapped_handle_DEPENDENCIES) $(EXTRA_unit_windows_basic_overlapped_handle_DEPENDENCIES) unit/windows/$(am__dirstamp)
+	@rm -f unit/windows/basic_overlapped_handle$(EXEEXT)
+	$(AM_V_CXXLD)$(CXXLINK) $(unit_windows_basic_overlapped_handle_OBJECTS) $(unit_windows_basic_overlapped_handle_LDADD) $(LIBS)
 unit/windows/basic_random_access_handle.$(OBJEXT):  \
 	unit/windows/$(am__dirstamp) \
 	unit/windows/$(DEPDIR)/$(am__dirstamp)
@@ -2813,13 +2702,6 @@ unit/windows/object_handle.$(OBJEXT): unit/windows/$(am__dirstamp) \
 unit/windows/object_handle$(EXEEXT): $(unit_windows_object_handle_OBJECTS) $(unit_windows_object_handle_DEPENDENCIES) $(EXTRA_unit_windows_object_handle_DEPENDENCIES) unit/windows/$(am__dirstamp)
 	@rm -f unit/windows/object_handle$(EXEEXT)
 	$(AM_V_CXXLD)$(CXXLINK) $(unit_windows_object_handle_OBJECTS) $(unit_windows_object_handle_LDADD) $(LIBS)
-unit/windows/object_handle_service.$(OBJEXT):  \
-	unit/windows/$(am__dirstamp) \
-	unit/windows/$(DEPDIR)/$(am__dirstamp)
-
-unit/windows/object_handle_service$(EXEEXT): $(unit_windows_object_handle_service_OBJECTS) $(unit_windows_object_handle_service_DEPENDENCIES) $(EXTRA_unit_windows_object_handle_service_DEPENDENCIES) unit/windows/$(am__dirstamp)
-	@rm -f unit/windows/object_handle_service$(EXEEXT)
-	$(AM_V_CXXLD)$(CXXLINK) $(unit_windows_object_handle_service_OBJECTS) $(unit_windows_object_handle_service_LDADD) $(LIBS)
 unit/windows/overlapped_handle.$(OBJEXT):  \
 	unit/windows/$(am__dirstamp) \
 	unit/windows/$(DEPDIR)/$(am__dirstamp)
@@ -2840,26 +2722,12 @@ unit/windows/random_access_handle.$(OBJEXT):  \
 unit/windows/random_access_handle$(EXEEXT): $(unit_windows_random_access_handle_OBJECTS) $(unit_windows_random_access_handle_DEPENDENCIES) $(EXTRA_unit_windows_random_access_handle_DEPENDENCIES) unit/windows/$(am__dirstamp)
 	@rm -f unit/windows/random_access_handle$(EXEEXT)
 	$(AM_V_CXXLD)$(CXXLINK) $(unit_windows_random_access_handle_OBJECTS) $(unit_windows_random_access_handle_LDADD) $(LIBS)
-unit/windows/random_access_handle_service.$(OBJEXT):  \
-	unit/windows/$(am__dirstamp) \
-	unit/windows/$(DEPDIR)/$(am__dirstamp)
-
-unit/windows/random_access_handle_service$(EXEEXT): $(unit_windows_random_access_handle_service_OBJECTS) $(unit_windows_random_access_handle_service_DEPENDENCIES) $(EXTRA_unit_windows_random_access_handle_service_DEPENDENCIES) unit/windows/$(am__dirstamp)
-	@rm -f unit/windows/random_access_handle_service$(EXEEXT)
-	$(AM_V_CXXLD)$(CXXLINK) $(unit_windows_random_access_handle_service_OBJECTS) $(unit_windows_random_access_handle_service_LDADD) $(LIBS)
 unit/windows/stream_handle.$(OBJEXT): unit/windows/$(am__dirstamp) \
 	unit/windows/$(DEPDIR)/$(am__dirstamp)
 
 unit/windows/stream_handle$(EXEEXT): $(unit_windows_stream_handle_OBJECTS) $(unit_windows_stream_handle_DEPENDENCIES) $(EXTRA_unit_windows_stream_handle_DEPENDENCIES) unit/windows/$(am__dirstamp)
 	@rm -f unit/windows/stream_handle$(EXEEXT)
 	$(AM_V_CXXLD)$(CXXLINK) $(unit_windows_stream_handle_OBJECTS) $(unit_windows_stream_handle_LDADD) $(LIBS)
-unit/windows/stream_handle_service.$(OBJEXT):  \
-	unit/windows/$(am__dirstamp) \
-	unit/windows/$(DEPDIR)/$(am__dirstamp)
-
-unit/windows/stream_handle_service$(EXEEXT): $(unit_windows_stream_handle_service_OBJECTS) $(unit_windows_stream_handle_service_DEPENDENCIES) $(EXTRA_unit_windows_stream_handle_service_DEPENDENCIES) unit/windows/$(am__dirstamp)
-	@rm -f unit/windows/stream_handle_service$(EXEEXT)
-	$(AM_V_CXXLD)$(CXXLINK) $(unit_windows_stream_handle_service_OBJECTS) $(unit_windows_stream_handle_service_LDADD) $(LIBS)
 unit/write.$(OBJEXT): unit/$(am__dirstamp) \
 	unit/$(DEPDIR)/$(am__dirstamp)
 
@@ -2901,12 +2769,14 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/associated_allocator.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/associated_executor.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/async_result.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/awaitable.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/basic_datagram_socket.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/basic_deadline_timer.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/basic_raw_socket.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/basic_seq_packet_socket.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/basic_serial_port.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/basic_signal_set.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/basic_socket.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/basic_socket_acceptor.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/basic_stream_socket.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/basic_streambuf.Po@am__quote@ # am--include-marker
@@ -2917,13 +2787,14 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/buffered_stream.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/buffered_write_stream.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/buffers_iterator.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/co_spawn.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/completion_condition.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/compose.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/connect.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/coroutine.Po@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/datagram_socket_service.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/deadline_timer.Po@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/deadline_timer_service.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/defer.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/detached.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/dispatch.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/error.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/execution_context.Po@am__quote@ # am--include-marker
@@ -2931,36 +2802,33 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/executor_work_guard.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/high_resolution_timer.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/io_context.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/io_context_strand.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/is_read_buffered.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/is_write_buffered.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/packaged_task.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/placeholders.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/post.Po@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/raw_socket_service.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/read.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/read_at.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/read_until.Po@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/seq_packet_socket_service.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/redirect_error.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/serial_port.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/serial_port_base.Po@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/serial_port_service.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/signal_set.Po@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/signal_set_service.Po@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/socket_acceptor_service.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/socket_base.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/steady_timer.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/strand.Po@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/stream_socket_service.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/streambuf.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/system_context.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/system_executor.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/system_timer.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/this_coro.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/thread.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/time_traits.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/use_awaitable.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/use_future.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/uses_executor.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/wait_traits.Po@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/waitable_timer_service.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/write.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/$(DEPDIR)/write_at.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/generic/$(DEPDIR)/basic_endpoint.Po@am__quote@ # am--include-marker
@@ -2986,7 +2854,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@unit/ip/$(DEPDIR)/network_v4.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/ip/$(DEPDIR)/network_v6.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/ip/$(DEPDIR)/resolver_query_base.Po@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@unit/ip/$(DEPDIR)/resolver_service.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/ip/$(DEPDIR)/tcp.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/ip/$(DEPDIR)/udp.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/ip/$(DEPDIR)/unicast.Po@am__quote@ # am--include-marker
@@ -3000,10 +2867,10 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@unit/posix/$(DEPDIR)/descriptor.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/posix/$(DEPDIR)/descriptor_base.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/posix/$(DEPDIR)/stream_descriptor.Po@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@unit/posix/$(DEPDIR)/stream_descriptor_service.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/ssl/$(DEPDIR)/context.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/ssl/$(DEPDIR)/context_base.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/ssl/$(DEPDIR)/error.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@unit/ssl/$(DEPDIR)/host_name_verification.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/ssl/$(DEPDIR)/rfc2818_verification.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/ssl/$(DEPDIR)/stream.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/ssl/$(DEPDIR)/stream_base.Po@am__quote@ # am--include-marker
@@ -3015,18 +2882,15 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@unit/ts/$(DEPDIR)/netfwd.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/ts/$(DEPDIR)/socket.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/ts/$(DEPDIR)/timer.Po@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@unit/windows/$(DEPDIR)/basic_handle.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/windows/$(DEPDIR)/basic_object_handle.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@unit/windows/$(DEPDIR)/basic_overlapped_handle.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/windows/$(DEPDIR)/basic_random_access_handle.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/windows/$(DEPDIR)/basic_stream_handle.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/windows/$(DEPDIR)/object_handle.Po@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@unit/windows/$(DEPDIR)/object_handle_service.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/windows/$(DEPDIR)/overlapped_handle.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/windows/$(DEPDIR)/overlapped_ptr.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/windows/$(DEPDIR)/random_access_handle.Po@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@unit/windows/$(DEPDIR)/random_access_handle_service.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@unit/windows/$(DEPDIR)/stream_handle.Po@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@unit/windows/$(DEPDIR)/stream_handle_service.Po@am__quote@ # am--include-marker
 
 $(am__depfiles_remade):
 	@$(MKDIR_P) $(@D)
@@ -3264,6 +3128,13 @@ unit/async_result.log: unit/async_result$(EXEEXT)
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
 	"$$tst" $(AM_TESTS_FD_REDIRECT)
+unit/awaitable.log: unit/awaitable$(EXEEXT)
+	@p='unit/awaitable$(EXEEXT)'; \
+	b='unit/awaitable'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
 unit/basic_datagram_socket.log: unit/basic_datagram_socket$(EXEEXT)
 	@p='unit/basic_datagram_socket$(EXEEXT)'; \
 	b='unit/basic_datagram_socket'; \
@@ -3302,6 +3173,13 @@ unit/basic_serial_port.log: unit/basic_serial_port$(EXEEXT)
 unit/basic_signal_set.log: unit/basic_signal_set$(EXEEXT)
 	@p='unit/basic_signal_set$(EXEEXT)'; \
 	b='unit/basic_signal_set'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+unit/basic_socket.log: unit/basic_socket$(EXEEXT)
+	@p='unit/basic_socket$(EXEEXT)'; \
+	b='unit/basic_socket'; \
 	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
@@ -3376,6 +3254,13 @@ unit/buffers_iterator.log: unit/buffers_iterator$(EXEEXT)
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
 	"$$tst" $(AM_TESTS_FD_REDIRECT)
+unit/co_spawn.log: unit/co_spawn$(EXEEXT)
+	@p='unit/co_spawn$(EXEEXT)'; \
+	b='unit/co_spawn'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
 unit/completion_condition.log: unit/completion_condition$(EXEEXT)
 	@p='unit/completion_condition$(EXEEXT)'; \
 	b='unit/completion_condition'; \
@@ -3383,23 +3268,16 @@ unit/completion_condition.log: unit/completion_condition$(EXEEXT)
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
 	"$$tst" $(AM_TESTS_FD_REDIRECT)
+unit/compose.log: unit/compose$(EXEEXT)
+	@p='unit/compose$(EXEEXT)'; \
+	b='unit/compose'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
 unit/connect.log: unit/connect$(EXEEXT)
 	@p='unit/connect$(EXEEXT)'; \
 	b='unit/connect'; \
-	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
-	--log-file $$b.log --trs-file $$b.trs \
-	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
-	"$$tst" $(AM_TESTS_FD_REDIRECT)
-unit/datagram_socket_service.log: unit/datagram_socket_service$(EXEEXT)
-	@p='unit/datagram_socket_service$(EXEEXT)'; \
-	b='unit/datagram_socket_service'; \
-	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
-	--log-file $$b.log --trs-file $$b.trs \
-	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
-	"$$tst" $(AM_TESTS_FD_REDIRECT)
-unit/deadline_timer_service.log: unit/deadline_timer_service$(EXEEXT)
-	@p='unit/deadline_timer_service$(EXEEXT)'; \
-	b='unit/deadline_timer_service'; \
 	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
@@ -3414,6 +3292,13 @@ unit/deadline_timer.log: unit/deadline_timer$(EXEEXT)
 unit/defer.log: unit/defer$(EXEEXT)
 	@p='unit/defer$(EXEEXT)'; \
 	b='unit/defer'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+unit/detached.log: unit/detached$(EXEEXT)
+	@p='unit/detached$(EXEEXT)'; \
+	b='unit/detached'; \
 	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
@@ -3463,6 +3348,13 @@ unit/high_resolution_timer.log: unit/high_resolution_timer$(EXEEXT)
 unit/io_context.log: unit/io_context$(EXEEXT)
 	@p='unit/io_context$(EXEEXT)'; \
 	b='unit/io_context'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+unit/io_context_strand.log: unit/io_context_strand$(EXEEXT)
+	@p='unit/io_context_strand$(EXEEXT)'; \
+	b='unit/io_context_strand'; \
 	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
@@ -3593,13 +3485,6 @@ unit/ip/resolver_query_base.log: unit/ip/resolver_query_base$(EXEEXT)
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
 	"$$tst" $(AM_TESTS_FD_REDIRECT)
-unit/ip/resolver_service.log: unit/ip/resolver_service$(EXEEXT)
-	@p='unit/ip/resolver_service$(EXEEXT)'; \
-	b='unit/ip/resolver_service'; \
-	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
-	--log-file $$b.log --trs-file $$b.trs \
-	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
-	"$$tst" $(AM_TESTS_FD_REDIRECT)
 unit/ip/tcp.log: unit/ip/tcp$(EXEEXT)
 	@p='unit/ip/tcp$(EXEEXT)'; \
 	b='unit/ip/tcp'; \
@@ -3719,23 +3604,9 @@ unit/posix/stream_descriptor.log: unit/posix/stream_descriptor$(EXEEXT)
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
 	"$$tst" $(AM_TESTS_FD_REDIRECT)
-unit/posix/stream_descriptor_service.log: unit/posix/stream_descriptor_service$(EXEEXT)
-	@p='unit/posix/stream_descriptor_service$(EXEEXT)'; \
-	b='unit/posix/stream_descriptor_service'; \
-	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
-	--log-file $$b.log --trs-file $$b.trs \
-	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
-	"$$tst" $(AM_TESTS_FD_REDIRECT)
 unit/post.log: unit/post$(EXEEXT)
 	@p='unit/post$(EXEEXT)'; \
 	b='unit/post'; \
-	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
-	--log-file $$b.log --trs-file $$b.trs \
-	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
-	"$$tst" $(AM_TESTS_FD_REDIRECT)
-unit/raw_socket_service.log: unit/raw_socket_service$(EXEEXT)
-	@p='unit/raw_socket_service$(EXEEXT)'; \
-	b='unit/raw_socket_service'; \
 	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
@@ -3761,9 +3632,9 @@ unit/read_until.log: unit/read_until$(EXEEXT)
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
 	"$$tst" $(AM_TESTS_FD_REDIRECT)
-unit/seq_packet_socket_service.log: unit/seq_packet_socket_service$(EXEEXT)
-	@p='unit/seq_packet_socket_service$(EXEEXT)'; \
-	b='unit/seq_packet_socket_service'; \
+unit/redirect_error.log: unit/redirect_error$(EXEEXT)
+	@p='unit/redirect_error$(EXEEXT)'; \
+	b='unit/redirect_error'; \
 	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
@@ -3782,30 +3653,9 @@ unit/serial_port_base.log: unit/serial_port_base$(EXEEXT)
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
 	"$$tst" $(AM_TESTS_FD_REDIRECT)
-unit/serial_port_service.log: unit/serial_port_service$(EXEEXT)
-	@p='unit/serial_port_service$(EXEEXT)'; \
-	b='unit/serial_port_service'; \
-	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
-	--log-file $$b.log --trs-file $$b.trs \
-	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
-	"$$tst" $(AM_TESTS_FD_REDIRECT)
 unit/signal_set.log: unit/signal_set$(EXEEXT)
 	@p='unit/signal_set$(EXEEXT)'; \
 	b='unit/signal_set'; \
-	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
-	--log-file $$b.log --trs-file $$b.trs \
-	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
-	"$$tst" $(AM_TESTS_FD_REDIRECT)
-unit/signal_set_service.log: unit/signal_set_service$(EXEEXT)
-	@p='unit/signal_set_service$(EXEEXT)'; \
-	b='unit/signal_set_service'; \
-	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
-	--log-file $$b.log --trs-file $$b.trs \
-	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
-	"$$tst" $(AM_TESTS_FD_REDIRECT)
-unit/socket_acceptor_service.log: unit/socket_acceptor_service$(EXEEXT)
-	@p='unit/socket_acceptor_service$(EXEEXT)'; \
-	b='unit/socket_acceptor_service'; \
 	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
@@ -3827,13 +3677,6 @@ unit/steady_timer.log: unit/steady_timer$(EXEEXT)
 unit/strand.log: unit/strand$(EXEEXT)
 	@p='unit/strand$(EXEEXT)'; \
 	b='unit/strand'; \
-	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
-	--log-file $$b.log --trs-file $$b.trs \
-	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
-	"$$tst" $(AM_TESTS_FD_REDIRECT)
-unit/stream_socket_service.log: unit/stream_socket_service$(EXEEXT)
-	@p='unit/stream_socket_service$(EXEEXT)'; \
-	b='unit/stream_socket_service'; \
 	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
@@ -3862,6 +3705,13 @@ unit/system_executor.log: unit/system_executor$(EXEEXT)
 unit/system_timer.log: unit/system_timer$(EXEEXT)
 	@p='unit/system_timer$(EXEEXT)'; \
 	b='unit/system_timer'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+unit/this_coro.log: unit/this_coro$(EXEEXT)
+	@p='unit/this_coro$(EXEEXT)'; \
+	b='unit/this_coro'; \
 	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
@@ -3936,6 +3786,13 @@ unit/ts/timer.log: unit/ts/timer$(EXEEXT)
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
 	"$$tst" $(AM_TESTS_FD_REDIRECT)
+unit/use_awaitable.log: unit/use_awaitable$(EXEEXT)
+	@p='unit/use_awaitable$(EXEEXT)'; \
+	b='unit/use_awaitable'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
 unit/use_future.log: unit/use_future$(EXEEXT)
 	@p='unit/use_future$(EXEEXT)'; \
 	b='unit/use_future'; \
@@ -3957,23 +3814,16 @@ unit/wait_traits.log: unit/wait_traits$(EXEEXT)
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
 	"$$tst" $(AM_TESTS_FD_REDIRECT)
-unit/waitable_timer_service.log: unit/waitable_timer_service$(EXEEXT)
-	@p='unit/waitable_timer_service$(EXEEXT)'; \
-	b='unit/waitable_timer_service'; \
-	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
-	--log-file $$b.log --trs-file $$b.trs \
-	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
-	"$$tst" $(AM_TESTS_FD_REDIRECT)
-unit/windows/basic_handle.log: unit/windows/basic_handle$(EXEEXT)
-	@p='unit/windows/basic_handle$(EXEEXT)'; \
-	b='unit/windows/basic_handle'; \
-	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
-	--log-file $$b.log --trs-file $$b.trs \
-	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
-	"$$tst" $(AM_TESTS_FD_REDIRECT)
 unit/windows/basic_object_handle.log: unit/windows/basic_object_handle$(EXEEXT)
 	@p='unit/windows/basic_object_handle$(EXEEXT)'; \
 	b='unit/windows/basic_object_handle'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+unit/windows/basic_overlapped_handle.log: unit/windows/basic_overlapped_handle$(EXEEXT)
+	@p='unit/windows/basic_overlapped_handle$(EXEEXT)'; \
+	b='unit/windows/basic_overlapped_handle'; \
 	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
@@ -3999,13 +3849,6 @@ unit/windows/object_handle.log: unit/windows/object_handle$(EXEEXT)
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
 	"$$tst" $(AM_TESTS_FD_REDIRECT)
-unit/windows/object_handle_service.log: unit/windows/object_handle_service$(EXEEXT)
-	@p='unit/windows/object_handle_service$(EXEEXT)'; \
-	b='unit/windows/object_handle_service'; \
-	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
-	--log-file $$b.log --trs-file $$b.trs \
-	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
-	"$$tst" $(AM_TESTS_FD_REDIRECT)
 unit/windows/overlapped_handle.log: unit/windows/overlapped_handle$(EXEEXT)
 	@p='unit/windows/overlapped_handle$(EXEEXT)'; \
 	b='unit/windows/overlapped_handle'; \
@@ -4027,23 +3870,9 @@ unit/windows/random_access_handle.log: unit/windows/random_access_handle$(EXEEXT
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
 	"$$tst" $(AM_TESTS_FD_REDIRECT)
-unit/windows/random_access_handle_service.log: unit/windows/random_access_handle_service$(EXEEXT)
-	@p='unit/windows/random_access_handle_service$(EXEEXT)'; \
-	b='unit/windows/random_access_handle_service'; \
-	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
-	--log-file $$b.log --trs-file $$b.trs \
-	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
-	"$$tst" $(AM_TESTS_FD_REDIRECT)
 unit/windows/stream_handle.log: unit/windows/stream_handle$(EXEEXT)
 	@p='unit/windows/stream_handle$(EXEEXT)'; \
 	b='unit/windows/stream_handle'; \
-	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
-	--log-file $$b.log --trs-file $$b.trs \
-	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
-	"$$tst" $(AM_TESTS_FD_REDIRECT)
-unit/windows/stream_handle_service.log: unit/windows/stream_handle_service$(EXEEXT)
-	@p='unit/windows/stream_handle_service$(EXEEXT)'; \
-	b='unit/windows/stream_handle_service'; \
 	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
@@ -4079,6 +3908,13 @@ unit/ssl/context.log: unit/ssl/context$(EXEEXT)
 unit/ssl/error.log: unit/ssl/error$(EXEEXT)
 	@p='unit/ssl/error$(EXEEXT)'; \
 	b='unit/ssl/error'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+unit/ssl/host_name_verification.log: unit/ssl/host_name_verification$(EXEEXT)
+	@p='unit/ssl/host_name_verification$(EXEEXT)'; \
+	b='unit/ssl/host_name_verification'; \
 	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
@@ -4231,12 +4067,14 @@ distclean: distclean-am
 	-rm -f unit/$(DEPDIR)/associated_allocator.Po
 	-rm -f unit/$(DEPDIR)/associated_executor.Po
 	-rm -f unit/$(DEPDIR)/async_result.Po
+	-rm -f unit/$(DEPDIR)/awaitable.Po
 	-rm -f unit/$(DEPDIR)/basic_datagram_socket.Po
 	-rm -f unit/$(DEPDIR)/basic_deadline_timer.Po
 	-rm -f unit/$(DEPDIR)/basic_raw_socket.Po
 	-rm -f unit/$(DEPDIR)/basic_seq_packet_socket.Po
 	-rm -f unit/$(DEPDIR)/basic_serial_port.Po
 	-rm -f unit/$(DEPDIR)/basic_signal_set.Po
+	-rm -f unit/$(DEPDIR)/basic_socket.Po
 	-rm -f unit/$(DEPDIR)/basic_socket_acceptor.Po
 	-rm -f unit/$(DEPDIR)/basic_stream_socket.Po
 	-rm -f unit/$(DEPDIR)/basic_streambuf.Po
@@ -4247,13 +4085,14 @@ distclean: distclean-am
 	-rm -f unit/$(DEPDIR)/buffered_stream.Po
 	-rm -f unit/$(DEPDIR)/buffered_write_stream.Po
 	-rm -f unit/$(DEPDIR)/buffers_iterator.Po
+	-rm -f unit/$(DEPDIR)/co_spawn.Po
 	-rm -f unit/$(DEPDIR)/completion_condition.Po
+	-rm -f unit/$(DEPDIR)/compose.Po
 	-rm -f unit/$(DEPDIR)/connect.Po
 	-rm -f unit/$(DEPDIR)/coroutine.Po
-	-rm -f unit/$(DEPDIR)/datagram_socket_service.Po
 	-rm -f unit/$(DEPDIR)/deadline_timer.Po
-	-rm -f unit/$(DEPDIR)/deadline_timer_service.Po
 	-rm -f unit/$(DEPDIR)/defer.Po
+	-rm -f unit/$(DEPDIR)/detached.Po
 	-rm -f unit/$(DEPDIR)/dispatch.Po
 	-rm -f unit/$(DEPDIR)/error.Po
 	-rm -f unit/$(DEPDIR)/execution_context.Po
@@ -4261,36 +4100,33 @@ distclean: distclean-am
 	-rm -f unit/$(DEPDIR)/executor_work_guard.Po
 	-rm -f unit/$(DEPDIR)/high_resolution_timer.Po
 	-rm -f unit/$(DEPDIR)/io_context.Po
+	-rm -f unit/$(DEPDIR)/io_context_strand.Po
 	-rm -f unit/$(DEPDIR)/is_read_buffered.Po
 	-rm -f unit/$(DEPDIR)/is_write_buffered.Po
 	-rm -f unit/$(DEPDIR)/packaged_task.Po
 	-rm -f unit/$(DEPDIR)/placeholders.Po
 	-rm -f unit/$(DEPDIR)/post.Po
-	-rm -f unit/$(DEPDIR)/raw_socket_service.Po
 	-rm -f unit/$(DEPDIR)/read.Po
 	-rm -f unit/$(DEPDIR)/read_at.Po
 	-rm -f unit/$(DEPDIR)/read_until.Po
-	-rm -f unit/$(DEPDIR)/seq_packet_socket_service.Po
+	-rm -f unit/$(DEPDIR)/redirect_error.Po
 	-rm -f unit/$(DEPDIR)/serial_port.Po
 	-rm -f unit/$(DEPDIR)/serial_port_base.Po
-	-rm -f unit/$(DEPDIR)/serial_port_service.Po
 	-rm -f unit/$(DEPDIR)/signal_set.Po
-	-rm -f unit/$(DEPDIR)/signal_set_service.Po
-	-rm -f unit/$(DEPDIR)/socket_acceptor_service.Po
 	-rm -f unit/$(DEPDIR)/socket_base.Po
 	-rm -f unit/$(DEPDIR)/steady_timer.Po
 	-rm -f unit/$(DEPDIR)/strand.Po
-	-rm -f unit/$(DEPDIR)/stream_socket_service.Po
 	-rm -f unit/$(DEPDIR)/streambuf.Po
 	-rm -f unit/$(DEPDIR)/system_context.Po
 	-rm -f unit/$(DEPDIR)/system_executor.Po
 	-rm -f unit/$(DEPDIR)/system_timer.Po
+	-rm -f unit/$(DEPDIR)/this_coro.Po
 	-rm -f unit/$(DEPDIR)/thread.Po
 	-rm -f unit/$(DEPDIR)/time_traits.Po
+	-rm -f unit/$(DEPDIR)/use_awaitable.Po
 	-rm -f unit/$(DEPDIR)/use_future.Po
 	-rm -f unit/$(DEPDIR)/uses_executor.Po
 	-rm -f unit/$(DEPDIR)/wait_traits.Po
-	-rm -f unit/$(DEPDIR)/waitable_timer_service.Po
 	-rm -f unit/$(DEPDIR)/write.Po
 	-rm -f unit/$(DEPDIR)/write_at.Po
 	-rm -f unit/generic/$(DEPDIR)/basic_endpoint.Po
@@ -4316,7 +4152,6 @@ distclean: distclean-am
 	-rm -f unit/ip/$(DEPDIR)/network_v4.Po
 	-rm -f unit/ip/$(DEPDIR)/network_v6.Po
 	-rm -f unit/ip/$(DEPDIR)/resolver_query_base.Po
-	-rm -f unit/ip/$(DEPDIR)/resolver_service.Po
 	-rm -f unit/ip/$(DEPDIR)/tcp.Po
 	-rm -f unit/ip/$(DEPDIR)/udp.Po
 	-rm -f unit/ip/$(DEPDIR)/unicast.Po
@@ -4330,10 +4165,10 @@ distclean: distclean-am
 	-rm -f unit/posix/$(DEPDIR)/descriptor.Po
 	-rm -f unit/posix/$(DEPDIR)/descriptor_base.Po
 	-rm -f unit/posix/$(DEPDIR)/stream_descriptor.Po
-	-rm -f unit/posix/$(DEPDIR)/stream_descriptor_service.Po
 	-rm -f unit/ssl/$(DEPDIR)/context.Po
 	-rm -f unit/ssl/$(DEPDIR)/context_base.Po
 	-rm -f unit/ssl/$(DEPDIR)/error.Po
+	-rm -f unit/ssl/$(DEPDIR)/host_name_verification.Po
 	-rm -f unit/ssl/$(DEPDIR)/rfc2818_verification.Po
 	-rm -f unit/ssl/$(DEPDIR)/stream.Po
 	-rm -f unit/ssl/$(DEPDIR)/stream_base.Po
@@ -4345,18 +4180,15 @@ distclean: distclean-am
 	-rm -f unit/ts/$(DEPDIR)/netfwd.Po
 	-rm -f unit/ts/$(DEPDIR)/socket.Po
 	-rm -f unit/ts/$(DEPDIR)/timer.Po
-	-rm -f unit/windows/$(DEPDIR)/basic_handle.Po
 	-rm -f unit/windows/$(DEPDIR)/basic_object_handle.Po
+	-rm -f unit/windows/$(DEPDIR)/basic_overlapped_handle.Po
 	-rm -f unit/windows/$(DEPDIR)/basic_random_access_handle.Po
 	-rm -f unit/windows/$(DEPDIR)/basic_stream_handle.Po
 	-rm -f unit/windows/$(DEPDIR)/object_handle.Po
-	-rm -f unit/windows/$(DEPDIR)/object_handle_service.Po
 	-rm -f unit/windows/$(DEPDIR)/overlapped_handle.Po
 	-rm -f unit/windows/$(DEPDIR)/overlapped_ptr.Po
 	-rm -f unit/windows/$(DEPDIR)/random_access_handle.Po
-	-rm -f unit/windows/$(DEPDIR)/random_access_handle_service.Po
 	-rm -f unit/windows/$(DEPDIR)/stream_handle.Po
-	-rm -f unit/windows/$(DEPDIR)/stream_handle_service.Po
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
@@ -4413,12 +4245,14 @@ maintainer-clean: maintainer-clean-am
 	-rm -f unit/$(DEPDIR)/associated_allocator.Po
 	-rm -f unit/$(DEPDIR)/associated_executor.Po
 	-rm -f unit/$(DEPDIR)/async_result.Po
+	-rm -f unit/$(DEPDIR)/awaitable.Po
 	-rm -f unit/$(DEPDIR)/basic_datagram_socket.Po
 	-rm -f unit/$(DEPDIR)/basic_deadline_timer.Po
 	-rm -f unit/$(DEPDIR)/basic_raw_socket.Po
 	-rm -f unit/$(DEPDIR)/basic_seq_packet_socket.Po
 	-rm -f unit/$(DEPDIR)/basic_serial_port.Po
 	-rm -f unit/$(DEPDIR)/basic_signal_set.Po
+	-rm -f unit/$(DEPDIR)/basic_socket.Po
 	-rm -f unit/$(DEPDIR)/basic_socket_acceptor.Po
 	-rm -f unit/$(DEPDIR)/basic_stream_socket.Po
 	-rm -f unit/$(DEPDIR)/basic_streambuf.Po
@@ -4429,13 +4263,14 @@ maintainer-clean: maintainer-clean-am
 	-rm -f unit/$(DEPDIR)/buffered_stream.Po
 	-rm -f unit/$(DEPDIR)/buffered_write_stream.Po
 	-rm -f unit/$(DEPDIR)/buffers_iterator.Po
+	-rm -f unit/$(DEPDIR)/co_spawn.Po
 	-rm -f unit/$(DEPDIR)/completion_condition.Po
+	-rm -f unit/$(DEPDIR)/compose.Po
 	-rm -f unit/$(DEPDIR)/connect.Po
 	-rm -f unit/$(DEPDIR)/coroutine.Po
-	-rm -f unit/$(DEPDIR)/datagram_socket_service.Po
 	-rm -f unit/$(DEPDIR)/deadline_timer.Po
-	-rm -f unit/$(DEPDIR)/deadline_timer_service.Po
 	-rm -f unit/$(DEPDIR)/defer.Po
+	-rm -f unit/$(DEPDIR)/detached.Po
 	-rm -f unit/$(DEPDIR)/dispatch.Po
 	-rm -f unit/$(DEPDIR)/error.Po
 	-rm -f unit/$(DEPDIR)/execution_context.Po
@@ -4443,36 +4278,33 @@ maintainer-clean: maintainer-clean-am
 	-rm -f unit/$(DEPDIR)/executor_work_guard.Po
 	-rm -f unit/$(DEPDIR)/high_resolution_timer.Po
 	-rm -f unit/$(DEPDIR)/io_context.Po
+	-rm -f unit/$(DEPDIR)/io_context_strand.Po
 	-rm -f unit/$(DEPDIR)/is_read_buffered.Po
 	-rm -f unit/$(DEPDIR)/is_write_buffered.Po
 	-rm -f unit/$(DEPDIR)/packaged_task.Po
 	-rm -f unit/$(DEPDIR)/placeholders.Po
 	-rm -f unit/$(DEPDIR)/post.Po
-	-rm -f unit/$(DEPDIR)/raw_socket_service.Po
 	-rm -f unit/$(DEPDIR)/read.Po
 	-rm -f unit/$(DEPDIR)/read_at.Po
 	-rm -f unit/$(DEPDIR)/read_until.Po
-	-rm -f unit/$(DEPDIR)/seq_packet_socket_service.Po
+	-rm -f unit/$(DEPDIR)/redirect_error.Po
 	-rm -f unit/$(DEPDIR)/serial_port.Po
 	-rm -f unit/$(DEPDIR)/serial_port_base.Po
-	-rm -f unit/$(DEPDIR)/serial_port_service.Po
 	-rm -f unit/$(DEPDIR)/signal_set.Po
-	-rm -f unit/$(DEPDIR)/signal_set_service.Po
-	-rm -f unit/$(DEPDIR)/socket_acceptor_service.Po
 	-rm -f unit/$(DEPDIR)/socket_base.Po
 	-rm -f unit/$(DEPDIR)/steady_timer.Po
 	-rm -f unit/$(DEPDIR)/strand.Po
-	-rm -f unit/$(DEPDIR)/stream_socket_service.Po
 	-rm -f unit/$(DEPDIR)/streambuf.Po
 	-rm -f unit/$(DEPDIR)/system_context.Po
 	-rm -f unit/$(DEPDIR)/system_executor.Po
 	-rm -f unit/$(DEPDIR)/system_timer.Po
+	-rm -f unit/$(DEPDIR)/this_coro.Po
 	-rm -f unit/$(DEPDIR)/thread.Po
 	-rm -f unit/$(DEPDIR)/time_traits.Po
+	-rm -f unit/$(DEPDIR)/use_awaitable.Po
 	-rm -f unit/$(DEPDIR)/use_future.Po
 	-rm -f unit/$(DEPDIR)/uses_executor.Po
 	-rm -f unit/$(DEPDIR)/wait_traits.Po
-	-rm -f unit/$(DEPDIR)/waitable_timer_service.Po
 	-rm -f unit/$(DEPDIR)/write.Po
 	-rm -f unit/$(DEPDIR)/write_at.Po
 	-rm -f unit/generic/$(DEPDIR)/basic_endpoint.Po
@@ -4498,7 +4330,6 @@ maintainer-clean: maintainer-clean-am
 	-rm -f unit/ip/$(DEPDIR)/network_v4.Po
 	-rm -f unit/ip/$(DEPDIR)/network_v6.Po
 	-rm -f unit/ip/$(DEPDIR)/resolver_query_base.Po
-	-rm -f unit/ip/$(DEPDIR)/resolver_service.Po
 	-rm -f unit/ip/$(DEPDIR)/tcp.Po
 	-rm -f unit/ip/$(DEPDIR)/udp.Po
 	-rm -f unit/ip/$(DEPDIR)/unicast.Po
@@ -4512,10 +4343,10 @@ maintainer-clean: maintainer-clean-am
 	-rm -f unit/posix/$(DEPDIR)/descriptor.Po
 	-rm -f unit/posix/$(DEPDIR)/descriptor_base.Po
 	-rm -f unit/posix/$(DEPDIR)/stream_descriptor.Po
-	-rm -f unit/posix/$(DEPDIR)/stream_descriptor_service.Po
 	-rm -f unit/ssl/$(DEPDIR)/context.Po
 	-rm -f unit/ssl/$(DEPDIR)/context_base.Po
 	-rm -f unit/ssl/$(DEPDIR)/error.Po
+	-rm -f unit/ssl/$(DEPDIR)/host_name_verification.Po
 	-rm -f unit/ssl/$(DEPDIR)/rfc2818_verification.Po
 	-rm -f unit/ssl/$(DEPDIR)/stream.Po
 	-rm -f unit/ssl/$(DEPDIR)/stream_base.Po
@@ -4527,18 +4358,15 @@ maintainer-clean: maintainer-clean-am
 	-rm -f unit/ts/$(DEPDIR)/netfwd.Po
 	-rm -f unit/ts/$(DEPDIR)/socket.Po
 	-rm -f unit/ts/$(DEPDIR)/timer.Po
-	-rm -f unit/windows/$(DEPDIR)/basic_handle.Po
 	-rm -f unit/windows/$(DEPDIR)/basic_object_handle.Po
+	-rm -f unit/windows/$(DEPDIR)/basic_overlapped_handle.Po
 	-rm -f unit/windows/$(DEPDIR)/basic_random_access_handle.Po
 	-rm -f unit/windows/$(DEPDIR)/basic_stream_handle.Po
 	-rm -f unit/windows/$(DEPDIR)/object_handle.Po
-	-rm -f unit/windows/$(DEPDIR)/object_handle_service.Po
 	-rm -f unit/windows/$(DEPDIR)/overlapped_handle.Po
 	-rm -f unit/windows/$(DEPDIR)/overlapped_ptr.Po
 	-rm -f unit/windows/$(DEPDIR)/random_access_handle.Po
-	-rm -f unit/windows/$(DEPDIR)/random_access_handle_service.Po
 	-rm -f unit/windows/$(DEPDIR)/stream_handle.Po
-	-rm -f unit/windows/$(DEPDIR)/stream_handle_service.Po
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 
