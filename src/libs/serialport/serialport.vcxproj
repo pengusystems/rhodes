@@ -12,8 +12,8 @@
   <ItemDefinitionGroup>
     <ClCompile>
       <AdditionalIncludeDirectories>../../../ext/asio/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">WIN32_WINNT=_WIN32_WINNT_WIN10;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">WIN32_WINNT=_WIN32_WINNT_WIN10;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='ReleaseNoOpt|x64'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link />
