@@ -6,7 +6,7 @@ Work of interest:
 * Microzed - Embedded programming for Xilinx Zynq7000 SoC. Includes:
     * A bare metal app [birch](./src/embedded/microzed/sw/nile/birch) which demonstrates communication between the PL & PS and DMA for a custom dummy axi4 stream ip to DDR
     * A linux app [acacia](./src/embedded/microzed/sw/nile/acacia) which demonstrates gpio access using sysfs & mmio on two seperate threads
-* KC705 - [Example HDL files from various projects](./src/embedded/kc705/fw/hdl_examples)
+* HDL examples - [Example HDL files from various projects](./src/embedded/hdl_examples)
 * fmcw_radar - [MATLAB notebook (live editor)](./docs/fmcw_radar/) that explains the signal processing done in typical FMCW radars
 
 
