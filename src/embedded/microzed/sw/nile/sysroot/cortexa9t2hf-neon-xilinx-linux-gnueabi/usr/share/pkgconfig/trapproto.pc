@@ -1,9 +1,0 @@
-prefix=/usr
-exec_prefix=/usr
-includedir=/usr/include
- 
-Name: TrapProto
-Description: Trap extension headers
-Version: 3.4.3
-Requires: xt
-Cflags: -I${includedir}

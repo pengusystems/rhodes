@@ -1,3 +1,0 @@
-/usr/bin/env
-/bin/busybox.nosuid 50
-/usr/bin/env.coreutils 100

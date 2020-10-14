@@ -1,3 +1,0 @@
-/bin/ln
-/bin/busybox.nosuid 50
-/bin/ln.coreutils 100

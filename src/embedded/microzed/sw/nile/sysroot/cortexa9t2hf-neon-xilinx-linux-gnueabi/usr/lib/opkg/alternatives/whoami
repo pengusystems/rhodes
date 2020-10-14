@@ -1,3 +1,0 @@
-/usr/bin/whoami
-/bin/busybox.nosuid 50
-/usr/bin/whoami.coreutils 100

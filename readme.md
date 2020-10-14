@@ -1,13 +1,6 @@
-# rhodes
+# RHODES
 
-This repository demonstrates work by **Pengu Systems**. It includes work in C++, MATLAB and HDL.<br>
-Work of interest:
-* Iris - Software application and algorithms for the [Nature Photonics publication for Wavefront shaping in complex media with a 350 kHz modulator via a 1D-to-2D transform](./docs/iris/s41566-019-0503-6.pdf)
-* Microzed - Embedded programming for Xilinx Zynq7000 SoC. Includes:
-    * A bare metal app [birch](./src/embedded/microzed/sw/nile/birch) which demonstrates communication between the PL & PS and DMA for a custom dummy axi4 stream ip to DDR
-    * A linux app [acacia](./src/embedded/microzed/sw/nile/acacia) which demonstrates gpio access using sysfs & mmio on two seperate threads
-* HDL examples - [Example HDL files from various projects](./src/embedded/hdl_examples)
-* fmcw_radar - [MATLAB notebook (live editor)](./docs/fmcw_radar/) that explains the signal processing done in typical FMCW radars
+This repository demonstrates work by **Pengu Systems**. It includes Iris - A software application and algorithms for the [Nature Photonics publication for Wavefront shaping in complex media with a 350 kHz modulator via a 1D-to-2D transform](./docs/iris/s41566-019-0503-6.pdf)
 
 
 Repository is structured as follows:
@@ -17,22 +10,12 @@ Repository is structured as follows:
 │   │   ├── core0
 │   │   ├── ip_repo
 │   │   ├── ...
-│   ├── embedded
-│   │   ├── microzed
-│   │   │   ├── fw
-│   │   │   │   ├── nile
-│   │   │   ├── sw
-│   │   │   │   ├── nile
-│   │   │   │   │   ├── acacia
-│   │   │   │   │   ├── birch
-│   │   ├── ...
 │   ├── apps
 │   │   ├── iris
 │   │   ├── ...
 ├── ext
 ├── docs
 │   ├── iris
-│   ├── fmcw_radar
 │   ├── ...
 ├── scripts
 ```

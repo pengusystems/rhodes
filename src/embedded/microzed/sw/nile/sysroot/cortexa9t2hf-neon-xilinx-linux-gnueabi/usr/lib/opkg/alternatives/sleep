@@ -1,3 +1,0 @@
-/bin/sleep
-/bin/busybox.nosuid 50
-/bin/sleep.coreutils 100

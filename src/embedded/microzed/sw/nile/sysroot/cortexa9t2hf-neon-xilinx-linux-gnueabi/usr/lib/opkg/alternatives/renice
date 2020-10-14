@@ -1,3 +1,0 @@
-/usr/bin/renice
-/bin/busybox.nosuid 50
-/usr/bin/renice.util-linux 80

@@ -1,3 +1,0 @@
-/bin/chgrp
-/bin/busybox.nosuid 50
-/bin/chgrp.coreutils 100

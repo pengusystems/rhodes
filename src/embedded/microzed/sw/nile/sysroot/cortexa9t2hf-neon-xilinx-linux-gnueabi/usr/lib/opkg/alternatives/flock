@@ -1,3 +1,0 @@
-/usr/bin/flock
-/bin/busybox.nosuid 50
-/usr/bin/flock.util-linux 80

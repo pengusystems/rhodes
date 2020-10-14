@@ -1,3 +1,0 @@
-/bin/df
-/bin/busybox.nosuid 50
-/usr/bin/df.coreutils 100

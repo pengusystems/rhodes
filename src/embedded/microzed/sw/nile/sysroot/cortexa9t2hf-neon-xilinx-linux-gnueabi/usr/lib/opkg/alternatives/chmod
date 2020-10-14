@@ -1,3 +1,0 @@
-/bin/chmod
-/bin/busybox.nosuid 50
-/bin/chmod.coreutils 100

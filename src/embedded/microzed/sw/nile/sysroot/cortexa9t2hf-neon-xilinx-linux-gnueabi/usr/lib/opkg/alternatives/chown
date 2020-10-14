@@ -1,3 +1,0 @@
-/bin/chown
-/bin/busybox.nosuid 50
-/bin/chown.coreutils 100

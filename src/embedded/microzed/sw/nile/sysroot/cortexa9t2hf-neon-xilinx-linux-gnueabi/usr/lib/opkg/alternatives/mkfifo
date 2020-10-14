@@ -1,3 +1,0 @@
-/usr/bin/mkfifo
-/bin/busybox.nosuid 50
-/usr/bin/mkfifo.coreutils 100

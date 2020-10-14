@@ -1,3 +1,0 @@
-/sbin/sysctl
-/bin/busybox.nosuid 50
-/sbin/sysctl.procps 200

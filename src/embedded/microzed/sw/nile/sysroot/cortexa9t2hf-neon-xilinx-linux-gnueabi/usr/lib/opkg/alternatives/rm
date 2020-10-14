@@ -1,3 +1,0 @@
-/bin/rm
-/bin/busybox.nosuid 50
-/bin/rm.coreutils 100

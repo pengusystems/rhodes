@@ -1,3 +1,0 @@
-/usr/bin/tee
-/bin/busybox.nosuid 50
-/usr/bin/tee.coreutils 100

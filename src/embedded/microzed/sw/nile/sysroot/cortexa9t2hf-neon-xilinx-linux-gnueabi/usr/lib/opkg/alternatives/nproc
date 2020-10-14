@@ -1,3 +1,0 @@
-/usr/bin/nproc
-/bin/busybox.nosuid 50
-/usr/bin/nproc.coreutils 100

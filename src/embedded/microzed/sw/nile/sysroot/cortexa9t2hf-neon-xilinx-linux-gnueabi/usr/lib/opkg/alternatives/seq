@@ -1,3 +1,0 @@
-/usr/bin/seq
-/bin/busybox.nosuid 50
-/usr/bin/seq.coreutils 100
