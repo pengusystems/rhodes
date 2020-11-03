@@ -12,10 +12,9 @@
 #include <memory>
 #include "asio/include/asio.hpp"
 #include "asio/include/asio/serial_port.hpp"
-#include "SerialPort.h"
+#include "serialport.h"
 
-
-struct SerialPort::impl {
+struct serialport::impl {
 	impl();
 	~impl();
 	void async_read_some();
@@ -26,36 +25,31 @@ struct SerialPort::impl {
 	using serial_port_ptr = std::shared_ptr<asio::serial_port>;
 	serial_port_ptr m_port;
 	std::mutex m_mutex;
-	char *m_read_buf_raw;
+	u8 *m_read_buf_raw;
 	cb_on_serial_recv m_on_recv;
 };
 
-
-SerialPort::impl::impl() {
-	m_read_buf_raw = new char[m_read_buf_size];
+serialport::impl::impl() {
+	m_read_buf_raw = new u8[m_read_buf_size];
 	m_on_recv = nullptr;
 }
 
-
-SerialPort::impl::~impl() {
+serialport::impl::~impl() {
 	delete[] m_read_buf_raw;
 }
 
-
-SerialPort::SerialPort() {
+serialport::serialport() {
 	m_pimpl = std::make_unique<impl>();
 }
 
-
-SerialPort::~SerialPort() {
+serialport::~serialport() {
 	stop();
 	if (m_pimpl->m_io_service_thread.joinable()) {
 		m_pimpl->m_io_service_thread.join();
 	}
 }
 
-
-bool SerialPort::start(const char* com_port_name, const int baud_rate) {
+bool serialport::start(const char* com_port_name, const int baud_rate) {
 	std::error_code ec;
 
 	if (m_pimpl->m_port) {
@@ -84,8 +78,7 @@ bool SerialPort::start(const char* com_port_name, const int baud_rate) {
 	return true;
 }
 
-
-void SerialPort::stop() {
+void serialport::stop() {
 	std::lock_guard<std::mutex> lock(m_pimpl->m_mutex);
 
 	if (m_pimpl->m_port) {
@@ -99,18 +92,15 @@ void SerialPort::stop() {
 	m_pimpl->m_io_service.reset();
 }
 
-
-void SerialPort::set_cb_on_recv(cb_on_serial_recv on_recv) {
+void serialport::set_cb_on_recv(cb_on_serial_recv on_recv) {
 	m_pimpl->m_on_recv = on_recv;
 }
 
-
-size_t SerialPort::send(const std::string &buf) {
+size_t serialport::send(const std::string &buf) {
 	return send(buf.c_str(), buf.size());
 }
 
-
-size_t SerialPort::send(const char* buf, const size_t& size) {
+size_t serialport::send(const char* buf, const size_t& size) {
 	std::error_code ec;
 
 	if (!m_pimpl->m_port) {
@@ -123,8 +113,20 @@ size_t SerialPort::send(const char* buf, const size_t& size) {
 	return m_pimpl->m_port->write_some(asio::buffer(buf, size), ec);
 }
 
+size_t serialport::send(const u8* buf, const size_t& size) {
+	std::error_code ec;
 
-void SerialPort::impl::async_read_some() {
+	if (!m_pimpl->m_port) {
+		return -1;
+	}
+	if (size == 0) {
+		return 0;
+	}
+
+	return asio::write(*m_pimpl->m_port, asio::buffer(buf, size));
+}
+
+void serialport::impl::async_read_some() {
 	if (m_port.get() == NULL || !m_port->is_open()) {
 		return;
 	}
@@ -132,14 +134,13 @@ void SerialPort::impl::async_read_some() {
 	m_port->async_read_some(
 		asio::buffer(m_read_buf_raw, m_read_buf_size),
 		std::bind(
-			&SerialPort::impl::on_receive,
+			&serialport::impl::on_receive,
 			this,
 			std::placeholders::_1,
 			std::placeholders::_2));
 }
 
-
-void SerialPort::impl::on_receive(const std::error_code ec, size_t bytes_transferred) {
+void serialport::impl::on_receive(const std::error_code ec, size_t bytes_transferred) {
 	std::lock_guard<std::mutex> lock(m_mutex);
 
 	if (m_port.get() == NULL || !m_port->is_open()) {

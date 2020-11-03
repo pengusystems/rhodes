@@ -1,24 +1,24 @@
 #pragma once
 #include <functional>
+#include <string>
 #include <memory>
+#include "core0/types.h"
 #include "core0/api_export.h"
 
-
 // Call back on receive type.
-using cb_on_serial_recv = std::function<void(char* const data_ptr, const size_t data_len)>;
-
+using cb_on_serial_recv = std::function<void(u8* const data_ptr, const size_t data_len)>;
 
 // A self explanatory class to manage a serial port.
-class SerialPort {
+class serialport {
 public:
-	API_EXPORT SerialPort();
-	API_EXPORT ~SerialPort();
+	API_EXPORT serialport();
+	API_EXPORT ~serialport();
 
 	// Disable copy constructors.
-	SerialPort(const SerialPort &p) = delete;
-	SerialPort &operator=(const SerialPort &p) = delete;
+	serialport(const serialport&p) = delete;
+	serialport&operator=(const serialport&p) = delete;
 
-  // Opens the serial port and starts listening on it.
+	// Opens the serial port and starts listening on it.
 	// Under Linux com_port_name would usually look like: "/dev/ttyS0"
 	// where 0 can be replaced with different serial port nodes.
 	// If permission is denied: sudo chmod o+rw /dev/ttyS0
@@ -33,6 +33,7 @@ public:
 	// Sends data over the serial port.
 	API_EXPORT size_t send(const std::string& buf);
 	API_EXPORT size_t send(const char* buf, const size_t& size);
+	API_EXPORT size_t send(const u8* buf, const size_t& size);
 
 private:
 	struct impl;
