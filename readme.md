@@ -1,6 +1,6 @@
 # RHODES
 
-A software application and algorithms for the [Nature Photonics publication for Wavefront shaping in complex media with a 350 kHz modulator via a 1D-to-2D transform](./docs/iris/s41566-019-0503-6.pdf)
+A software application and algorithms for the [Nature Photonics publication for Wavefront shaping in complex media with a 350 kHz modulator via a 1D-to-2D transform](https://www.nature.com/articles/s41566-019-0503-6). Also appears locally [here](./docs/iris/s41566-019-0503-6.pdf)
 
 
 Repository is structured as follows:
