@@ -8,7 +8,6 @@ Repository is structured as follows:
 ├── src
 │   ├── libs
 │   │   ├── core0
-│   │   ├── ip_repo
 │   │   ├── ...
 │   ├── apps
 │   │   ├── iris
